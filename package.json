@@ -11,5 +11,11 @@
     "underscore": "~1.8.3",
     "ejs": "~2.3.4",
     "serve-static": "~1.10.0"
+  },
+  "devDependencies": {
+    "karma": "~0.13.10",
+    "jasmine-core": "~2.3.4",
+    "karma-jasmine": "~0.3.6",
+    "karma-chrome-launcher": "~0.2.1"
   }
 }
