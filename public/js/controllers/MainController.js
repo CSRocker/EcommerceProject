@@ -4,7 +4,7 @@ app.controller('MainController', ['$scope', function ($scope) {
             {
                 title: "GET 'fibonacci/'",
                 description: 'Returns collection of Fibonacci Numbers up to number 1000',
-                URL: 'http://ec2-52-88-237-253.us-west-2.compute.amazonaws.com:8082/fibonacc',
+                URL: 'http://ec2-52-88-237-253.us-west-2.compute.amazonaws.com:8082/fibonacci',
                 response_format: 'JSON',
                 parameters: 'NONE',
                 example_req: 'http://ec2-52-88-237-253.us-west-2.compute.amazonaws.com:8082/fibonacci',
