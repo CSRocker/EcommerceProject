@@ -21,17 +21,12 @@ app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({ extended: true}));  // configure "app" to use bodyParser() to handle date from POST
 app.use(bodyParser.json());  // define parse format - JSON
 app.use(require('serve-static')(__dirname + '/public')); // Serve Static Files
-console.log((__dirname + '/js'));
 
 /* ROUTES
 ================*/
 for(var route in ROUTES) {
     app.get(ROUTES[route].path, ROUTES[route].fn);
 }
-
-/* POSTs
-================*/
-require('./posts/posts')(app);
 
 /* Start Server
 ================*/
