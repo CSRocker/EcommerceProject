@@ -1,8 +1,8 @@
 # Fibonacci numbers and Palindrome word
-<p><strong>Service and API</strong></p>
+<p><strong>Service and API:</strong></p>
 Service App that returns Fibonacci number sequence and verifies if a word is a Palindrome or not.
 
-An API is provided to GET JSON responses for:
+<p><strong>API Provided:</strong></p>
 <ul>
     <li><p><strong>GET 'fibonacci/'</strong> - Get fibonacci number equal or less than a default value of 1000.</p></li>
     <li><p><strong>GET 'fibonacci/:toNumber'</strong> - Get Fibonacci numbers equal or less that the number provided in ':toNumber'.</p></li>
@@ -11,7 +11,7 @@ An API is provided to GET JSON responses for:
 
 <h3>Built with:</h3>
 <ul>
-    <li><h5><strong>Infrastructure:</strong> AWS EC2</h5></li>
-    <li><h5><strong>Backend:</strong> NodeJS, Express, EJS</h5></li>
-    <li><h5><strong>FrontEnd:</strong> JavaScript, HTML, CSS, AngularJS</h5></li>
+    <li><p><strong>Infrastructure:</strong> AWS EC2</p></li>
+    <li><p><strong>Backend:</strong> NodeJS, Express, EJS</p></li>
+    <li><p><strong>FrontEnd:</strong> JavaScript, HTML, CSS, AngularJS</p></li>
 </ul>
