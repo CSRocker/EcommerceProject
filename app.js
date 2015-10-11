@@ -9,12 +9,19 @@ var express = require('express')          // Node Framework
     , http = require('http')		  // Require http server
     , path = require('path')              // Handling of file paths
     , ROUTES = require('./routes/routes') // Define routes path
+    , serveStatic = require('serve-static') // Serve  Static Files
+
+
+// set the view engine to ejs
+app.engine('.html', require('ejs').__express);
+app.set('view engine', 'html');
 
 /* Midlewares
 ================*/
-// configure "app" to use bodyParser() to handle date from POST
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.json());			   // define parse format - JSON
+app.use(bodyParser.urlencoded({ extended: true}));  // configure "app" to use bodyParser() to handle date from POST
+app.use(bodyParser.json());  // define parse format - JSON
+app.use(require('serve-static')(__dirname + '/public')); // Serve Static Files
+console.log((__dirname + '/js'));
 
 /* ROUTES
 ================*/
@@ -30,6 +37,6 @@ require('./posts/posts')(app);
 ================*/
 
 // Begin listening for HTTP requests to Express app
-http.createServer(app).listen(app.get('port'), function () {
-     console.log("Listening on port: " + app.get('port'));
+http.createServer(app).listen(port, function () {
+     console.log("Listening on port: " + port);
 });
