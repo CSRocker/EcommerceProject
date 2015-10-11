@@ -4,11 +4,12 @@ Service App that returns Fibonacci number sequence and verifies if a word is a P
 
 An API is provided to GET JSON responses for:
 
-<h5>GET 'fibonacci/' - Get fibonacci number equal or less than a default value of 1000.</h5>
-<h5>GET 'fibonacci/:toNumber' - Get Fibonacci numbers equal or less that the number provided in ':toNumber'.</h5>
-<h5>GET 'ispalindrome/:word' - Verifies a word provided and returns if it is a Palindrome or not.'</h5>
+<p><strong>GET 'fibonacci/'</strong> - Get fibonacci number equal or less than a default value of 1000.</p>
+<p><strong>GET 'fibonacci/:toNumber'</strong> - Get Fibonacci numbers equal or less that the number provided in ':toNumber'.</p>
+<p><strong>GET 'ispalindrome/:word'</strong> - Verifies a word provided and returns if it is a Palindrome or not.'</p>
 
-<ul><h3>Built with:</h3>
+<h3>Built with:</h3>
+<ul>
     <li><h5><strong>Infrastructure:</strong> AWS EC2</h5></li>
     <li><h5><strong>Backend:</strong> NodeJS, Express, EJS</h5></li>
     <li><h5><strong>FrontEnd:</strong> JavaScript, HTML, CSS, AngularJS</h5></li>
