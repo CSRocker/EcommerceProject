@@ -9,8 +9,6 @@ var express = require('express')          // Node Framework
     , http = require('http')		  // Require http server
     , path = require('path')              // Handling of file paths
     , ROUTES = require('./routes/routes') // Define routes path
-    , serveStatic = require('serve-static') // Serve  Static Files
-
 
 // set the view engine to ejs
 app.engine('.html', require('ejs').__express);

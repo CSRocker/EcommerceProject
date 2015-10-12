@@ -14,4 +14,5 @@ Service App that returns Fibonacci number sequence and verifies if a word is a P
     <li><p><strong>Infrastructure:</strong> AWS EC2</p></li>
     <li><p><strong>Backend:</strong> NodeJS, Express, EJS</p></li>
     <li><p><strong>FrontEnd:</strong> JavaScript, HTML, CSS, Bootstrap, AngularJS</p></li>
+    <li><p><strong>Testing</strong> Jasmine-Node</p></li>
 </ul>
