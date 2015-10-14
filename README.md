@@ -2,7 +2,7 @@
 <p><strong>Service and API:</strong></p>
 Service App that returns Fibonacci number sequence and verifies if a word is a Palindrome or not.
 
-Service Available at: https:www.palindrome-api.herokuapp.com
+Service Available at: https://palindrome-api.herokuapp.com/
 
 <h3><strong>API Provided:</strong></h3>
 <ul>
