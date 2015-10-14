@@ -2,7 +2,9 @@
 <p><strong>Service and API:</strong></p>
 Service App that returns Fibonacci number sequence and verifies if a word is a Palindrome or not.
 
-<p><strong>API Provided:</strong></p>
+Service Available at: https:www.palindrome-api.herokuapp.com
+
+<h3><strong>API Provided:</strong></h3>
 <ul>
     <li><p><strong>GET 'fibonacci/'</strong> - Get fibonacci number equal or less than a default value of 1000.</p></li>
     <li><p><strong>GET 'fibonacci/:toNumber'</strong> - Get Fibonacci numbers equal or less that the number provided in ':toNumber'.</p></li>
