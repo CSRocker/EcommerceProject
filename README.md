@@ -1,20 +1,15 @@
-# Fibonacci numbers and Palindrome word
-<p><strong>Service and API:</strong></p>
-Service App that returns Fibonacci number sequence and verifies if a word is a Palindrome or not.
-
-Service Available at: https://palindrome-api.herokuapp.com/
-
-<h3><strong>API Provided:</strong></h3>
+# Tech-Team Final Project
+<p><strong>Ecommerce Site:</strong></p>
+This is an international ecommerce site that allows anybody to shop products from:
 <ul>
-    <li><p><strong>GET 'fibonacci/'</strong> - Get fibonacci number equal or less than a default value of 1000.</p></li>
-    <li><p><strong>GET 'fibonacci/:toNumber'</strong> - Get Fibonacci numbers equal or less that the number provided in ':toNumber'.</p></li>
-    <li><p><strong>GET 'ispalindrome/:word'</strong> - Verifies a word provided and returns if it is a Palindrome or not.'</p></li>
+    <li><p><strong>USA</strong></p></li>
+    <li><p><strong>India</strong></p></li>
+    <li><p><strong>Burma</strong></p></li>
+    <li><p><strong>Puerto Rico</strong></p></li>
 </ul>
 
-<h3>Built with:</h3>
-<ul>
-    <li><p><strong>Infrastructure:</strong> AWS EC2</p></li>
-    <li><p><strong>Backend:</strong> NodeJS, Express, EJS</p></li>
-    <li><p><strong>FrontEnd:</strong> JavaScript, HTML, CSS, Bootstrap, AngularJS</p></li>
-    <li><p><strong>Testing:</strong> Jasmine-Node</p></li>
-</ul>
+<h3><strong>Project Sites:</strong></h3>
+
+<li><p><strong>Development Site: localhost:8085</strong></p></li>
+<li><p><strong>Staging Site:</strong></p></li>
+<li><p><strong>Production Site:</strong></p></li>
