@@ -1,5 +1,5 @@
 # Tech-Team Final Project
-<p><strong>Ecommerce Site:</strong></p>
+<p><strong>International Ecommerce Site:</strong></p>
 This is an international ecommerce site that allows anybody to shop products from:
 <ul>
     <li><p><strong>USA</strong></p></li>
