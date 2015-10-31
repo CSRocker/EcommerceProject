@@ -1,0 +1,43 @@
+Hello, this are the basic instructions to download, run and push code to this project repository:
+
+Download or Clone Project:
+
+-Open a terminal window and cd to the desired directory where you want this repository
+-From the directory write in the command line:
+
+    git clone https://github.com/sjsu-cmpe272/ecommerce.git
+
+Installing NODEJS:
+-On Mac:
+
+    curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.org/dist/latest/ | sed -nE 's|.*>node
+
+-On Windows:
+    - Donwload the Windows installer from the NodeJS website: https://nodejs.org/en/#download
+
+-On Ubuntu:
+    curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+
+Installing Project Dependencies:
+
+-Change directory to the project directory and install dependencies:
+    cd ecommerce
+    npm install
+
+Making changes to source files of the project:
+- pushing to 'develop' directories
+    git checkout develop
+    git commit -a -m "Enter here your comments explaining the change to the file"
+    git push origin develop
+
+- pushing to 'staging' directories
+    git checkout staging
+    git merge develop
+    git push staging-heroku staging:master
+
+    -Open the heroku site at:  https://iesaas-s.herokuapp.com
+    -If everything is OK you can push to staging (Github)
+
+    git push origin staging
+    git checkout develop
