@@ -1,6 +1,12 @@
 # Ignore  environmental variables, including API keys.
 .env
 
+# Ignore Postgres config variables
+.pgpass
+
+# Ignore Editor Conf file
+.idea/
+
 # npm packages
 node_modules
 

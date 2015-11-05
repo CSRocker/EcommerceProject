@@ -9,6 +9,8 @@ var express = require('express')          // Node Framework
     , http = require('http')		  // Require http server
     , path = require('path')              // Handling of file paths
     , ROUTES = require('./routes/routes') // Define routes path
+    , db = require('./dbmodels')            // Set Path to the database model directory and definition
+    , async = require('async');
 
 // set the view engine to ejs
 app.engine('.html', require('ejs').__express);
@@ -30,6 +32,23 @@ for(var route in ROUTES) {
 ================*/
 
 // Begin listening for HTTP requests to Express app
-http.createServer(app).listen(port, function () {
-     console.log("Listening on port: " + port);
+global.db.sequelize.sync().then(function(err) {
+    var DB_REFRESH_INTERVAL_SECONDS = 3600;  // every 1 hr
+    async.parallel([
+        function () {
+            // Begin listening for HTTP requests to Express app
+            http.createServer(app).listen(app.get('port'), function () {
+                console.log("Listening on " + app.get('port'));
+            });
+        },
+        function () {
+            // verify currency conversion rates before starting the server
+            global.db.Rates.getRates();
+
+            // verify currency conversion rates every 1 hr
+            setInterval(function () {
+                global.db.Rates.getRates();
+            }, DB_REFRESH_INTERVAL_SECONDS);
+        },
+    ]);
 });
