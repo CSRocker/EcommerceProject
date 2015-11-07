@@ -62,17 +62,15 @@ if (!global.hasOwnProperty('db')) {
     global.db = {
         Sequelize: Sequelize,
         sequelize: sq,
-        Rates: sq.import(__dirname + '/rates'),
-        Users: sq.import(__dirname + '/users'),
-        Orders: sq.import(__dirname + '/orders'),
-        OrderDetail: sq.import(__dirname + '/orderdetails'),
-        Products_has_OrderDetail: sq.import(__dirname + '/productshasorderdetails'),
-        Products: sq.import(__dirname + '/products'),
-        Manufacturers: sq.import(__dirname + '/manufacturers'),
-        Payments: sq.import(__dirname + '/payments'),
-        Cards: sq.import(__dirname + '/cards'),
+        Rate: sq.import(__dirname + '/rate'),
+        User: sq.import(__dirname + '/user'),
+        Order: sq.import(__dirname + '/order'),
+        Orderproduct: sq.import(__dirname + '/orderproduct'),
+        Product: sq.import(__dirname + '/product'),
+        Manufacturer: sq.import(__dirname + '/manufacturer'),
+        Payment: sq.import(__dirname + '/payment'),
+        Card: sq.import(__dirname + '/card'),
         Shipment: sq.import(__dirname + '/shipment'),
-        Points: sq.import(__dirname + '/points')
     };
 }
 module.exports = global.db;

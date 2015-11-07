@@ -9,14 +9,22 @@
  maps to the JS Order object.
  */
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("Users", {
-        email: {type: DataTypes.STRING, allowNull: false, primaryKey: true},
-        password: {type: DataTypes.TEXT, allowNull: true},
+    return sequelize.define("User", {
+        email: {type: DataTypes.STRING, allowNull: false},
+        password: {type: DataTypes.TEXT, allowNull: false},
         name: {type: DataTypes.STRING, allowNull: false},
         address: {type: DataTypes.STRING, allowNull: true},
         phone: {type: DataTypes.STRING, allowNull: true},
         social: {type: DataTypes.STRING, allowNull: true},
-        salt: {type: DataTypes.TEXT, allowNull: true},
-        hash: {type: DataTypes.TEXT, allowNull: true}
-    });
+        salt: {type: DataTypes.TEXT, allowNull: false},
+        hash: {type: DataTypes.TEXT, allowNull: false}
+    },
+        {
+            classMethods: {
+                associate: function(models) {
+                    User.hasMany(models.Card)
+                    User.hasMany(models.Order)
+                }
+            }
+        });
 };

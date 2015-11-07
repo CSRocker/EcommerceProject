@@ -9,16 +9,18 @@
  maps to the JS Order object.
  */
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("Shipment", {
-            order: {type: DataTypes.INTEGER, allowNull: false},
-            type: {type: DataTypes.STRING, allowNull: false},
-            cost: {type: DataTypes.DECIMAL(10, 2), allowNull: false},
-            carrier: {type: DataTypes.STRING, allowNull: true}
-        },
+    return sequelize.define("Order", {
+        date: {type: DataTypes.DATE, allowNull: false},
+        totalprice: {type: DataTypes.DECIMAL(10,2), allowNull: false},
+        points: {type: DataTypes.INTEGER, allowNull:false}
+    },
         {
             classMethods: {
                 associate: function(models) {
-                    Shipment.belongsTo(models.Order, {
+                    Order.hasOne(models.Payment)
+                    Order.hasOne(models.Shipment)
+                    Order.hasMany(models.Orderproduct)
+                    Order.belongsTo(models.User, {
                         onDelete: "CASCADE",
                         foreignKey: {
                             allowNull: false

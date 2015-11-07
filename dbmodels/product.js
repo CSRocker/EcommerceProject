@@ -9,21 +9,19 @@
  maps to the JS Order object.
  */
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("Shipment", {
-            order: {type: DataTypes.INTEGER, allowNull: false},
+    return sequelize.define("Product", {
+            productname: {type: DataTypes.STRING, allowNull: false},
+            country: {type: DataTypes.STRING, allowNull: false},
+            qty: {type: DataTypes.INTEGER, allowNull: false},
+            price: {type: DataTypes.DECIMAL(10, 2), allowNull: false},
             type: {type: DataTypes.STRING, allowNull: false},
-            cost: {type: DataTypes.DECIMAL(10, 2), allowNull: false},
-            carrier: {type: DataTypes.STRING, allowNull: true}
+            expiration: {type: DataTypes.DATE, allowNull: false}
         },
         {
             classMethods: {
                 associate: function(models) {
-                    Shipment.belongsTo(models.Order, {
-                        onDelete: "CASCADE",
-                        foreignKey: {
-                            allowNull: false
-                        }
-                    });
+                    Product.hasOne(models.Manufacturer)
+                    Product.hasMany(models.Orderproduct)
                 }
             }
         });
