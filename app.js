@@ -35,7 +35,7 @@ require('./controllers/posts')(app, global.db, passport);
 
 /* DROP TABLES  -  Remove this lines on production
  ================*/
-//db.Rate.drop(); console.log("Rates Tables DROPPED!!!!");
+db.Rate.drop(); console.log("Rates Tables DROPPED!!!!");
 
 /* Start Server
 ================*/
