@@ -48,11 +48,11 @@ global.db.sequelize.sync().then(function(err) {
         },
         function () {
             // verify currency conversion rates before starting the server
-            global.db.Rates.getRates();
+            global.db.Rate.getRates();
 
             // verify currency conversion rates every 1 hr
             setInterval(function () {
-                global.db.Rates.getRates();
+                global.db.Rate.getRates();
             }, DB_REFRESH_INTERVAL_SECONDS);
         },
     ]);
