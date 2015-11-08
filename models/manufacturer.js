@@ -17,12 +17,6 @@ module.exports = function(sequelize, DataTypes) {
             classMethods: {
                 associate: function(models) {
                     Manufacturer.hasMany(models.Product)
-                    Manufacturer.belongsTo(models.Product, {
-                        onDelete: "CASCADE",
-                        foreignKey: {
-                            allowNull: false
-                        }
-                    });
                 }
             }
         });
