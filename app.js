@@ -9,7 +9,7 @@ var express = require('express')          // Node Framework
     , http = require('http')		  // Require http server
     , path = require('path')              // Handling of file paths
     , ROUTES = require('./routes/routes') // Define routes path
-    , db = require('./dbmodels')            // Set Path to the database model directory and definition
+    , db = require('./models')            // Set Path to the database model directory and definition
     , async = require('async');
 
 // set the view engine to ejs
