@@ -10,8 +10,8 @@
 #echo Setting Symlink into HOME...
 #echo
 
-ln -sf `ls $PWD/.pgpass` -t $HOME
-chmod 600 $HOME"/.pgpass"
+#ln -sf `ls $PWD/.pgpass` -t $HOME
+#chmod 600 $HOME"/.pgpass"
 
 # Extract variables from the .pgpass file
 # stackoverflow.com/a/5257398
@@ -33,11 +33,12 @@ echo Setup User and Database
 echo
 
 echo -e "\n\nINPUT THE FOLLOWING PASSWORD TWICE BELOW: "${PG_PASS} ${PG_USER} ${PG_DB}
-sudo pg createuser -E -P -s $PG_USER
-sudo pg createdb -O $PG_USER $PG_DB
+#sudo pg createuser -E -P -s $PG_USER
+#sudo pg createdb -O $PG_USER $PG_DB
 
-#sudo createuser -D -A -P $PG_USER
-#sudo createdb -O $PG_USER $PG_DB
+sudo createuser -E -P -s $PG_USER
+sudo createdb -O $PG_USER $PG_DB
+
 
 # Test that it works.
 # Note that the symlinking of pgpass into $HOME should pass the password to psql and make these commands work.
