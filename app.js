@@ -6,9 +6,9 @@ var express = require('express')          // Node Framework
     , bodyParser = require('body-parser') // Parse body of REST Requests
     , app = express()                     // Define app variable
     , port = process.env.PORT || 8082     // Define port the app will be using
-    , http = require('http')		  // Require http server
+    , http = require('http')		      // Require http server
     , path = require('path')              // Handling of file paths
-    , ROUTES = require('./routes/routes') // Define routes path
+    , routes = require('./controllers/routes') // Define routes path
     , db = require('./models')            // Set Path to the database model directory and definition
     , async = require('async');
 
@@ -24,9 +24,13 @@ app.use(require('serve-static')(__dirname + '/public')); // Serve Static Files
 
 /* ROUTES
 ================*/
-for(var route in ROUTES) {
+for(var route in routes) {
     app.get(ROUTES[route].path, ROUTES[route].fn);
 }
+
+/* POSTS
+ ================*/
+require('./controllers/posts')(app, global.db, passport);
 
 /* Start Server
 ================*/
