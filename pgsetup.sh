@@ -1,16 +1,14 @@
 #!/bin/bash
 # Set up postgres db for local debugging.
 
-echo
-echo Install PostgreSQL...
-echo
-
-sudo apt-get install -y postgresql postgresql-contrib
+#echo
+#echo Install PostgreSQL...
+#echo
 
 # Symlink into home.
-echo
-echo Setting Symlink into HOME...
-echo
+#echo
+#echo Setting Symlink into HOME...
+#echo
 
 ln -sf `ls $PWD/.pgpass` -t $HOME
 chmod 600 $HOME"/.pgpass"
@@ -35,19 +33,13 @@ echo Setup User and Database
 echo
 
 echo -e "\n\nINPUT THE FOLLOWING PASSWORD TWICE BELOW: "${PG_PASS} ${PG_USER} ${PG_DB}
-sudo -u postgres createuser -U postgres -E -P -s $PG_USER
-sudo -u postgres createdb -U postgres -O $PG_USER $PG_DB
+sudo pg createuser -E -P -s $PG_USER
+sudo pg createdb -O $PG_USER $PG_DB
+
+#sudo createuser -D -A -P $PG_USER
+#sudo createdb -O $PG_USER $PG_DB
 
 # Test that it works.
 # Note that the symlinking of pgpass into $HOME should pass the password to psql and make these commands work.
 echo "CREATE TABLE phonebook(phone VARCHAR(32), firstname VARCHAR(32), lastname VARCHAR(32), address VARCHAR(64));" | psql -d $PG_DB -U $PG_USER
 echo "INSERT INTO phonebook(phone, firstname, lastname, address) VALUES('+1 123 456 7890', 'John', 'Doe', 'North America');" | psql -d $PG_DB -U $PG_USER
-
-# Set up the Users and Database
-echo
-echo Setup PG and PG-HSTORE and SEQUELIZE
-echo
-
-sudo npm install pg --save
-sudo npm install pg-hstore --save
-sudo npm install sequelize --save

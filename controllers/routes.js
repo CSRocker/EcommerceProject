@@ -71,11 +71,11 @@ var define_routes = function(dict) {
 
 /* Define Routes
  ======================*/
-var ROUTES = define_routes({
+var routes = define_routes({
     '/': indexfn,
     '/fibonacci': fibonacci_toNumberfn,
     '/fibonacci/:toNumber': fibonacci_toNumberfn,
     '/ispalindrome/:word': ispalindromefn
 });
 
-module.exports = ROUTES;
+module.exports = routes;

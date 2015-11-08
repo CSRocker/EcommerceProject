@@ -11,6 +11,7 @@ if (!global.hasOwnProperty('db')) {
 
     /* Remote database... Normally Amazon RDS Postgres */
     if (process.env.DATABASE_URL) {
+        console.log("We are on Heroku Database....");
 
         var pgregex = /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/;
         var match = process.env.DATABASE_URL.match(pgregex);
@@ -19,6 +20,13 @@ if (!global.hasOwnProperty('db')) {
         var host = match[3];
         var port = match[4];
         var dbname = match[5];
+
+        console.log('User: '+user);
+        console.log('Password: '+password);
+        console.log('host: '+host);
+        console.log('port: '+port);
+        console.log('dbname: '+dbname);
+
 
         //For Running Remotely on Amazon RDS
         /*
@@ -56,8 +64,15 @@ if (!global.hasOwnProperty('db')) {
             host:     host,
             logging:  console.log
         };
-
         sq = new Sequelize(dbname, user, password, config);
+
+        sq
+            .authenticate()
+            .then(function(err) {
+                console.log('Connection has been established successfully.');
+            }, function (err) {
+                console.log('Unable to connect to the database:', err);
+            });
     }
     global.db = {
         Sequelize: Sequelize,

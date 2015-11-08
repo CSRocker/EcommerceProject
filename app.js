@@ -10,7 +10,8 @@ var express = require('express')          // Node Framework
     , path = require('path')              // Handling of file paths
     , routes = require('./controllers/routes') // Define routes path
     , db = require('./models')            // Set Path to the database model directory and definition
-    , async = require('async');
+    , async = require('async')            // Perform Asynchronous functions
+    , passport = require('passport');     // Library to authenticate users
 
 // set the view engine to ejs
 app.engine('.html', require('ejs').__express);
@@ -25,7 +26,7 @@ app.use(require('serve-static')(__dirname + '/public')); // Serve Static Files
 /* ROUTES
 ================*/
 for(var route in routes) {
-    app.get(ROUTES[route].path, ROUTES[route].fn);
+    app.get(routes[route].path, routes[route].fn);
 }
 
 /* POSTS
