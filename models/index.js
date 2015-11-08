@@ -11,7 +11,7 @@ if (!global.hasOwnProperty('db')) {
 
     /* Remote database... Normally Amazon RDS Postgres */
     if (process.env.DATABASE_URL) {
-        console.log("We are on Heroku Database....");
+        console.log("We are on Heroku Database...");
 
         var pgregex = /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/;
         var match = process.env.DATABASE_URL.match(pgregex);
@@ -42,6 +42,7 @@ if (!global.hasOwnProperty('db')) {
             protocol: 'postgres',
             port:     port,
             host:     host,
+            ssl: true,
             logging:  console.log
         };
 
