@@ -12,50 +12,59 @@
  table maps to the JS Order object. Note that we've omitted a fair bit of
  error handling from the classMethods and instanceMethods for simplicity.
  */
-var http = require('http');
+var oxr = require('open-exchange-rates');
+
+// Set the Open Exchange ID
+oxr.set({
+    app_id: process.env.OPEN_EXCHANGE_ID
+});
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("Rates", {
-        id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
+    return sequelize.define("Rate", {
         date: {type: DataTypes.DATE, allowNull: false},
-        thirtyYear: {type: DataTypes.STRING, allowNull: true},
-        fifteenYear: {type: DataTypes.STRING, allowNull: true}
+        INR: {type: DataTypes.DECIMAL(10,2), allowNull: false},
+        MMK: {type: DataTypes.DECIMAL(10,2), allowNull: false}
     }, {
         classMethods: {
             getRates: function(successcb, errcb) {
                 var _Rates = this;
-                http.get("http://www.zillow.com/webservice/GetRateSummary.htm?zws-id="+process.env.ZILLOW_API_KEY+"&output=json", function(res) {
 
-                    var body = "";
-                    var data;
+                // Get latest exchange rates from API; pass to callback function when loaded:
+                oxr.latest(function(error) {
 
-                    res.on('data', function(chunk) {
-                        body += chunk;
+                    if ( error ) {
+                        // `error` will contain debug info if something went wrong:
+                        console.log( 'ERROR loading data from Open Exchange Rates API! Error was:' )
+                        console.log( error.toString() );
+
+                        // Fall back to hard-coded rates if there was an error (see readme)
+                        return false;
+                    }
+
+                    // Rates are  stored in `oxr` object as `oxr.rates`
+
+                    // The timestamp (published time) of the rates is in `oxr.timestamp`:
+                    console.log( 'Exchange rates published: ' + (new Date(oxr.timestamp)).toUTCString() );
+
+                    // Conversion Rate console log from USD Base
+                    console.log( 'USD -> USD (USA Dollar): ' + oxr.rates.USD );
+                    console.log( 'USD -> INR (Indian Rupee): ' + oxr.rates.INR );
+                    console.log( 'USD -> MMK (Myanmar Kyat): ' + oxr.rates.MMK );
+
+                    // Store Rates in Database
+                    var newRates = _Rates.build({
+                        date: oxr.timestamp,
+                        INR: oxr.rates.INR ,
+                        MMK: oxr.rates.MMK
                     });
 
-                    res.on('end', function() {
-                        data = JSON.parse(body);
-
-                        if(data.message.code == '0') {
-                            var newRates = _Rates.build({
-                                date: new Date(),
-                                thirtyYear: data.response.today.thirtyYearFixed,
-                                fifteenYear: data.response.today.fifteenYearFixed
-                            });
-
-                            newRates.save().then(function (savedData) {
-                            }).error(function(error) {
-                                console.log("Error Storing Rates Info. Msg: "+error);
-                            });
-                        }
-
-                    });
-
-                    res.on('error', function(err) {
-                        console.log("Error Getting Data From ZILLOW: "+err);
+                    newRates.save().then(function (savedData) {
+                    }).error(function(error) {
+                        console.log("Error Storing Rates Info. Msg: "+error);
                     });
 
                 });
+
             }
         }
     });

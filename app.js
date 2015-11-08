@@ -19,8 +19,8 @@ app.set('view engine', 'html');
 
 /* Midlewares
 ================*/
-app.use(bodyParser.urlencoded({ extended: true}));  // configure "app" to use bodyParser() to handle date from POST
-app.use(bodyParser.json());  // define parse format - JSON
+app.use(bodyParser.urlencoded({ extended: true}));       // configure "app" to use bodyParser() to handle date from POST
+app.use(bodyParser.json());                              // define parse format - JSON
 app.use(require('serve-static')(__dirname + '/public')); // Serve Static Files
 
 /* ROUTES
@@ -32,6 +32,10 @@ for(var route in routes) {
 /* POSTS
  ================*/
 require('./controllers/posts')(app, global.db, passport);
+
+/* DROP TABLES  -  Remove this lines on production
+ ================*/
+//db.Rate.drop(); console.log("Rates Tables DROPPED!!!!");
 
 /* Start Server
 ================*/

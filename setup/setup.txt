@@ -26,6 +26,17 @@ Installing Project Dependencies:
 -Creating Environmental Variables file:
     touch .env
 
+-Creating a PostgreSQL credential file:
+    touch .pgpass
+    nano .pgpass
+
+ add the following line (substitute the VALUES in UPPERCASE for your Values):
+    localhost:5432:DBNAME:USERNAME:PASSWORD
+
+-Execute pgsetup.sh file to setup the PostgreSQL server and start it in the background:
+    sudo chmod +x /setup/pgsetup.sh
+    ./setup/pgsetup.sh
+
 -Creating New Branches to Develop and Test(Staging) before Pushing to Github
     git checkout -b develop
     git checkout -b staging
