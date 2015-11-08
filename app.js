@@ -38,7 +38,7 @@ require('./controllers/posts')(app, global.db, passport);
 
 // Begin listening for HTTP requests to Express app
 global.db.sequelize.sync().then(function(err) {
-    var DB_REFRESH_INTERVAL_SECONDS = 3600;  // every 1 hr
+    var DB_REFRESH_INTERVAL_SECONDS = 36000;  // every 1 hr
     async.parallel([
         function () {
             // Begin listening for HTTP requests to Express app
