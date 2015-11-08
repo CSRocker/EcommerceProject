@@ -42,8 +42,8 @@ global.db.sequelize.sync().then(function(err) {
     async.parallel([
         function () {
             // Begin listening for HTTP requests to Express app
-            http.createServer(app).listen(app.get('port'), function () {
-                console.log("Listening on " + app.get('port'));
+            http.createServer(app).listen(port, function () {
+                console.log("Listening on " + port);
             });
         },
         function () {
