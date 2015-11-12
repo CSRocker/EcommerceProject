@@ -11,7 +11,8 @@ var express = require('express')          // Node Framework
     , routes = require('./controllers/routes') // Define routes path
     , db = require('./models')            // Set Path to the database model directory and definition
     , async = require('async')            // Perform Asynchronous functions
-    , passport = require('passport');     // Library to authenticate users
+    , passport = require('passport')      // Library to authenticate users
+    , serveStatic = require('serve-static');// Serve Static Files
 
 // set the view engine to ejs
 app.engine('.html', require('ejs').__express);
@@ -21,7 +22,7 @@ app.set('view engine', 'html');
 ================*/
 app.use(bodyParser.urlencoded({ extended: true}));       // configure "app" to use bodyParser() to handle date from POST
 app.use(bodyParser.json());                              // define parse format - JSON
-app.use(require('serve-static')(__dirname + '/public')); // Serve Static Files
+app.use('/public',serveStatic(__dirname + '/public/')); // Serve Static Files
 
 /* ROUTES
 ================*/

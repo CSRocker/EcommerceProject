@@ -5,60 +5,64 @@ var _ = require('underscore')  // Javascript Helper Library
 /* Routes to follow
 ======================*/
 var indexfn = function(req, res) {
-
     // Render index.html
     res.render("index");
 };
 
-var fibonacci_toNumberfn = function(req, res){
+var cartfn = function(req, res) {
+    // Render cart.html
+    res.render("cart");
+};
 
-    var value = 0, nextValue = 1, sum = 0;
-    var upToNumber  = 1000  // Default Value up to fibonacci number 1000
-    var counter = 3;  // counter starts at 3, since we are hard coding first 2 values in array
-    var fibonacciArray = _.object(_.zip([1, 2], [0, 1]));  // Hard code first two values
+var checkoutfn = function(req, res) {
+    // Render checkout.html
+    res.render("checkout");
+};
 
-    // Verify if user provided a parameter in the request
-    if(req.params.toNumber) {
-        if(!isNaN(req.params.toNumber) && (req.params.toNumber > 0)){
-            upToNumber = req.params.toNumber;
-            if(upToNumber < 2)  // Verify is user request is number 2 or less
-                fibonacciArray = _.object(_.zip([1], [0]));  // Hard code first value
-        } else {
-            // Respond with error is number is zero or less or if not number provided
-            res.status(400).json({ error: '400 Bad Request. A positive number is required.' });
-            return;
-        }
-    }
+var loginfn = function(req, res) {
+    // Render login.html
+    res.render("login");
+};
 
-    //  will loop through the provided parameter or (if not avail) through default value
-    while((value+nextValue) <= upToNumber && upToNumber >=3){
-        sum = value + nextValue;
-        value = nextValue;
-        nextValue = sum;
+var contactfn = function(req, res) {
+    // Render contact.html
+    res.render("contact");
+};
 
-        // Add Fibonacci number to array
-        fibonacciArray[counter] = sum;
-        counter++;
-    }
-    res.send(fibonacciArray);
-}
+var detailsfn = function(req, res) {
+    // Render details.html
+    res.render("details");
+};
 
-var ispalindromefn = function(req, res) {
+var shop_usafn = function(req, res) {
+    // Render shop_usa.html
+    res.render("shop_usa");
+};
 
-    var word = req.params.word;
-    var result = [];  // Array to store result of comparison
+var shop_indiafn = function(req, res) {
+    // Render shop_india.html
+    res.render("shop_india");
+};
 
-    // Remove "spaces" or special Characters
-    word = word.toLowerCase().replace(/[^a-z0-9.]+/g,"");
+var shop_burmafn = function(req, res) {
+    // Render shop_burma.html
+    res.render("shop_burma");
+};
 
-    // compare word with inverse word
-    if (word == word.split('').reverse().join(''))
-        result = {"isPalindrome": true};
-    else
-        result = {"isPalindrome": false};
+var shop_puertoricofn = function(req, res) {
+    // Render shop_puertorico.html
+    res.render("shop_puertorico");
+};
 
-    res.send(result);
-}
+var initialProductsfn = function(req, res) {
+    // Render initialProducts.html
+    res.render("initialProducts", {layout:false});
+};
+
+var accountfn = function(req, res) {
+    // Render account.html
+    res.render("account", {layout:false});
+};
 
 /* Map Routes
 ======================*/
@@ -66,6 +70,7 @@ var define_routes = function(dict) {
     var toroute = function(item) {
         return _.object(_.zip(['path', 'fn'], [item[0], item[1]]));
     };
+    console.log("We are in routes...");
     return _.map(_.pairs(dict), toroute);
 };
 
@@ -73,9 +78,17 @@ var define_routes = function(dict) {
  ======================*/
 var routes = define_routes({
     '/': indexfn,
-    '/fibonacci': fibonacci_toNumberfn,
-    '/fibonacci/:toNumber': fibonacci_toNumberfn,
-    '/ispalindrome/:word': ispalindromefn
+    '/cart': cartfn,
+    '/checkout': checkoutfn,
+    '/login': loginfn,
+    '/contact': contactfn,
+    '/details': detailsfn,
+    '/shop_usa': shop_usafn,
+    '/shop_india': shop_indiafn,
+    '/shop_burma': shop_burmafn,
+    '/shop_puertorico': shop_puertoricofn,
+    '/initialProducts': initialProductsfn,
+    '/account': accountfn
 });
 
 module.exports = routes;
