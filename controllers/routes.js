@@ -64,6 +64,15 @@ var accountfn = function(req, res) {
     res.render("account", {layout:false});
 };
 
+var accountsettingfn = function(req, res) {
+    // Render accountsetting.html
+    res.render("accountsetting", {layout:false});
+};
+
+
+
+
+
 /* Map Routes
 ======================*/
 var define_routes = function(dict) {
@@ -88,7 +97,8 @@ var routes = define_routes({
     '/shop_burma': shop_burmafn,
     '/shop_puertorico': shop_puertoricofn,
     '/initialProducts': initialProductsfn,
-    '/account': accountfn
+    '/account': accountfn,
+    '/accountsetting': accountsettingfn
 });
 
 module.exports = routes;
