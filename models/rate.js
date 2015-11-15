@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
 
                     if ( error ) {
                         // `error` will contain debug info if something went wrong:
-                        console.log( 'ERROR loading data from Open Exchange Rates API! Error was:' )
+                        console.log( 'ERROR loading data from Open Exchange Rates API! Error was:' );
                         console.log( error.toString() );
 
                         // Fall back to hard-coded rates if there was an error (see readme)

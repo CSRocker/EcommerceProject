@@ -2,8 +2,8 @@
 // Calls for Libraries to be used
 var _ = require('underscore')  // Javascript Helper Library
 
-/* Routes to follow
-======================*/
+/* Routes Rendering Views
+=========================*/
 var indexfn = function(req, res) {
     // Render index.html
     res.render("index");
@@ -54,14 +54,19 @@ var shop_puertoricofn = function(req, res) {
     res.render("shop_puertorico");
 };
 
-var initialProductsfn = function(req, res) {
+var initial_productsfn = function(req, res) {
     // Render initialProducts.html
-    res.render("initialProducts", {layout:false});
+    res.render("initial_products", {layout:false});
 };
 
 var accountfn = function(req, res) {
     // Render account.html
     res.render("account", {layout:false});
+};
+
+var add_product_formfn = function(req, res) {
+    // Render product.html
+    res.render("add_product_form", {layout:false});
 };
 
 /* Map Routes
@@ -87,8 +92,10 @@ var routes = define_routes({
     '/shop_india': shop_indiafn,
     '/shop_burma': shop_burmafn,
     '/shop_puertorico': shop_puertoricofn,
-    '/initialProducts': initialProductsfn,
-    '/account': accountfn
+    '/initial_products': initial_productsfn,
+    '/account': accountfn,
+    '/add_product_form': add_product_formfn,
+
 });
 
 module.exports = routes;

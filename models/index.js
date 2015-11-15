@@ -21,13 +21,6 @@ if (!global.hasOwnProperty('db')) {
         var port = match[4];
         var dbname = match[5];
 
-        console.log('User: '+user);
-        console.log('Password: '+password);
-        console.log('host: '+host);
-        console.log('port: '+port);
-        console.log('dbname: '+dbname);
-
-
         //For Running Remotely on Amazon RDS
         /*
          var host = process.env.RDS_HOSTNAME;

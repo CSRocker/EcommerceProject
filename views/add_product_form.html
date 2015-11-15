@@ -1,0 +1,80 @@
+<div id="contact-page" class="container">
+    <div class="bg">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="contact-form">
+                    <h2 class="title text-center">Add New Product</h2>
+
+                    <div id="addProductForm_status" class="status alert alert-success"></div>
+                    <form id="addProductForm" class="contact-form row" name="addProductForm" action="/products" method="post">
+
+                        <div class="form-group col-md-6">
+                            <input type="text" id="productname" name="productname" class="form-control" required="required" placeholder="Product Name">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="country" form="addProductForm">
+                                <option value="">Country</option>
+                                <option value="USA">USA</option>
+                                <option value="India">India</option>
+                                <option value="Burma">Burna</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="text" id="qty" name="qty" class="form-control" required="required" placeholder="Quantity to Add">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="text" id="price" name="price" class="form-control" required="required" placeholder="Product Price">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="type" form="addProductForm">
+                                <option value="">Product Type</option>
+                                <option value="Handcraft">Handcraft</option>
+                                <option value="Music">Music</option>
+                                <option value="Clothe">Clothe</option>
+                                <option value="Food">Food</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="text" id="expiration" name="expiration" class="form-control" required="required" placeholder="Product Expiration">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="submit" id="addProductForm_submit" name="addProductForm_submit" class="btn btn-primary pull-right" value="Submit">
+                        </div>
+
+                    </form>
+
+
+
+
+                    <div id="deleteProductForm_status" class="status alert alert-success"></div>
+                    <form id="deleteProductForm" class="contact-form row" name="deleteProductForm" action="/delete" method="post">
+
+                        <div class="form-group col-md-6">
+                            <input type="text" id="productid" name="productid" class="form-control" required="required" placeholder="Product to delete (id)">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="submit" id="deleteProduct_submit" name="deleteProduct_submit" class="btn btn-primary pull-right" value="Submit">
+                        </div>
+
+                    </form>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- add_product Controller -->
+<script src="../public/js/controllers/add_product_form.js"></script>

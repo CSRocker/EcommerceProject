@@ -49,13 +49,27 @@ $(document).ready(function(){
         }
     });
 
+    $('#addProductForm_submit').click(function(e) {
+        e.preventDefault();
+
+        $.post($("#addProductForm").attr("action"), $("#addProductForm").serialize(), function(data,error) {
+            if(error) {
+                $('#addProductForm_status').html('An Error Occurred, Try Again');
+            }
+            else {
+                $('#addProductForm_status').html('Success! Product Added');
+                $("#addProductForm")[0].reset();
+            }
+        });
+
+    });
 
 });
 
 /* Function to get initial product data 'initialProducts.html'
  ------------------------------------------------------------ */
 function loadInitialProducts () {
-    $.get('/initialProducts', function(data) {
+    $.get('/initial_products', function(data) {
         if(data){
             $('#contentData').empty();  //Empty div 'contentData' from any previous code
             $('#contentData').html(data);   //Render new data on contentData section
