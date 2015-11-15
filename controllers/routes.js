@@ -64,11 +64,6 @@ var accountfn = function(req, res) {
     res.render("account", {layout:false});
 };
 
-var add_product_formfn = function(req, res) {
-    // Render product.html
-    res.render("add_product_form", {layout:false});
-};
-
 /* Map Routes
 ======================*/
 var define_routes = function(dict) {
@@ -92,10 +87,8 @@ var routes = define_routes({
     '/shop_india': shop_indiafn,
     '/shop_burma': shop_burmafn,
     '/shop_puertorico': shop_puertoricofn,
-    '/initial_products': initial_productsfn,
-    '/account': accountfn,
-    '/add_product_form': add_product_formfn,
-
+    '/initialProducts': initialProductsfn,
+    '/account': accountfn
 });
 
 module.exports = routes;
