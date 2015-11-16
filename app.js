@@ -4,6 +4,7 @@
 // Calls for the packages needed
 var express = require('express')          // Node Framework
     , bodyParser = require('body-parser') // Parse body of REST Requests
+    , cookieParser = require('cookie-parser')
     , app = express()                     // Define app variable
     , port = process.env.PORT || 8082     // Define port the app will be using
     , http = require('http')		      // Require http server
@@ -20,8 +21,15 @@ app.set('view engine', 'html');
 
 /* Midlewares
 ================*/
-app.use(bodyParser.urlencoded({ extended: true}));       // configure "app" to use bodyParser() to handle date from POST
-app.use(bodyParser.json());                              // define parse format - JSON
+//app.use(bodyParser.urlencoded({ extended: true}));       // configure "app" to use bodyParser() to handle date from POST
+//app.use(bodyParser.json());                              // define parse format - JSON
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(require('cookie-parser')());
+
 app.use('/public',serveStatic(__dirname + '/public/')); // Serve Static Files
 
 /* ROUTES

@@ -19,10 +19,53 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             classMethods: {
+
                 associate: function(models) {
                     Product.hasOne(models.Manufacturer)
                     Product.hasMany(models.Orderproduct)
+                },
+
+                saveProduct: function(req, callback){
+                    var _Product = this;
+
+                    var newProduct = _Product.build({
+                        productname: req.body.productname,
+                        country: req.body.country,
+                        qty: req.body.qty,
+                        price: req.body.price,
+                        type: req.body.type,
+                        expiration: req.body.expiration
+                    });
+
+                    newProduct.save().then(function (savedData) {
+                        console.log("New Product Saved to Database");
+                        var error = null;
+                        callback(savedData,error);
+                    }).error(function(error) {
+                        var responserMsg = "Error Storing Rates Info";
+                        console.log(responserMsg+": "+error);
+                        callback(responserMsg,error)
+                    });
+                },
+
+                deleteProduct: function(req, callback){
+                    var _Product = this;
+
+                    _Product.destroy({where:{id: req.body.productid}}).then(function(error,result){
+                        if(error == '0'){
+                            console.log("Error destroying the object");
+                            callback("Error");
+
+                        } else {
+                            console.log("Success deleting object");
+                            callback("Success");
+
+                        }
+
+
+                    });
                 }
+
             }
         });
 };
