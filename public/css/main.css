@@ -245,6 +245,7 @@ a#scrollUp i{
 	font-weight: 300;
 	padding: 0;
 	padding-bottom: 10px;
+
 }
 
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
@@ -2519,6 +2520,28 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
 }
+
+
+
+/*************************
+******* Order Status CSS ********
+**************************
+.panel {
+  background: auto;
+
+}
+
+
+.button-orderstatus :hover {
+  background: #FE980F;
+  margin: 0px;
+}**/
+.btn-orderhistory{
+  background: #ffffff;
+  padding-left: 0px;
+
+}
+
 
 /*************************
 ******* Custom CSS ********

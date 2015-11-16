@@ -51,13 +51,14 @@ module.exports = function(sequelize, DataTypes) {
                     console.log( 'USD -> INR (Indian Rupee): ' + oxr.rates.INR );
                     console.log( 'USD -> MMK (Myanmar Kyat): ' + oxr.rates.MMK );
 
-                    // Store Rates in Database
+                    // Store Rates in Database - call sequalize function above
                     var newRates = _Rates.build({
                         date: oxr.timestamp,
                         INR: oxr.rates.INR ,
                         MMK: oxr.rates.MMK
                     });
 
+                    //save() sequalize function - save the oject into database as information
                     newRates.save().then(function (savedData) {
                     }).error(function(error) {
                         console.log("Error Storing Rates Info. Msg: "+error);
