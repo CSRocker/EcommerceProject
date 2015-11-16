@@ -32,88 +32,130 @@
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-5">
+					<div class="col-sm-3">
 						<div class="logo pull-left">
 							<a href="index.html"><img src="../public/images/home/ieShopper_185x80.png" alt="" /></a>
+
 						</div>
-
-                        <div class="btn-group pull-right">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                    USA
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">India</a></li>
-                                    <li><a href="#">Myanmar</a></li>
-                                    <li><a href="#">Puerto Rico</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                    USA Dollar
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Indian Rupee</a></li>
-                                    <li><a href="#">Myanmar Kyat</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
 					</div><!-- /row ie shopper end -->
-					<div class="col-sm-7">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
+
+
+					<div class="col-sm-6 pull-left">
+						<!-- Search Bar -->
+
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+						</div><!-- /Search Bar -->
+					</div>
+
+						<div class="col-sm-3">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+
+							<div class="mainmenu pull-right">
+								<ul class="nav navbar-nav collapse navbar-collapse">
+									<li class="dropdown"><a href="/login"><i class="fa fa-user"> Login</i><i class="fa fa-angle-down"></i></a>
+										<ul role="menu" class="sub-menu">
+											<li><a href="/account">Account</a></li>
+
+										</ul>
+									</li>
+									<li><a href="#">Log out</a></li>
+								</ul>
+							</div>
+						</div>
+					<div class="col-sm-12"></div>
+					<div class="col-sm-3">
+						<div class="btn-group pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+									USA
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">India</a></li>
+									<li><a href="#">Myanmar</a></li>
+									<li><a href="#">Puerto Rico</a></li>
+								</ul>
+							</div>
+
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+									USA Dollar
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Indian Rupee</a></li>
+									<li><a href="#">Myanmar Kyat</a></li>
+								</ul>
+							</div>
+
+
+						</div>
+					</div>
+
+					<div class="col-sm-7 pull-right">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+						</div>
 
 						<div class="mainmenu pull-right">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-                                <li class="dropdown"><a href="/initial_products"><i class="fa fa-globe"> Shop</i><i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/shop_usa">USA</a></li>
-                                        <li><a href="/shop_india">India</a></li>
-                                        <li><a href="/shop_burma">Myanmar</a></li>
-                                        <li><a href="/shop_puertorico">Puerto Rico</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="/cart"><i class="fa fa-shopping-cart"> Cart</i><i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/checkout">Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="/login"><i class="fa fa-user"> Login</i><i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/account">Account</a></li>
-										<li><a href="/accountsetting">AccountSetting</a></li>
+								<li class="dropdown"><a href="/initial_products"><i class="fa fa-globe"> Shop</i><i class="fa fa-angle-down"></i></a>
+									<ul role="menu" class="sub-menu">
+										<li><a href="/shop_usa">USA</a></li>
+										<li><a href="/shop_india">India</a></li>
+										<li><a href="/shop_burma">Myanmar</a></li>
+										<li><a href="/shop_puertorico">Puerto Rico</a></li>
 									</ul>
 								</li>
 
-                                <li class="dropdown"><a href="/add_product_form"><i class="fa fa-user"> Admin</i><i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/add_product_form">Add Product</a></li>
-                                    </ul>
-                                </li>
 
 								<li class="dropdown"><a href="#"><i class="fa fa-user">Your Account</i><i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
-										<li><a href="#">Your Account</a></li>
+                                        <li><a href="/accountsetting">AccountSetting</a></li>
 										<li><a href="/orderStatus">Orders</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="#">Not "You"? Logout!</a></li>
 									</ul>
 								</li>
-									<li><a href="/contact"><i class="fa fa-star"></i> Contact</a></li>
+								<li class="dropdown"><a href="/cart"><i class="fa fa-shopping-cart"> Cart</i><i class="fa fa-angle-down"></i></a>
+									<ul role="menu" class="sub-menu">
+										<li><a href="/checkout">Checkout</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#"><i class="fa fa-star">Help</i><i class="fa fa-angle-down"></i></a>
+									<ul role="menu" class="sub-menu">
+										<li><a href="/contact">Contact Us</a></li>
+										<li><a href="#">About Us</a></li>
+									    <li><a href="#">FAQ</a></li>
+										<li><a href="#">Help</a></li>
+									</ul>
+                                </li>
 
 							</ul>
 						</div>
 					</div>
+
+				</div>
+
+
+
 				</div>
 			</div>
 		</div><!--/header-middle-->
@@ -286,17 +328,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Quick Shop</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">USA</a></li>
-								<li><a href="#">India</a></li>
-								<li><a href="#">Burma</a></li>
-								<li><a href="#">Puerto Rico</a></li>
-							</ul>
-						</div>
-					</div>
+
 					<div class="col-sm-2">
 						<div class="single-widget">
 							<h2>Policies</h2>
@@ -317,6 +349,16 @@
 							</ul>
 						</div>
 					</div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Admin</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/add_product_form">Add/Delete Product</a></li>
+                                <li><a href="#">Add Manufacture</a></li>
+                                <li><a href="#">Delete Product</a></li>
+                            </ul>
+                        </div>
+                    </div>
 					<div class="col-sm-3 col-sm-offset-1">
 						<div class="single-widget">
 							<h2>About Shopper</h2>
@@ -327,7 +369,18 @@
 							</form>
 						</div>
 					</div>
-					
+                    <div class="col-sm-12">
+                        <div class="single-widget-bottom">
+                            <h2>Quick Shop</h2>
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="#">USA</a></li>
+                                <li><a href="#">India</a></li>
+                                <li><a href="#">Burma</a></li>
+                                <li><a href="#">Puerto Rico</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
 				</div>
 			</div>
 		</div>

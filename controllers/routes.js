@@ -72,6 +72,19 @@ var orderStatusfn= function(req, res){
 
 };
 
+var accountsettingfn= function(req, res){
+    //Render accountsetting.html
+
+    res.render("accountsetting", {layout:false});
+}
+
+var add_product_formfn= function(req, res){
+    //Render add_product_form.html
+
+    res.render("add_product_form", {layout:false});
+}
+
+
 /* Map Routes
 ======================*/
 var define_routes = function(dict) {
@@ -82,8 +95,10 @@ var define_routes = function(dict) {
     return _.map(_.pairs(dict), toroute);
 };
 
+
 /* Define Routes
  ======================*/
+
 var routes = define_routes({
     '/': indexfn,
     '/cart': cartfn,
@@ -97,7 +112,10 @@ var routes = define_routes({
     '/shop_puertorico': shop_puertoricofn,
     '/initial_Products': initial_Productsfn,
     '/account': accountfn,
-    '/orderStatus': orderStatusfn
+    '/orderStatus': orderStatusfn,
+    '/accountsetting': accountsettingfn,
+    '/add_product_form': add_product_formfn
+
 });
 
 module.exports = routes;
