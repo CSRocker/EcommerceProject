@@ -64,6 +64,27 @@ var accountfn = function(req, res) {
     res.render("account", {layout:false});
 };
 
+var orderStatusfn= function(req, res){
+    //Render orderStatus.html
+
+        res.render("orderStatus");
+
+
+};
+
+var accountsettingfn= function(req, res){
+    //Render accountsetting.html
+
+    res.render("accountsetting", {layout:false});
+}
+
+var add_product_formfn= function(req, res){
+    //Render add_product_form.html
+
+    res.render("add_product_form", {layout:false});
+}
+
+
 /* Map Routes
 ======================*/
 var define_routes = function(dict) {
@@ -87,8 +108,12 @@ var routes = define_routes({
     '/shop_india': shop_indiafn,
     '/shop_burma': shop_burmafn,
     '/shop_puertorico': shop_puertoricofn,
-    '/initial_products': initial_productsfn,
-    '/account': accountfn
+    '/initial_products': initial_Productsfn,
+    '/account': accountfn,
+    '/orderStatus': orderStatusfn,
+    '/accountsetting': accountsettingfn,
+    '/add_product_form': add_product_formfn
+
 });
 
 module.exports = routes;

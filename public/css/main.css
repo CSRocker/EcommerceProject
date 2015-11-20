@@ -176,11 +176,13 @@ a#scrollUp i{
   background: none repeat scroll 0 0 #FE980F;
   box-shadow: inherit;
   outline: 0 none;
+
 }
 
 .btn-group.open .dropdown-toggle {
   background: rgba(0, 0, 0, 0);
   box-shadow: none;
+
 }
 
 .dropdown-menu  li  a:hover, .dropdown-menu  li  a:focus {
@@ -250,6 +252,7 @@ a#scrollUp i{
 	font-weight: 300;
 	padding: 0;
 	padding-bottom: 10px;
+
 }
 
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
@@ -497,7 +500,8 @@ ul.sub-menu {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	font-weight: 300;
-	padding: 5px 0;
+    padding: 5px 0;
+
 }
 
 .single-widget ul li a i {
@@ -508,6 +512,40 @@ ul.sub-menu {
 	background:none;
 	color:#FE980F;
 }
+
+
+.single-widget-bottom h2 {
+  color: #666663;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+
+.single-widget-bottom h2 i{
+  margin-right:15px;
+}
+
+.single-widget-bottom ul li a{
+  color: #8C8C88;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  display:inline;
+  padding: 10px 40px;
+
+}
+
+.single-widget-bottom ul li a i {
+  margin-right: 18px;
+}
+
+.single-widget-bottom ul li a:hover{
+  background:none;
+  color:#FE980F;
+}
+
 
 
 .searchform input {
@@ -566,6 +604,7 @@ ul.sub-menu {
   font-style: italic;
   text-decoration: underline;
 }
+
 
 
 /*************************
@@ -2524,6 +2563,28 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
 }
+
+
+
+/*************************
+******* Order Status CSS ********
+**************************
+.panel {
+  background: auto;
+
+}
+
+
+.button-orderstatus :hover {
+  background: #FE980F;
+  margin: 0px;
+}**/
+.btn-orderhistory{
+  background: #ffffff;
+  padding-left: 0px;
+
+}
+
 
 /*************************
 ******* Custom CSS ********
