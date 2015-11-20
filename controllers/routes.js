@@ -108,7 +108,7 @@ var routes = define_routes({
     '/shop_india': shop_indiafn,
     '/shop_burma': shop_burmafn,
     '/shop_puertorico': shop_puertoricofn,
-    '/initial_products': initial_Productsfn,
+    '/initial_products': initial_productsfn,
     '/account': accountfn,
     '/orderStatus': orderStatusfn,
     '/accountsetting': accountsettingfn,
