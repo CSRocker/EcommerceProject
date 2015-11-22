@@ -79,7 +79,8 @@ if (!global.hasOwnProperty('db')) {
         Manufacturer: sq.import(__dirname + '/manufacturer'),
         Payment: sq.import(__dirname + '/payment'),
         Card: sq.import(__dirname + '/card'),
-        Shipment: sq.import(__dirname + '/shipment')
+        Shipment: sq.import(__dirname + '/shipment'),
+        //Image: sq.import(__dirname + '/images')
     };
 }
 module.exports = global.db;

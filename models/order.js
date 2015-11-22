@@ -16,17 +16,45 @@ module.exports = function(sequelize, DataTypes) {
     },
         {
             classMethods: {
-                associate: function(models) {
-                    Order.hasOne(models.Payment)
-                    Order.hasOne(models.Shipment)
-                    Order.hasMany(models.Orderproduct)
+               associate: function (models) {
+                    Order.hasOne(models.Payment);
+                    Order.hasOne(models.Shipment);
+                    Order.hasMany(models.Orderproduct);
                     Order.belongsTo(models.User, {
                         onDelete: "CASCADE",
                         foreignKey: {
                             allowNull: false
                         }
                     });
-                }
+                },
+
+                /* Testing */
+                confirmOrder: function (req, callback) {
+                    var _Order = this;
+
+                    var newOrder = _Order.build({
+                        date: req.body.date,
+                        totalprice: req.body.totalprice,
+                        points: req.body.points
+
+
+
+                    });
+
+                    newOrder.save().then(function (savedData) {
+                        console.log("New order Saved to Database");
+                        var error = null;
+                        callback(savedData, error);
+                    }).error(function (error) {
+                        var responserMsg = "Error placing the order";
+                        console.log(responserMsg + ": " + error);
+                        callback(responserMsg, error)
+                    });
+                },
+
+
             }
         });
 };
+
+

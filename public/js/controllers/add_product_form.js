@@ -16,6 +16,7 @@ $(document).ready(function(){
                 $('#addProductForm_status').html('An Error Occurred, Try Again');
             }
             else {
+
                 $('#addProductForm_status').html('Success! Product Added');
                 $("#addProductForm")[0].reset();
             }
@@ -36,6 +37,14 @@ $(document).ready(function(){
             }
         });
     });
+
+
+   /* $('#uploadImage_click').click(function(e){
+        e.preventDefault();
+        /// Include the node file module
+        var fs = require('fs');
+        req.files.image.path
+    });*/
 
 
 

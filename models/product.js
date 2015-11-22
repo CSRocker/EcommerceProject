@@ -23,6 +23,7 @@ module.exports = function(sequelize, DataTypes) {
                 associate: function(models) {
                     Product.hasOne(models.Manufacturer)
                     Product.hasMany(models.Orderproduct)
+                    Product.hasMany(models.Image)
                 },
 
                 saveProduct: function(req, callback){
@@ -44,9 +45,10 @@ module.exports = function(sequelize, DataTypes) {
                     }).error(function(error) {
                         var responserMsg = "Error Storing Rates Info";
                         console.log(responserMsg+": "+error);
-                        callback(responserMsg,error)
+                        callback(responserMsg,error);
                     });
                 },
+
 
                 deleteProduct: function(req, callback){
                     var _Product = this;
@@ -64,8 +66,25 @@ module.exports = function(sequelize, DataTypes) {
 
 
                     });
-                }
+                },
 
+                //write some code to retrieve data from DB
+                //this is for testing
+                showOrder: function(req, callback) {
+                    var _Product = this;
+                    _Product.findAll().then(function(tasks) {
+                        // project will be an instance of Project and stores the content of the table entry
+                        // with id 123. if such an entry is not defined you will get null
+                        if (error) {
+                            console.log("Error retrieving the object");
+                            callback("Error");
+                        } else {
+                            console.log("Sccess retrieving object");
+                            callback(tasks);
+                        }
+                    });
+                }
             }
+
         });
 };

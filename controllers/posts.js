@@ -9,12 +9,25 @@ module.exports = function (app, db, passport) {
      =========================*/
     app.post('/products', function(req, res) {
 
+        /* under construction
+        global.db.Image.saveImage(req, function(savedImage,error){
+            if(error){
+                console.log("An Error Occured Saving the image"+ error);
+            } else {
+                console.log(savedImage);
+                console.log("OK, Return Response to Saving Image");
+             }
+        }),
+             */
         global.db.Product.saveProduct(req,function(savedProduct,error){
             if(error){
                 console.log("An Error Occurred Saving the product: "+error);
                 res.status(300).send('error');
             } else {
                 console.log("OK, Returned response");
+
+
+                console.log(savedProduct);
                 res.status(200).json(savedProduct);
             }
         });
@@ -34,5 +47,35 @@ module.exports = function (app, db, passport) {
         });
 
     });
+    /* Testing */
 
-}
+    app.post('/confirm', function(req, res) {
+
+        global.db.Order.confirmOrder(req,function(savedOrder,error){
+            if(error){
+                console.log("An Error Occurred placing the order: "+error);
+                res.status(300).send('error');
+            } else {
+                console.log("OK, Returned response");
+                res.status(200).json(savedOrder);
+            }
+        });
+
+    });
+
+
+    app.post('/showorders', function(req,res) {
+        global.db.Product.showOrder(req, function (OrderProduct, error) {
+            if (error) {
+                console.log("Error retrieving Order" + error);
+                res.status(300).send('error');
+
+            } else {
+                console.log("Order Summary retrieving Succeeded!");
+                res.status(200).json(OrderProduct);
+            }
+        });
+    });
+
+
+};
