@@ -54,9 +54,9 @@ var shop_puertoricofn = function(req, res) {
     res.render("shop_puertorico");
 };
 
-var initial_Productsfn = function(req, res) {
-    // Render initial_Products.html
-    res.render("initial_Products", {layout:false});
+var initial_productsfn = function(req, res) {
+    // Render initialProducts.html
+    res.render("initial_products", {layout:false});
 };
 
 var accountfn = function(req, res) {
@@ -109,10 +109,8 @@ var define_routes = function(dict) {
     return _.map(_.pairs(dict), toroute);
 };
 
-
 /* Define Routes
  ======================*/
-
 var routes = define_routes({
     '/': indexfn,
     '/cart': cartfn,
@@ -124,7 +122,7 @@ var routes = define_routes({
     '/shop_india': shop_indiafn,
     '/shop_burma': shop_burmafn,
     '/shop_puertorico': shop_puertoricofn,
-    '/initial_Products': initial_Productsfn,
+    '/initial_products': initial_productsfn,
     '/account': accountfn,
     '/orderStatus': orderStatusfn,
     '/accountsetting': accountsettingfn,
