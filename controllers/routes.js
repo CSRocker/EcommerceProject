@@ -86,12 +86,6 @@ var add_product_formfn= function(req, res){
 }
 
 
-var order_productsfn=function(req, res){
-    //Render order_products.html
-    //for testing purpose
-    res.render("order_products", {layout:false});
-}
-
 
 var confirm_orderfn= function(req,res){
     //Render confirm_order.html
@@ -128,8 +122,7 @@ var routes = define_routes({
     '/orderStatus': orderStatusfn,
     '/accountsetting': accountsettingfn,
     '/add_product_form': add_product_formfn,
-    '/confirm_order': confirm_orderfn,
-    '/order_products': order_productsfn // for testing purpose
+    '/confirm_order': confirm_orderfn
 
 });
 
