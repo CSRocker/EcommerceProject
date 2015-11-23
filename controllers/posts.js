@@ -77,5 +77,16 @@ module.exports = function (app, db, passport) {
         });
     });
 
+    app.post('/uploadImageDB', function(req, res){
+        global.db.Image.saveImage(req,function(savedImage, error){
+            if (error){
+                consoel.log("Error Saving Images" + error);
+                res.status(300).send('error');
+            } else {
+                console.log("Saving Images Succeeded!!");
+                res.status(200).json(savedImage);
+            }
+        })
+    });
 
 };

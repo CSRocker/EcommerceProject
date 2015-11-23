@@ -5,6 +5,7 @@ var _ = require('underscore')  // Javascript Helper Library
 /* Routes Rendering Views
 =========================*/
 var indexfn = function(req, res) {
+
     // Render index.html
     res.render("index");
 };

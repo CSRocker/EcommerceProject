@@ -17,6 +17,7 @@ $(document).ready(function(){
             }
             else {
 
+
                 $('#addProductForm_status').html('Success! Product Added');
                 $("#addProductForm")[0].reset();
             }
@@ -39,12 +40,44 @@ $(document).ready(function(){
     });
 
 
-   /* $('#uploadImage_click').click(function(e){
-        e.preventDefault();
+    //upload Image file
+    $('#uploadImageForm_submit').click(function(e){
+       /// e.preventDefault();
         /// Include the node file module
         var fs = require('fs');
-        req.files.image.path
-    });*/
+        fs.readFile(req.files.image.path,function(err, data){
+            var imageName= req.files.image.name;
+
+            console.log(data);
+            /// If there's an error
+            if(!imageName){
+                console.log("There was an error");
+                res.redirect("/"); // render back to homepage * need to edit some code here to render back somewhere else
+                res.end();
+            }else{
+                /// post files
+                $.post('/uploadImageDB',$(data).serialize(), function(data){
+                    if(data == 'error') {
+                        $('#uploadImageForm_status').html('An Error Occurred, Try Again');
+                    }
+                    else {
+
+
+                        $('#uploadImageForm_status').html('Success! Product Added');
+                        $("#uploadImageForm")[0].reset();
+                    }
+                });
+
+                var newPath= __dirname + "/images/products/" + imageName;
+                fs.wrtieFile(newPath, data, function(err){
+                    /// let's see it .
+                    res.redirect("/images/products/" + imageName); /// Maybe it should render back to add_product_form
+                });
+
+            }
+        });
+
+    });
 
 
 
