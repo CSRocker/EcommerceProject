@@ -113,7 +113,6 @@ var routes = define_routes({
     '/orderStatus': orderStatusfn,
     '/accountsetting': accountsettingfn,
     '/add_product_form': add_product_formfn
-
 });
 
 module.exports = routes;

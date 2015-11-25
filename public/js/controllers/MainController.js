@@ -29,24 +29,7 @@ $(document).ready(function(){
 
     // Intercept clicks to links in the main page
     $('a').click(function (event) {
-        event.preventDefault();
-
-        var url = $(this).attr('href');
-
-        // Verify what kind of address was received: if '#' = Scroll, if '/' = route
-        if(!url.match(/^#/)) {
-            $.get(url, function (data) {
-                if (data) {
-                    $('#contentData').empty();      //Empty div 'contentData' from any previous code
-                    $('#contentData').html(data);   //Render new data on contentData section
-                    $('#slider').hide( "slow", function() {
-                        scrollToId('#contentData'); //Scroll to start of contentData section in case we are off.
-                    });
-                }
-            });
-        } else {
-            scrollToId(url);  // if not a route or post - scroll to section id
-        }
+        getClickedLink (this,event); // 'this' = clicked link ; 'event'= click
     });
 
     $('#addProductForm_submit').click(function(e) {
@@ -77,10 +60,35 @@ function loadInitialProducts () {
     });
 }
 
+/* Function to scroll to start of injected HMTL Code'
+ ------------------------------------------------------------ */
 function scrollToId (id) {
     $('html, body').animate({
         scrollTop: $(id).offset().top
     }, 2000);
+}
+
+/* Function to get code from server and inject in main HTML page'
+ --------------------------------------------------------------- */
+function getClickedLink (link, event){
+    event.preventDefault();
+
+    var url = $(link).attr('href');
+
+    // Verify what kind of address was received: if '#' = Scroll, if '/' = route
+    if(!url.match(/^#/)) {
+        $.get(url, function (data) {
+            if (data) {
+                $('#contentData').empty();      //Empty div 'contentData' from any previous code
+                $('#contentData').html(data);   //Render new data on contentData section
+                $('#slider').hide( "slow", function() {
+                    scrollToId('#contentData'); //Scroll to start of contentData section in case we are off.
+                });
+            }
+        });
+    } else {
+        scrollToId(url);  // if not a route or post - scroll to section id
+    }
 }
 
 var RGBChange = function() {
