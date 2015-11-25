@@ -101,8 +101,8 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="../public/images/home/product1.jpg" alt="" />
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
+                                <h2>$56</h2> <!--price -->
+                                <p>Easy Polo Black Edition</p> <!--product name -->
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                             <div class="product-overlay">
@@ -151,7 +151,13 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="../public/images/home/product3.jpg" alt="" />
-                                <h2>$56</h2>
+                                <h2 id="price">
+                                    <script type="text/javascript" src="public/js/controllers/get_product_info.js" charset="utf-8">
+                                        getPrice();
+
+                                    </script>
+                                </h2>
+
                                 <p>Easy Polo Black Edition</p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>

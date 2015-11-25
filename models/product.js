@@ -70,9 +70,9 @@ module.exports = function(sequelize, DataTypes) {
 
                 //write some code to retrieve data from DB
                 //this is for testing
-                showOrder: function(req, callback) {
+                showProduct: function(req, callback) {
                     var _Product = this;
-                    _Product.findAll().then(function(tasks) {
+                    _Product.findAll().then(function(data,error) {
                         // project will be an instance of Project and stores the content of the table entry
                         // with id 123. if such an entry is not defined you will get null
                         if (error) {
@@ -80,7 +80,7 @@ module.exports = function(sequelize, DataTypes) {
                             callback("Error");
                         } else {
                             console.log("Sccess retrieving object");
-                            callback(tasks);
+                            callback(data,error);
                         }
                     });
                 }

@@ -64,19 +64,6 @@ module.exports = function (app, db, passport) {
     });
 
 
-    app.post('/showorders', function(req,res) {
-        global.db.Product.showOrder(req, function (OrderProduct, error) {
-            if (error) {
-                console.log("Error retrieving Order" + error);
-                res.status(300).send('error');
-
-            } else {
-                console.log("Order Summary retrieving Succeeded!");
-                res.status(200).json(OrderProduct);
-            }
-        });
-    });
-
     app.post('/uploadImageDB', function(req, res){
         global.db.Image.saveImage(req,function(savedImage, error){
             if (error){

@@ -1,6 +1,26 @@
 // routes.js
 // Calls for Libraries to be used
-var _ = require('underscore')  // Javascript Helper Library
+var _ = require('underscore')// Javascript Helper Library
+var Help = require('../helper/help.js')
+/* .get()
+ =========================*/
+module.exports = function (app, db, passport) {
+    //should be .get() testing
+
+    app.get('/showproduct', function(req,res) {
+        global.db.Product.showProduct(req, function (ProductInfo, error) {
+            if (error) {
+                console.log("Error retrieving Order" + error);
+                res.status(300).send('error');
+
+            } else {
+                console.log("Order Summary retrieving Succeeded!");
+                res.status(200).json(ProductInfo);
+            }
+        });
+    });
+}
+
 
 /* Routes Rendering Views
 =========================*/
