@@ -20,17 +20,21 @@ app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
 
 /* Midlewares
-================*/
-//app.use(bodyParser.urlencoded({ extended: true}));       // configure "app" to use bodyParser() to handle date from POST
-//app.use(bodyParser.json());                              // define parse format - JSON
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
-app.use(require('cookie-parser')());
-
+ ================*/
+app.use(bodyParser.urlencoded({ extended: true}));      // configure "app" to use bodyParser() to handle date from POST
+app.use(bodyParser.json());                             // define parse format - JSON
 app.use('/public',serveStatic(__dirname + '/public/')); // Serve Static Files
+app.use(require('cookie-parser')());                    // Enable Cookies on App
+app.use(require('express-session')({                    // Enable a User Session for persistence
+    secret:process.env.SECRET,
+    resave: false,
+    saveUninitialized: true }));
+app.use(passport.initialize());                         // Initialize Passport Libraries for Authentication
+app.use(passport.session());                            // Create a new session with Passport
+
+/* Passport route for Authentication
+ ================*/
+require('./authentication/passport')(passport, global.db);
 
 /* ROUTES
 ================*/
@@ -45,6 +49,7 @@ require('./controllers/posts')(app, global.db, passport);
 /* DROP TABLES  -  Remove this lines on production
  ================*/
 //db.Rate.drop(); console.log("Rates Tables DROPPED!!!!");
+//db.User.drop(); console.log("Rates Tables DROPPED!!!!");
 
 /* Start Server
 ================*/

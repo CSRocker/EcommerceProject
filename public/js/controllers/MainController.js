@@ -78,12 +78,14 @@ function getClickedLink (link, event){
     // Verify what kind of address was received: if '#' = Scroll, if '/' = route
     if(!url.match(/^#/)) {
         $.get(url, function (data) {
-            if (data) {
+            if (data != "logged_out") {
                 $('#contentData').empty();      //Empty div 'contentData' from any previous code
                 $('#contentData').html(data);   //Render new data on contentData section
                 $('#slider').hide( "slow", function() {
                     scrollToId('#contentData'); //Scroll to start of contentData section in case we are off.
                 });
+            } else {
+                $(location).attr('href', '/');  // Redirect after logout to the main page '/'
             }
         });
     } else {

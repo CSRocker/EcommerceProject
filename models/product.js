@@ -66,6 +66,18 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 }
 
+               /* getProductById: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findById(req.body.productId).then(function(product){
+                        if(product){
+                            callback(product);
+                        } else {
+                            //code for error
+                        }
+                    })
+                }*/
+
             }
         });
 };
