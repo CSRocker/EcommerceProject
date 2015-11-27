@@ -1,6 +1,10 @@
 /**
  * Created by Carlos on 11/11/15.
  */
+/* GLOBAL VARIABLES
+ ------------------------------------------------ */
+var imageName;  // Variable used to temporarily store the image name returned after upload
+
 /* Execute When Document is Ready
  ------------------------------------------------ */
 $(document).ready(function(){
