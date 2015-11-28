@@ -21,13 +21,12 @@ module.exports = function(sequelize, DataTypes) {
         {
             classMethods: {
 
-                associate: function(models) {
+                associate: function (models) {
                     Product.hasOne(models.Manufacturer)
                     Product.hasMany(models.Orderproduct)
-                    Product.hasMany(models.Image)
                 },
 
-                saveProduct: function(req, callback){
+                saveProduct: function (req, callback) {
                     var _Product = this;
 
                     var newProduct = _Product.build({
@@ -43,20 +42,19 @@ module.exports = function(sequelize, DataTypes) {
                     newProduct.save().then(function (savedData) {
                         console.log("New Product Saved to Database");
                         var error = null;
-                        callback(savedData,error);
-                    }).error(function(error) {
+                        callback(savedData, error);
+                    }).error(function (error) {
                         var responserMsg = "Error Storing Rates Info";
-                        console.log(responserMsg+": "+error);
-                        callback(responserMsg,error);
+                        console.log(responserMsg + ": " + error);
+                        callback(responserMsg, error)
                     });
                 },
 
-
-                deleteProduct: function(req, callback){
+                deleteProduct: function (req, callback) {
                     var _Product = this;
 
-                    _Product.destroy({where:{id: req.body.productid}}).then(function(error,result){
-                        if(error == '0'){
+                    _Product.destroy({where: {id: req.body.productid}}).then(function (error, result) {
+                        if (error == '0') {
                             console.log("Error destroying the object");
                             callback("Error");
 
@@ -70,30 +68,30 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
-                getProduct: function(req, callback){
+                getProduct: function (req, callback) {
                     var _Product = this;
 
-                    _Product.findAll().then(function(product){
-                        if(product){
+                    _Product.findAll().then(function (product) {
+                        if (product) {
                             callback(product);
                             //console.log(product);
 
-                        } else{
+                        } else {
                             console.log("Error retrieving Product");
                         }
                     });
                 },
 
                 // Get the Product info from USA
-                getProductUSA: function(req, callback){
+                getProductUSA: function (req, callback) {
                     var _Product = this;
 
-                    _Product.findAll({where:{country:"USA"},limit: 10 }).then(function(product){
-                        if(product){
+                    _Product.findAll({where: {country: "USA"}, limit: 10}).then(function (product) {
+                        if (product) {
                             callback(product);
                             //console.log(product);
 
-                        } else{
+                        } else {
                             console.log("Error retrieving Product");
                         }
                     });
@@ -101,76 +99,83 @@ module.exports = function(sequelize, DataTypes) {
 
 
                 // Get the Product info from India
-                getProductIndia: function(req, callback){
+                getProductIndia: function (req, callback) {
                     var _Product = this;
 
-                    _Product.findAll({where:{country:"India"},limit: 10 }).then(function(product){
-                        if(product){
+                    _Product.findAll({where: {country: "India"}, limit: 10}).then(function (product) {
+                        if (product) {
                             callback(product);
                             //console.log(product);
 
-                        } else{
+                        } else {
                             console.log("Error retrieving Product");
                         }
                     });
                 },
 
                 // Get the Product info from Burma
-                getProductBurma: function(req, callback){
+                getProductBurma: function (req, callback) {
                     var _Product = this;
 
-                    _Product.findAll({where:{country:"Burma"},limit: 10 }).then(function(product){
-                        if(product){
+                    _Product.findAll({where: {country: "Burma"}, limit: 10}).then(function (product) {
+                        if (product) {
                             callback(product);
                             //console.log(product);
 
-                        } else{
+                        } else {
                             console.log("Error retrieving Product");
                         }
                     });
                 },
 
                 // Get the Product info from Puerto Rico
-                getProductPuertoRico: function(req, callback){
+                getProductPuertoRico: function (req, callback) {
                     var _Product = this;
 
-                    _Product.findAll({where:{country:"Puerto Rico"},limit: 10 }).then(function(product){
-                        if(product){
+                    _Product.findAll({where: {country: "Puerto Rico"}, limit: 10}).then(function (product) {
+                        if (product) {
                             callback(product);
                             //console.log(product);
 
-                        } else{
+                        } else {
                             console.log("Error retrieving Product");
                         }
                     });
                 },
-/*
-                getProductById: function(req, callback){
+                /*
+                 getProductById: function(req, callback){
+                 var _Product = this;
+
+                 _Product.findOne({where:{id:17}}).then(function(error, product){
+                 if(product){
+                 callback(product);
+                 }else {
+                 console.log("error looking for the product by Id");
+                 }
+                 });
+                 },
+
+                 },
+                 */
+                /* getProductById: function(req, callback){
+                 var _Product = this;
+
+                 _Product.findById(req.body.productId).then(function(product){
+                 if(product){
+                 callback(product);
+                 } else {
+                 //code for error
+                 }
+                 })
+                 }*/
+
+                getAllProducts: function (callback) {
                     var _Product = this;
 
-                    _Product.findOne({where:{id:17}}).then(function(error, product){
-                        if(product){
-                            callback(product);
-                        }else {
-                            console.log("error looking for the product by Id");
-                        }
+                    _Product.findAll().then(function (projects) {
+                        callback(projects);
                     });
-                },
-*/
-
-               /* getProductById: function(req, callback){
-                    var _Product = this;
-
-                    _Product.findById(req.body.productId).then(function(product){
-                        if(product){
-                            callback(product);
-                        } else {
-                            //code for error
-                        }
-                    })
-                }*/
-
+                }
             }
-
         });
 };

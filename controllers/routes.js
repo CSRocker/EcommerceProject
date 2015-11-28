@@ -1,31 +1,10 @@
 // routes.js
 // Calls for Libraries to be used
-var _ = require('underscore')// Javascript Helper Library
-var Help = require('../helper/help.js')
-/* .get()
- =========================*/
-module.exports = function (app, db, passport) {
-    //should be .get() testing
-
-    app.get('/showproduct', function(req,res) {
-        global.db.Product.showProduct(req, function (ProductInfo, error) {
-            if (error) {
-                console.log("Error retrieving Order" + error);
-                res.status(300).send('error');
-
-            } else {
-                console.log("Order Summary retrieving Succeeded!");
-                res.status(200).json(ProductInfo);
-            }
-        });
-    });
-}
-
+var _ = require('underscore');  // Javascript Helper Library
 
 /* Routes Rendering Views
 =========================*/
 var indexfn = function(req, res) {
-
     // Render index.html
     var loggedUser;
 
@@ -150,20 +129,13 @@ var shop_puertoricofn = function(req, res) {
 
 var initial_productsfn = function(req, res) {
 
-    var productReturned = [];
 
-    global.db.Product.getProduct(req, function(product){
-        if(product){
-            productReturned = product;
-            // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
+    global.db.Product.getAllProducts(function(products) {
 
-            // Render initialProducts.html
-            res.render("initial_products", {products:productReturned});
-        } else {
-            res.send("error");
-        }
+        //Render initialProducts.html
+        res.render("initial_products", {products:products});
+
     });
-
 };
 
 var accountfn = function(req, res) {
@@ -185,37 +157,27 @@ var accountsettingfn= function(req, res){
     res.render("accountsetting", {layout:false});
 };
 
-var add_product_formfn= function(req, res){
-    //Render add_product_form.html
 
-    res.render("add_product_form", {layout:false});
+var update_userinfofn= function(req, res){
+    //Render accountsetting.html
+
+    res.render("updateuserinfo");
 };
 
-/* Example code to retrieve the product info
-============================================
-var get_product_infofn= function(req, res){
-
-    var productReturned = [];
-
-    //Render get_product_info.html
-    /!*var dummyProd = {
-        productname: 'Candy',
-        price: '$2.00'
-    };*!/
 
 
-    global.db.Product.getProduct(req, function(product){
-        if(product){
-            productReturned = product;
-            // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
-            res.render("get_product_info", {products:productReturned});
-        } else {
-            res.send("error");
-        }
+var add_product_formfn= function(req, res){
+    global.db.Product.getAllProducts(function(products) {
+
+        //Render add_product_form.html
+        res.render("add_product_form", {products:products});
+
     });
 
+};
 
-};*/
+
+
 
 
 var confirm_orderfn= function(req,res){
@@ -223,7 +185,7 @@ var confirm_orderfn= function(req,res){
     //testing
 
     res.render("confirm_order");
-}
+};
 
 /* get Random index of Returned products array
 ==============================================
@@ -279,9 +241,8 @@ var routes = define_routes({
     '/orderStatus': orderStatusfn,
     '/accountsetting': accountsettingfn,
     '/add_product_form': add_product_formfn,
-    '/confirm_order': confirm_orderfn
-    //'/get_product_info': get_product_infofn
-
+    '/confirm_order': confirm_orderfn,
+    '/updateuserinfo':update_userinfofn
 });
 
 module.exports = routes;

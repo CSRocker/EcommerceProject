@@ -2800,3 +2800,26 @@ h2.title {
 .largemarginbottom {
     margin-bottom: 30px;
 }
+
+/*****  IMAGE RESIZE  ****/
+.thumb {
+    max-height:100px;
+}
+
+.medthumb {
+    max-height:155px;
+    max-width: 155px;
+    height: auto;
+    width: auto;
+    margin: 0px auto;
+    display:block;
+}
+
+.largethumb {
+    max-height: 300px;
+    max-width: 300px;
+    height: auto;
+    width: auto;
+    margin: 0px auto;
+    display:block;
+}
