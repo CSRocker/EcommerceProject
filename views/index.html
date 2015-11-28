@@ -14,6 +14,8 @@
     <link href="../public/css/animate.css" rel="stylesheet">
 	<link href="../public/css/main.css" rel="stylesheet">
 	<link href="../public/css/responsive.css" rel="stylesheet">
+    <!-- VALIDATION ENGINE CSS -->
+    <link href="../public/css/validationEngine.jquery.css" rel="stylesheet">
     <!-- CSS Files Loading **END** -->
     <!--[if lt IE 9]>
     <script src="../public/js/controllers_others/html5shiv.js"></script>
@@ -63,13 +65,16 @@
 
 							<div class="mainmenu pull-right">
 								<ul class="nav navbar-nav collapse navbar-collapse">
-									<li class="dropdown"><a href="/login"><i class="fa fa-user"> Login</i><i class="fa fa-angle-down"></i></a>
-										<ul role="menu" class="sub-menu">
-											<li><a href="/account">Account</a></li>
-
-										</ul>
-									</li>
-									<li><a href="#">Log out</a></li>
+                                    <% if (name == "Guest") { %>
+                                    <li><a href="/login"><i class="fa fa-user"> Login</i></a></li>
+                                    <% } else { %>
+                                    <li class="dropdown"><a href="/login"><i class="fa fa-user"> Welcome <%= name %> </i><i class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="/account">Account</a></li>
+                                            <li><a href="/logout">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                    <% } %>
 								</ul>
 							</div>
 						</div>
@@ -399,15 +404,19 @@
 		</div>
 		
 	</footer><!--/footer - Fixed, Never change-->
-
     <!--Javascript Files loading  **START** -->
-    <script src="../public/js/controllers_others/jquery.js"></script>
-	<script src="../public/js/controllers_others/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../public/js/controllers_others/bootstrap.min.js"></script>
 	<script src="../public/js/controllers_others/jquery.scrollUp.min.js"></script>
     <script src="../public/js/controllers_others/jquery.prettyPhoto.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&sensor=true"></script>
-    <!--<script src="../public/js/controllers_others/gmaps.js"></script>
-    <script src="../public/js/controllers_others/contact.js"></script>-->
+    <script src="../public/js/controllers_others/gmaps.js"></script>
+    <script src="../public/js/controllers_others/contact.js"></script>
+    <!-- FORM VALIDATION ENGINE -->
+    <script type="text/javascript" src="../public/js/controllers_others/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="../public/js/controllers_others/jquery.validationEngine-en.js"></script>
+    <!-- File Upload -->
+    <script type="text/javascript" src="../public/js/controllers_others/pekeUpload.js"></script>
     <!-- MainController -->
     <script src="../public/js/controllers/MainController.js"></script>
     <!--Javascript Files loading  **END** -->

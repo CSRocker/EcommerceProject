@@ -15,7 +15,8 @@ module.exports = function(sequelize, DataTypes) {
             qty: {type: DataTypes.INTEGER, allowNull: false},
             price: {type: DataTypes.DECIMAL(10, 2), allowNull: false},
             type: {type: DataTypes.STRING, allowNull: false},
-            expiration: {type: DataTypes.DATE, allowNull: false}
+            expiration: {type: DataTypes.DATE, allowNull: true},
+            imagename: {type: DataTypes.STRING, allowNull: true}
         },
         {
             classMethods: {
@@ -35,7 +36,8 @@ module.exports = function(sequelize, DataTypes) {
                         qty: req.body.qty,
                         price: req.body.price,
                         type: req.body.type,
-                        expiration: req.body.expiration
+                        expiration: req.body.expiration,
+                        imagename: req.body.file
                     });
 
                     newProduct.save().then(function (savedData) {
@@ -71,7 +73,7 @@ module.exports = function(sequelize, DataTypes) {
                 getProduct: function(req, callback){
                     var _Product = this;
 
-                    _Product.findAll({limit: 10 }).then(function(product){
+                    _Product.findAll().then(function(product){
                         if(product){
                             callback(product);
                             //console.log(product);
@@ -155,6 +157,18 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 */
+
+               /* getProductById: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findById(req.body.productId).then(function(product){
+                        if(product){
+                            callback(product);
+                        } else {
+                            //code for error
+                        }
+                    })
+                }*/
 
             }
 

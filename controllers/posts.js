@@ -2,32 +2,63 @@
  * Created by Carlos on 11/7/15.
  */
 var Help = require('../helper/help.js')
+    , fs = require('fs')
+    , path = require('path')
+    , AWS = require('aws-sdk');
 
 module.exports = function (app, db, passport) {
 
     /* Routes for APIs Calls
      =========================*/
+    app.post('/signup', function(req, res){
+
+        global.db.User.createUser(req, function(savedUser) {
+            if(savedUser) {
+                // User created, send 'OK' response and a JSON object of the new User.
+                res.status(200).json(savedUser);
+            }
+        });
+
+    });
+
+    // '/checkuser' - Check if users exists
+    app.post('/checkuser', function(req, res) {
+        // Query the database to verify if user exists
+        global.db.User.userExist(req, function(exist){
+            if(exist) res.send({available:false});
+            else res.send({available:true});
+        });
+    });
+
+    // '/login' - Handle Login Reguest
+    app.post('/login', function(req, res, next) {
+        // Use Passport with a 'Local' strategy for Authentication
+        passport.authenticate('local', function(err, user, info) {
+            if (err) { return next(err) }
+            if (!user) {
+                req.session.messages =  [info.message];
+                //return res.redirect('/');
+            }
+
+            // Redirect to login after successful authentication
+            req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                req.session.messages = "";
+                //return res.redirect('/');
+                res.status(200).json({id:1});
+            });
+        })(req, res, next);
+
+    });
+
     app.post('/products', function(req, res) {
 
-        /* under construction
-        global.db.Image.saveImage(req, function(savedImage,error){
-            if(error){
-                console.log("An Error Occured Saving the image"+ error);
-            } else {
-                console.log(savedImage);
-                console.log("OK, Return Response to Saving Image");
-             }
-        }),
-             */
         global.db.Product.saveProduct(req,function(savedProduct,error){
             if(error){
                 console.log("An Error Occurred Saving the product: "+error);
                 res.status(300).send('error');
             } else {
                 console.log("OK, Returned response");
-
-
-                console.log(savedProduct);
                 res.status(200).json(savedProduct);
             }
         });
@@ -47,33 +78,77 @@ module.exports = function (app, db, passport) {
         });
 
     });
-    /* Testing */
 
-    app.post('/confirm', function(req, res) {
+    app.post('/getuserinfo', function(req, res) {
 
-        global.db.Order.confirmOrder(req,function(savedOrder,error){
-            if(error){
-                console.log("An Error Occurred placing the order: "+error);
-                res.status(300).send('error');
-            } else {
-                console.log("OK, Returned response");
-                res.status(200).json(savedOrder);
-            }
-        });
-
-    });
-
-
-    app.post('/uploadImageDB', function(req, res){
-        global.db.Image.saveImage(req,function(savedImage, error){
-            if (error){
-                consoel.log("Error Saving Images" + error);
-                res.status(300).send('error');
-            } else {
-                console.log("Saving Images Succeeded!!");
-                res.status(200).json(savedImage);
-            }
+        global.db.User.getUser(req, function(user){
+            res.send(user);
         })
+
     });
 
+    app.post('/image', function(req, res) {
+
+        //Create Time Stamp for file naming before uploading: 'timestamp+filename'
+        var currentDate = new Date().getTime() / 1000;
+        var timeStamp = Math.round(currentDate);
+
+        //AWS Credentials
+        AWS.config.update({accessKeyId: process.env.AWS_ID, secretAccessKey: process.env.AWS_SECRET});
+
+        //Set Region.
+        AWS.config.update({region:process.env.REGION});
+
+        // Constructs a service interface object with Bucket ecommerce
+        var s3 = new AWS.S3({ params: {Bucket:process.env.BUCKET} });
+
+        // Variable for storing 'File Write Stream'
+        var fstream;
+
+        // Establish 'temp' directory path and store in var baseUrl
+        var baseUrl = path.join(__dirname,'../public/temp/');
+
+
+
+        // Get Multi-part file uploaded
+        req.pipe(req.busboy);
+        req.busboy.on('file', function (fieldname, file, filename, mimetype) {
+
+            fstream = fs.createWriteStream(baseUrl+timeStamp + filename);
+            file.pipe(fstream);
+
+            // When Uploading and Writing to file is finished
+            fstream.on('close', function () {
+
+                // Read the file back to store in Amazon S3 service
+                var urlToErase = baseUrl+timeStamp+filename;
+                fs.readFile(urlToErase, function (error, data) {
+                    if (error) {
+                        // Error Occurred Return with message
+                        res.send({success:0,error:"error",name:"none"});
+                    } else {
+                        s3.putObject({Key: 'uploads/' + timeStamp + filename, Body: data}, function (err, data) {
+                            if (err) {
+                                // Error Occurred Return with message
+                                res.send({success: 0, error: "error", name: "none"});
+                            }
+                            else {
+                                // successful response - Now Erase File on Local Directory
+                                fs.unlink(baseUrl + timeStamp + filename, function (err) {
+                                    if (err) {
+                                        // Error Occurred Return with message
+                                        res.send({success: 0, error: "error", name: "none"});
+                                    } else {
+                                        // Send timestamp and filename back to Frontend
+                                        var name = timeStamp + filename;
+                                        res.send({success: 1, error: "none", name: name});
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    });
 };

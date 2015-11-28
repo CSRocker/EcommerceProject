@@ -27,7 +27,28 @@ module.exports = function (app, db, passport) {
 var indexfn = function(req, res) {
 
     // Render index.html
-    res.render("index");
+    var loggedUser;
+
+    // Verify if user is logged using Try/Catch - If not set as "Guest"
+    try {
+        loggedUser = req.user.name;
+    }
+    catch (error) {
+        loggedUser = "Guest";
+    }
+
+    // Render "index.html" and send the variable object "name" along
+    res.render("index", {name:loggedUser,layout:false});
+};
+
+var loginfn = function(req, res) {
+    // Render login.html
+    res.render("login");
+};
+
+var logoutfn = function(req, res) {
+    req.logout();
+    res.send('logged_out');
 };
 
 var cartfn = function(req, res) {
@@ -38,11 +59,6 @@ var cartfn = function(req, res) {
 var checkoutfn = function(req, res) {
     // Render checkout.html
     res.render("checkout");
-};
-
-var loginfn = function(req, res) {
-    // Render login.html
-    res.render("login");
 };
 
 var contactfn = function(req, res) {
@@ -136,7 +152,7 @@ var initial_productsfn = function(req, res) {
 
     var productReturned = [];
 
-    global.db.Product.getProductByCountry(req, function(product){
+    global.db.Product.getProduct(req, function(product){
         if(product){
             productReturned = product;
             // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
@@ -248,9 +264,10 @@ var define_routes = function(dict) {
  ======================*/
 var routes = define_routes({
     '/': indexfn,
+    '/login': loginfn,
+    '/logout': logoutfn,
     '/cart': cartfn,
     '/checkout': checkoutfn,
-    '/login': loginfn,
     '/contact': contactfn,
     '/details': detailsfn,
     '/shop_usa': shop_usafn,
