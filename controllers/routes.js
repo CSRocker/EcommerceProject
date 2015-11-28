@@ -46,8 +46,17 @@ var contactfn = function(req, res) {
 };
 
 var detailsfn = function(req, res) {
-    // Render details.html
-    res.render("details");
+
+    if(req.params.id) {
+
+        global.db.Product.getProductById(req,function(product) {
+
+            // Render details.html
+            res.render("details", {product:product});
+        });
+    } else {
+        res.status(404);  //Not Found
+    }
 };
 
 var shop_usafn = function(req, res) {
@@ -72,10 +81,33 @@ var shop_puertoricofn = function(req, res) {
 
 var initial_productsfn = function(req, res) {
 
+    var usaProducts = [];
+    var indiaProducts = [];
+    var burmaProducts = [];
+    var puertoricoProducts = [];
+
     global.db.Product.getAllProducts(function(products) {
 
+        // sort products by country
+        for(var product in products){
+            switch (products[product].country){
+                case "USA":
+                    usaProducts.push(products[product]);
+                    break;
+                case "India":
+                    indiaProducts.push(products[product]);
+                    break;
+                case "Burma":
+                    burmaProducts.push(products[product]);
+                    break;
+                case "Puerto Rico":
+                    puertoricoProducts.push(products[product]);
+                    break;
+            }
+        }
+
         //Render initialProducts.html
-        res.render("initial_products", {products:products});
+        res.render("initial_products", {products:products, usa:usaProducts, india:indiaProducts, burma:burmaProducts, puertorico:puertoricoProducts});
 
     });
 };
@@ -137,7 +169,7 @@ var routes = define_routes({
     '/cart': cartfn,
     '/checkout': checkoutfn,
     '/contact': contactfn,
-    '/details': detailsfn,
+    '/details/:id': detailsfn,
     '/shop_usa': shop_usafn,
     '/shop_india': shop_indiafn,
     '/shop_burma': shop_burmafn,

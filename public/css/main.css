@@ -2823,3 +2823,12 @@ h2.title {
     margin: 0px auto;
     display:block;
 }
+
+.xlargethumb {
+    max-height: 500px;
+    max-width: 500px;
+    height: auto;
+    width: auto;
+    margin: 0px auto;
+    display:block;
+}

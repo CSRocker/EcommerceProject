@@ -85,9 +85,17 @@ module.exports = function(sequelize, DataTypes) {
                 getAllProducts: function(callback){
                     var _Product = this;
 
-                    _Product.findAll().then(function(projects) {
-                        callback(projects);
+                    _Product.findAll().then(function(products) {
+                        callback(products);
                     });
+                },
+
+                getProductById: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findById(req.params.id).then(function(product) {
+                        callback(product);
+                    })
                 }
             }
         });
