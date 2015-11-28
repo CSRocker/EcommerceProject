@@ -95,11 +95,36 @@
         </div>
 
         <div class="col-sm-9 padding-right">
-
             <div class="features_items"><!--features_items-->
+            <h2 class="title text-center">Features Items</h2>
+
+            <% for(var a=0; a<3;a++) { %>
+            <!-- 1st Product -->
+            <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                    <div class="">
+                        <div class="productinfo text-center">
+                            <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[a].imagename %>"/>
+                            <h2>$<%=products[a].price %></h2>
+                            <p><%=products[a].productname %></p>
+                            <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                        </div>
+                    </div>
+                    <div class="choose">
+                        <ul class="nav nav-pills nav-justified">
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to Cart</a></li>
+                            <li><a href="#"><i class="fa fa-search"></i>View Details</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+
+<!--            <div class="features_items">&lt;!&ndash;features_items&ndash;&gt;
                 <h2 class="title text-center">Features Items</h2>
 
-                <!-- 1st Product --> <!-- show them by id -->
+                &lt;!&ndash; 1st Product &ndash;&gt; &lt;!&ndash; show them by id &ndash;&gt;
                 <div class="col-sm-4" id="1">
                     <div class="product-image-wrapper">
                         <div class="single-products">
@@ -107,7 +132,7 @@
                                 <img src="../public/images/home/product1.jpg" alt="" />
 
                                 <h2>$<%= products[0].price %></h2>
-                                <p><%= products[0].productname %></p><!--product name -->
+                                <p><%= products[0].productname %></p>&lt;!&ndash;product name &ndash;&gt;
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                             <a href="/details">
@@ -131,7 +156,7 @@
                     </div>
                 </div>
 
-                <!-- 2nd Product -->
+                &lt;!&ndash; 2nd Product &ndash;&gt;
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
                         <div class="single-products">
@@ -161,13 +186,13 @@
                     </div>
                 </div>
 
-                <!-- 3rd Product -->
+                &lt;!&ndash; 3rd Product &ndash;&gt;
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="../public/images/home/product3.jpg" alt="" />
-                                <!-- product info from data base -->
+                                &lt;!&ndash; product info from data base &ndash;&gt;
 
                                 <h2>$<%= products[2].price %></h2>
                                 <p><%= products[2].productname %></p>
@@ -192,7 +217,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!--features_items-->
+            </div>--><!--features_items-->
 
             <div class="category-tab"><!--category-tab-->
                 <div class="col-sm-12">
