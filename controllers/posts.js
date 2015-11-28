@@ -2,6 +2,9 @@
  * Created by Carlos on 11/7/15.
  */
 var Help = require('../helper/help.js')
+    , fs = require('fs')
+    , path = require('path')
+    , AWS = require('aws-sdk');
 
 module.exports = function (app, db, passport) {
 
@@ -84,4 +87,68 @@ module.exports = function (app, db, passport) {
 
     });
 
-}
+    app.post('/image', function(req, res) {
+
+        //Create Time Stamp for file naming before uploading: 'timestamp+filename'
+        var currentDate = new Date().getTime() / 1000;
+        var timeStamp = Math.round(currentDate);
+
+        //AWS Credentials
+        AWS.config.update({accessKeyId: process.env.AWS_ID, secretAccessKey: process.env.AWS_SECRET});
+
+        //Set Region.
+        AWS.config.update({region:process.env.REGION});
+
+        // Constructs a service interface object with Bucket ecommerce
+        var s3 = new AWS.S3({ params: {Bucket:process.env.BUCKET} });
+
+        // Variable for storing 'File Write Stream'
+        var fstream;
+
+        // Establish 'temp' directory path and store in var baseUrl
+        var baseUrl = path.join(__dirname,'../public/temp/');
+
+
+
+        // Get Multi-part file uploaded
+        req.pipe(req.busboy);
+        req.busboy.on('file', function (fieldname, file, filename, mimetype) {
+
+            fstream = fs.createWriteStream(baseUrl+timeStamp + filename);
+            file.pipe(fstream);
+
+            // When Uploading and Writing to file is finished
+            fstream.on('close', function () {
+
+                // Read the file back to store in Amazon S3 service
+                var urlToErase = baseUrl+timeStamp+filename;
+                fs.readFile(urlToErase, function (error, data) {
+                    if (error) {
+                        // Error Occurred Return with message
+                        res.send({success:0,error:"error",name:"none"});
+                    } else {
+                        s3.putObject({Key: 'uploads/' + timeStamp + filename, Body: data}, function (err, data) {
+                            if (err) {
+                                // Error Occurred Return with message
+                                res.send({success: 0, error: "error", name: "none"});
+                            }
+                            else {
+                                // successful response - Now Erase File on Local Directory
+                                fs.unlink(baseUrl + timeStamp + filename, function (err) {
+                                    if (err) {
+                                        // Error Occurred Return with message
+                                        res.send({success: 0, error: "error", name: "none"});
+                                    } else {
+                                        // Send timestamp and filename back to Frontend
+                                        var name = timeStamp + filename;
+                                        res.send({success: 1, error: "none", name: name});
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    });
+};

@@ -4,7 +4,6 @@
 // Calls for the packages needed
 var express = require('express')          // Node Framework
     , bodyParser = require('body-parser') // Parse body of REST Requests
-    , cookieParser = require('cookie-parser')
     , app = express()                     // Define app variable
     , port = process.env.PORT || 8082     // Define port the app will be using
     , http = require('http')		      // Require http server
@@ -13,7 +12,8 @@ var express = require('express')          // Node Framework
     , db = require('./models')            // Set Path to the database model directory and definition
     , async = require('async')            // Perform Asynchronous functions
     , passport = require('passport')      // Library to authenticate users
-    , serveStatic = require('serve-static');// Serve Static Files
+    , serveStatic = require('serve-static')// Serve Static Files
+    , busboy = require('connect-busboy');  // For Multi-part file upload
 
 // set the view engine to ejs
 app.engine('.html', require('ejs').__express);
@@ -31,6 +31,7 @@ app.use(require('express-session')({                    // Enable a User Session
     saveUninitialized: true }));
 app.use(passport.initialize());                         // Initialize Passport Libraries for Authentication
 app.use(passport.session());                            // Create a new session with Passport
+app.use(busboy());
 
 /* Passport route for Authentication
  ================*/
@@ -49,7 +50,9 @@ require('./controllers/posts')(app, global.db, passport);
 /* DROP TABLES  -  Remove this lines on production
  ================*/
 //db.Rate.drop(); console.log("Rates Tables DROPPED!!!!");
-//db.User.drop(); console.log("Rates Tables DROPPED!!!!");
+//db.User.drop(); console.log("User Tables DROPPED!!!!");
+//db.Product.drop(); console.log("Product Tables DROPPED!!!!");
+
 
 /* Start Server
 ================*/

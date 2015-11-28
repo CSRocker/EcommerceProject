@@ -40,7 +40,29 @@ if (!global.hasOwnProperty('db')) {
         };
 
         sq = new Sequelize(dbname, user, password, config);
-    } else {
+    }
+    else if(process.env.RDS_HOSTNAME) {
+        console.log("We are on AWS RDS Database...");
+
+        //For Running Remotely on Amazon RDS
+         var host = process.env.RDS_HOSTNAME;
+         var port = process.env.RDS_PORT;
+         var dbname = process.env.RDS_DBNAME;
+         var user = process.env.RDS_USERNAME;
+         var password = process.env.RDS_PASSWORD;
+
+        var config =  {
+            dialect:  'postgres',
+            protocol: 'postgres',
+            port:     port,
+            host:     host,
+            ssl: true,
+            logging:  console.log
+        };
+
+        sq = new Sequelize(dbname, user, password, config);
+    }
+    else {
         /* Local database installed on ec2 - Postgres */
         console.log("We are on Local ec2 Database....");
 

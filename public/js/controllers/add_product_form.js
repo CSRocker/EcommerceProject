@@ -4,39 +4,76 @@
 /* Execute When Document is Ready
  ------------------------------------------------ */
 $(document).ready(function(){
+    // Validate Add Product Form
+    $("#addProductForm").validationEngine('attach', {promptPosition : "topRight", scroll: false, showOneMessage:true});
+    $("#deleteProduct_submit").validationEngine('attach', {promptPosition : "topRight", scroll: false, showOneMessage:true});
 
     $('#addProductForm_submit').click(function(e) {
         e.preventDefault();
 
-        console.log("about to post to server /products: "+$("#addProductForm").serialize());
+        // Get the form ID
+        var formId = "#"+$(this).attr("id");
 
-        
-        $.post('/products', $("#addProductForm").serialize(), function(data) {
-            if(data == 'error') {
-                $('#addProductForm_status').html('An Error Occurred, Try Again');
-            }
-            else {
-                $('#addProductForm_status').html('Success! Product Added');
-                $("#addProductForm")[0].reset();
-            }
-        });
+        // Check for errors in form before submitting
+        if($(formId).validationEngine('validate') ) {
+
+            $('#file').attr('type', 'text');
+            $.post('/products', $("#addProductForm").serialize(), function (data) {
+                if (data == 'error') {
+                    $('#addProductForm_status').html('An Error Occurred, Try Again');
+                    $('#file').attr('type', 'file');    // Change Attribute back to 'file'
+                }
+                else {
+                    $('#addProductForm_status').html('Success! Product Added');
+                    //  Reset Form, and remove PekeUpload elements and Initialize PekeUpload Again.
+                    $("#addProductForm")[0].reset();
+                    $( ".pkrw" ).remove();
+                    $( ".pkuparea" ).remove();
+                    $( ".pekecontainer" ).remove();
+                    $('#file').attr('type', 'file');    // Change Attribute back to 'file'
+                    $('#file').val("");                 // Erase value to accept new filename.
+                    $("#file").pekeUpload({reset:true});
+                }
+            });
+        }
 
     });
 
     $('#deleteProduct_submit').click(function(e){
         e.preventDefault();
 
-        $.post('/delete', $("#deleteProductForm").serialize(), function(message) {
-            if(message == 'error') {
-                $('#deleteProductForm_status').html('An Error Occurred, Try Again');
-            }
-            else {
-                $('#deleteProductForm_status').html('Success! Product Deleted');
-                $("#deleteProductForm")[0].reset();
-            }
-        });
+        // Get the form ID
+        var formId = "#"+$(this).attr("id");
+
+        // Check for errors in form before submitting
+        if($(formId).validationEngine('validate') ) {
+
+            $.post('/delete', $("#deleteProductForm").serialize(), function (message) {
+                if (message == 'error') {
+                    $('#deleteProductForm_status').html('An Error Occurred, Try Again');
+                }
+                else {
+                    $('#deleteProductForm_status').html('Success! Product Deleted');
+                    $("#deleteProductForm")[0].reset();
+                }
+            });
+        }
     });
 
+    // Initialize File Upload Library
+    initializePekeUpload();
 
-
+    // Check if product is food, then allow Expiration date field.
+    $("#producttype").on('change', function() {
+        if($(this).val() == 'Food'){
+            $('#expiration').prop('disabled', false);
+        } else {
+            $('#expiration').prop('disabled', true);
+        }
+    });
 });
+
+// load PekeUpload
+function initializePekeUpload(){
+    $("#file").pekeUpload({reset:false});
+}
