@@ -71,8 +71,13 @@ var shop_puertoricofn = function(req, res) {
 };
 
 var initial_productsfn = function(req, res) {
-    // Render initialProducts.html
-    res.render("initial_products", {layout:false});
+
+    global.db.Product.getAllProducts(function(products) {
+
+        //Render initialProducts.html
+        res.render("initial_products", {products:products});
+
+    });
 };
 
 var accountfn = function(req, res) {
@@ -95,9 +100,13 @@ var accountsettingfn= function(req, res){
 }
 
 var add_product_formfn= function(req, res){
-    //Render add_product_form.html
+    global.db.Product.getAllProducts(function(products) {
 
-    res.render("add_product_form", {layout:false});
+        //Render add_product_form.html
+        res.render("add_product_form", {products:products});
+
+    });
+
 }
 
 

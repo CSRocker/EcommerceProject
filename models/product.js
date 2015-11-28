@@ -66,7 +66,7 @@ module.exports = function(sequelize, DataTypes) {
 
 
                     });
-                }
+                },
 
                /* getProductById: function(req, callback){
                     var _Product = this;
@@ -80,6 +80,13 @@ module.exports = function(sequelize, DataTypes) {
                     })
                 }*/
 
+                getAllProducts: function(callback){
+                    var _Product = this;
+
+                    _Product.findAll().then(function(projects) {
+                        callback(projects);
+                    });
+                }
             }
         });
 };
