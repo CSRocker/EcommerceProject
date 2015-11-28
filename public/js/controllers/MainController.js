@@ -69,7 +69,11 @@ function loadInitialProducts () {
 function scrollToId (id) {
     $('html, body').animate({
         scrollTop: $(id).offset().top
-    }, 2000);
+    },
+        {
+            duration:"fast"
+        },
+            2000);
 }
 
 /* Function to get code from server and inject in main HTML page'
