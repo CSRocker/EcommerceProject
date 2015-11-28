@@ -92,7 +92,15 @@ var accountsettingfn= function(req, res){
     //Render accountsetting.html
 
     res.render("accountsetting", {layout:false});
+};
+
+var update_userinfofn= function(req, res){
+    //Render accountsetting.html
+
+    res.render("updateuserinfo");
 }
+
+
 
 var add_product_formfn= function(req, res){
     //Render add_product_form.html
@@ -129,7 +137,8 @@ var routes = define_routes({
     '/account': accountfn,
     '/orderStatus': orderStatusfn,
     '/accountsetting': accountsettingfn,
-    '/add_product_form': add_product_formfn
+    '/add_product_form': add_product_formfn,
+    '/updateuserinfo':update_userinfofn
 });
 
 module.exports = routes;
