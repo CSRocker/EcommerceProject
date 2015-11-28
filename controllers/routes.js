@@ -56,28 +56,98 @@ var detailsfn = function(req, res) {
 };
 
 var shop_usafn = function(req, res) {
+
+    var productReturned = [];
+
+    global.db.Product.getProductUSA(req, function(product){
+        if(product){
+            productReturned = product;
+            // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
+
+            // Render shop_usa.html
+            res.render("shop_usa", {products:productReturned});
+        } else {
+            res.send("error");
+        }
+    });
+
     // Render shop_usa.html
-    res.render("shop_usa");
+    // res.render("shop_usa");
 };
 
 var shop_indiafn = function(req, res) {
+
+    var productReturned = [];
+
+    global.db.Product.getProductIndia(req, function(product){
+        if(product){
+            productReturned = product;
+            // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
+
+            //Render shop_india.html
+            res.render("shop_india",{products:productReturned});
+        } else {
+            res.send("error");
+        }
+    });
     // Render shop_india.html
-    res.render("shop_india");
+   // res.render("shop_india");
 };
 
 var shop_burmafn = function(req, res) {
+    var productReturned = [];
+
+    global.db.Product.getProductBurma(req, function(product){
+        if(product){
+            productReturned = product;
+            // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
+
+            // Render shop_burma.html
+            res.render("shop_burma",{products:productReturned});
+        } else {
+            res.send("error");
+        }
+    });
+
     // Render shop_burma.html
-    res.render("shop_burma");
+    //res.render("shop_burma");
 };
 
 var shop_puertoricofn = function(req, res) {
+
+    var productReturned = [];
+
+    global.db.Product.getProductPuertoRico(req, function(product){
+        if(product){
+            productReturned = product;
+            // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
+
+            // Render shop_puertorico.html
+            res.render("shop_puertorico",{products:productReturned});
+        } else {
+            res.send("error");
+        }
+    });
     // Render shop_puertorico.html
-    res.render("shop_puertorico");
+    //res.render("shop_puertorico");
 };
 
 var initial_productsfn = function(req, res) {
-    // Render initialProducts.html
-    res.render("initial_products", {layout:false});
+
+    var productReturned = [];
+
+    global.db.Product.getProductByCountry(req, function(product){
+        if(product){
+            productReturned = product;
+            // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
+
+            // Render initialProducts.html
+            res.render("initial_products", {products:productReturned});
+        } else {
+            res.send("error");
+        }
+    });
+
 };
 
 var accountfn = function(req, res) {
@@ -97,14 +167,39 @@ var accountsettingfn= function(req, res){
     //Render accountsetting.html
 
     res.render("accountsetting", {layout:false});
-}
+};
 
 var add_product_formfn= function(req, res){
     //Render add_product_form.html
 
     res.render("add_product_form", {layout:false});
-}
+};
 
+/* Example code to retrieve the product info
+============================================
+var get_product_infofn= function(req, res){
+
+    var productReturned = [];
+
+    //Render get_product_info.html
+    /!*var dummyProd = {
+        productname: 'Candy',
+        price: '$2.00'
+    };*!/
+
+
+    global.db.Product.getProduct(req, function(product){
+        if(product){
+            productReturned = product;
+            // var randomProduct=getRandom(productReturned);  //call function to get random index of product array to display
+            res.render("get_product_info", {products:productReturned});
+        } else {
+            res.send("error");
+        }
+    });
+
+
+};*/
 
 
 var confirm_orderfn= function(req,res){
@@ -113,6 +208,31 @@ var confirm_orderfn= function(req,res){
 
     res.render("confirm_order");
 }
+
+/* get Random index of Returned products array
+==============================================
+    var getRandom = function(products){
+
+    var r = Math.floor(Math.random()* products.length);
+    var indexNumb=[]; //to store random index number for displaying products
+
+    for(var i=0; i<products.length; i++){
+        var j=0;
+
+        while(indexNumb[j]!= r && j<=i){
+            indexNumb[i]=r;
+            j++;
+            r = Math.floor(Math.random()* products.length);
+        }
+
+    }
+    var randomProduct =[]; // declare an array to store random products to display
+    for(var i=0; i<arraySize; i++){
+        randomProduct[i]= products[indexNumb[i]];
+    }
+    return randomProduct;
+};
+ */ // get random number function
 
 /* Map Routes
 ======================*/
@@ -143,6 +263,7 @@ var routes = define_routes({
     '/accountsetting': accountsettingfn,
     '/add_product_form': add_product_formfn,
     '/confirm_order': confirm_orderfn
+    //'/get_product_info': get_product_infofn
 
 });
 

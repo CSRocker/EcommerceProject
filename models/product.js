@@ -68,22 +68,94 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
-                //write some code to retrieve data from DB
-                //this is for testing
-                showProduct: function(req, callback) {
+                getProduct: function(req, callback){
                     var _Product = this;
-                    _Product.findAll().then(function(data,error) {
-                        // project will be an instance of Project and stores the content of the table entry
-                        // with id 123. if such an entry is not defined you will get null
-                        if (error) {
-                            console.log("Error retrieving the object");
-                            callback("Error");
-                        } else {
-                            console.log("Sccess retrieving object");
-                            callback(data,error);
+
+                    _Product.findAll({limit: 10 }).then(function(product){
+                        if(product){
+                            callback(product);
+                            //console.log(product);
+
+                        } else{
+                            console.log("Error retrieving Product");
                         }
                     });
-                }
+                },
+
+                // Get the Product info from USA
+                getProductUSA: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findAll({where:{country:"USA"},limit: 10 }).then(function(product){
+                        if(product){
+                            callback(product);
+                            //console.log(product);
+
+                        } else{
+                            console.log("Error retrieving Product");
+                        }
+                    });
+                },
+
+
+                // Get the Product info from India
+                getProductIndia: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findAll({where:{country:"India"},limit: 10 }).then(function(product){
+                        if(product){
+                            callback(product);
+                            //console.log(product);
+
+                        } else{
+                            console.log("Error retrieving Product");
+                        }
+                    });
+                },
+
+                // Get the Product info from Burma
+                getProductBurma: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findAll({where:{country:"Burma"},limit: 10 }).then(function(product){
+                        if(product){
+                            callback(product);
+                            //console.log(product);
+
+                        } else{
+                            console.log("Error retrieving Product");
+                        }
+                    });
+                },
+
+                // Get the Product info from Puerto Rico
+                getProductPuertoRico: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findAll({where:{country:"Puerto Rico"},limit: 10 }).then(function(product){
+                        if(product){
+                            callback(product);
+                            //console.log(product);
+
+                        } else{
+                            console.log("Error retrieving Product");
+                        }
+                    });
+                },
+/*
+                getProductById: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findOne({where:{id:17}}).then(function(error, product){
+                        if(product){
+                            callback(product);
+                        }else {
+                            console.log("error looking for the product by Id");
+                        }
+                    });
+                },
+*/
+
             }
 
         });

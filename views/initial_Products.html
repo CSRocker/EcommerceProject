@@ -3,6 +3,7 @@
         <div class="col-sm-3">
             <div class="left-sidebar">
                 <h2>Category</h2>
+
                 <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -94,24 +95,32 @@
         </div>
 
         <div class="col-sm-9 padding-right">
+
             <div class="features_items"><!--features_items-->
                 <h2 class="title text-center">Features Items</h2>
-                <div class="col-sm-4">
+
+                <!-- 1st Product --> <!-- show them by id -->
+                <div class="col-sm-4" id="1">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="../public/images/home/product1.jpg" alt="" />
-                                <h2>$56</h2> <!--price -->
-                                <p>Easy Polo Black Edition</p> <!--product name -->
+
+                                <h2>$<%= products[0].price %></h2>
+                                <p><%= products[0].productname %></p><!--product name -->
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
-                            <div class="product-overlay">
-                                <div class="overlay-content">
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <a href="/details">
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                                        <h2>$<%= products[0].price %></h2>
+                                        <p><%= products[0].productname %></p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
+
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
@@ -121,22 +130,27 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 2nd Product -->
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="../public/images/home/product2.jpg" alt="" />
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
+                                <h2>$<%= products[1].price %></h2>
+                                <p><%= products[1].productname %></p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
-                            <div class="product-overlay">
-                                <div class="overlay-content">
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <a href="/details">
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                                        <h2>$<%= products[1].price %></h2>
+                                        <p><%= products[1].productname %></p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
@@ -146,28 +160,29 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 3rd Product -->
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="../public/images/home/product3.jpg" alt="" />
-                                <h2 id="price">
-                                    <script type="text/javascript" src="public/js/controllers/get_product_info.js" charset="utf-8">
-                                        getPrice();
+                                <!-- product info from data base -->
 
-                                    </script>
-                                </h2>
-
-                                <p>Easy Polo Black Edition</p>
+                                <h2>$<%= products[2].price %></h2>
+                                <p><%= products[2].productname %></p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
-                            <div class="product-overlay">
-                                <div class="overlay-content">
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <a href="/details">
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                                        <h2>$<%= products[2].price %></h2>
+                                        <p><%= products[2].productname %></p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
@@ -195,8 +210,8 @@
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="../public/images/home/gallery1.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <h2>$<%= products[0].price %></h2>
+                                        <p><%= products[0].productname %></p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
@@ -208,8 +223,8 @@
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="../public/images/home/gallery2.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <h2>$<%= products[1].price %></h2>
+                                        <p><%= products[1].productname %></p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
@@ -221,8 +236,8 @@
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="../public/images/home/gallery3.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <h2>$<%= products[2].price %></h2>
+                                        <p><%= products[2].productname %></p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
@@ -234,8 +249,8 @@
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="../public/images/home/gallery4.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <h2>$<%= products[3].price %></h2>
+                                        <p><%= products[3].productname %></p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
@@ -415,3 +430,7 @@
         </div>
     </div>
 </div>
+
+
+<!-- add_product Controller -->
+<script src="../public/js/controllers/initial_products.js"></script>
