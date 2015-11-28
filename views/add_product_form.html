@@ -13,6 +13,10 @@
                         </div>
 
                         <div class="form-group col-md-6">
+                            <input type="text" id="description" name="description" class="form-control validate[required]" placeholder="Product Description">
+                        </div>
+
+                        <div class="form-group col-md-6">
                             <select class="form-control validate[required]" name="country" form="addProductForm">
                                 <option value="">Country</option>
                                 <option value="USA">USA</option>
@@ -39,7 +43,7 @@
                                 <option value="Food">Food</option>
                             </select>
                         </div>
-
+                        <div class="form-group col-md-6"></div>  <!-- Dummy Column to create space -->
                         <div class="form-group col-md-6">
                             <input type="text" id="expiration" name="expiration" class="form-control validate[required,custom[date]]" placeholder="Expiration Date (YYYY-MM-DD)" disabled>
                         </div>
@@ -90,12 +94,12 @@
                                 <tr>
                                     <th class="col-lg-1 col-md-1 col-sm-1 text-center"><h4 class="nomarginall nopaddingall"><strong>id</strong></h4></th>
                                     <th class="col-lg-2 col-md-2 col-sm-2 text-center"><h4 class="nomarginall nopaddingall"><strong>productname</strong></h4></th>
-                                    <th class="col-lg-2 col-md-2 col-sm-2 text-center"><h4 class="nomarginall nopaddingall"><strong>country</strong></h4></th>
+                                    <th class="col-lg-1 col-md-1 col-sm-1 text-center"><h4 class="nomarginall nopaddingall"><strong>country</strong></h4></th>
                                     <th class="col-lg-1 col-md-1 col-sm-1 text-center"><h4 class="nomarginall nopaddingall"><strong>qty</strong></h4></th>
                                     <th class="col-lg-1 col-md-1 col-sm-1 text-center"><h4 class="nomarginall nopaddingall"><strong>price</strong></h4></th>
                                     <th class="col-lg-1 col-md-1 col-sm-1 text-center"><h4 class="nomarginall nopaddingall"><strong>type</strong></h4></th>
-                                    <th class="col-lg-2 col-md-2 col-sm-2 text-center"><h4 class="nomarginall nopaddingall"><strong>expiration</strong></h4></th>
                                     <th class="col-lg-2 col-md-2 col-sm-2 text-center"><h4 class="nomarginall nopaddingall"><strong>imagename</strong></h4></th>
+                                    <th class="col-lg-3 col-md-3 col-sm-3 text-center"><h4 class="nomarginall nopaddingall"><strong>Description</strong></h4></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -107,8 +111,8 @@
                                     <td class="text-center"><%=products[a].qty %></td>
                                     <td class="text-center"><%=products[a].price %></td>
                                     <td class="text-center"><%=products[a].type %></td>
-                                    <td class="text-center"><%=products[a].expiration %></td>
                                     <td class="text-center"><%=products[a].imagename %></td>
+                                    <td class="text-center"><%=products[a].description %></td>
                                 </tr>
                                 <% } %>
                                 </tbody>

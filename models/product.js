@@ -16,7 +16,8 @@ module.exports = function(sequelize, DataTypes) {
             price: {type: DataTypes.DECIMAL(10, 2), allowNull: false},
             type: {type: DataTypes.STRING, allowNull: false},
             expiration: {type: DataTypes.DATE, allowNull: true},
-            imagename: {type: DataTypes.STRING, allowNull: true}
+            imagename: {type: DataTypes.STRING, allowNull: true},
+            description: {type: DataTypes.TEXT, allowNull: false}
         },
         {
             classMethods: {
@@ -36,7 +37,8 @@ module.exports = function(sequelize, DataTypes) {
                         price: req.body.price,
                         type: req.body.type,
                         expiration: req.body.expiration,
-                        imagename: req.body.file
+                        imagename: req.body.file,
+                        description: req.body.description
                     });
 
                     newProduct.save().then(function (savedData) {
