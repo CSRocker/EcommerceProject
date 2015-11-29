@@ -20,6 +20,9 @@
                                 </h4>
                             </div>
                             <div id="usa_category" class="panel-collapse collapse">
+
+
+
                                 <div class="panel-body">
                                     <ul>
                                         <li><a href="#">Clothes </a></li>
@@ -54,7 +57,7 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordian" href="#burma_category">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        <span class="badge pull-right" id="burma"><i class="fa fa-plus"></i></span>
                                         Burma
                                     </a>
                                 </h4>
@@ -62,10 +65,10 @@
                             <div id="burma_category" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#">Clothes </a></li>
-                                        <li><a href="#">Handcrafts </a></li>
-                                        <li><a href="#">Music </a></li>
-                                        <li><a href="#">Food</a></li>
+                                        <li><a href="#clothe">Clothes </a></li>
+                                        <li><a href="#handcrafts">Handcrafts </a></li>
+                                        <li><a href="#music">Music </a></li>
+                                        <li><a href="#food">Food</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -103,28 +106,30 @@
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Features Items</h2>
 
-                    <% for(var a=0; a< products.length;a++) { %>
 
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[a].imagename %>"/>
-                                    <h2>$<%=products[a].price %></h2>
-                                    <p><%=products[a].productname %></p>
-                                    <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+
+                        <% for(var a=0; a< products.length;a++) { %>
+
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[a].imagename %>"/>
+                                        <h2>$<%=products[a].price %></h2>
+                                        <p><%=products[a].productname %></p>
+                                        <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                                    </div>
+                                </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to Cart</a></li>
+                                        <li><a href="#"><i class="fa fa-search"></i>View Details</a></li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to Cart</a></li>
-                                    <li><a href="#"><i class="fa fa-search"></i>View Details</a></li>
-                                </ul>
-                            </div>
                         </div>
-                    </div>
-                    <% } %>
-
+                        <% } %>
+                        </div>
 
 
                 </div><!--features_items-->

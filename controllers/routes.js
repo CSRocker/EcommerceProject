@@ -136,6 +136,7 @@ var shop_puertoricofn = function(req, res) {
     //res.render("shop_puertorico");
 };
 
+
 var initial_productsfn = function(req, res) {
 
     var usaProducts = [];
@@ -169,6 +170,7 @@ var initial_productsfn = function(req, res) {
     });
 };
 
+
 var accountfn = function(req, res) {
     // Render account.html
     res.render("account", {layout:false});
@@ -196,7 +198,6 @@ var update_userinfofn= function(req, res){
 };
 
 
-
 var add_product_formfn= function(req, res){
     global.db.Product.getAllProducts(function(products) {
 
@@ -206,9 +207,6 @@ var add_product_formfn= function(req, res){
     });
 
 };
-
-
-
 
 
 var confirm_orderfn= function(req,res){

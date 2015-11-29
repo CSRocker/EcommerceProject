@@ -2832,3 +2832,15 @@ h2.title {
     margin: 0px auto;
     display:block;
 }
+
+.chose_area{
+  visibility: visible;
+}
+
+.chose_area:after{
+  visibility: visible;
+}
+
+.chose_area:before{
+  visibility: hidden;
+}
