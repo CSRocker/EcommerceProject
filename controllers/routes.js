@@ -46,8 +46,17 @@ var contactfn = function(req, res) {
 };
 
 var detailsfn = function(req, res) {
-    // Render details.html
-    res.render("details");
+
+    if(req.params.id) {
+
+        global.db.Product.getProductById(req,function(product) {
+
+            // Render details.html
+            res.render("details", {product:product});
+        });
+    } else {
+        res.status(404);  //Not Found
+    }
 };
 
 var shop_usafn = function(req, res) {
@@ -253,7 +262,7 @@ var routes = define_routes({
     '/cart': cartfn,
     '/checkout': checkoutfn,
     '/contact': contactfn,
-    '/details': detailsfn,
+    '/details/:id': detailsfn,
     '/shop_usa': shop_usafn,
     '/shop_india': shop_indiafn,
     '/shop_burma': shop_burmafn,

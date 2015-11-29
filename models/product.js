@@ -162,21 +162,29 @@ module.exports = function(sequelize, DataTypes) {
                 /* getProductById: function(req, callback){
                  var _Product = this;
 
-                 _Product.findById(req.body.productId).then(function(product){
-                 if(product){
-                 callback(product);
-                 } else {
-                 //code for error
-                 }
-                 })
-                 }*/
+                    _Product.findById(req.body.productId).then(function(product){
+                        if(product){
+                            callback(product);
+                        } else {
+                            //code for error
+                        }
+                    })
+                }*/
 
-                getAllProducts: function (callback) {
+                getAllProducts: function(callback){
                     var _Product = this;
 
-                    _Product.findAll().then(function (projects) {
-                        callback(projects);
+                    _Product.findAll().then(function(products) {
+                        callback(products);
                     });
+                },
+
+                getProductById: function(req, callback){
+                    var _Product = this;
+
+                    _Product.findById(req.params.id).then(function(product) {
+                        callback(product);
+                    })
                 }
             }
         });

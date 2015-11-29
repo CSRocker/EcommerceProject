@@ -7,19 +7,19 @@
                         <h2>Product Details</h2>
                     </div>
                     <div class="col-sm-5">
-                        <div class="view-product">
-                            <img src="../public/images/product-details/1.jpg" alt=""/>
+                        <div class="text-center">
+                            <img class="img-thumbnail img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=product.imagename %>"/>
                         </div>
                     </div>
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
                             <img src="../public/images/product-details/new.jpg" class="newarrival" alt=""/>
 
-                            <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
+                            <h2><%=product.productname %></h2>
 
-                            <p>Web ID: 1089772</p>
+                            <p>Web ID: <%=product.id %></p>
 								<span>
-									<span>US $59</span>
+									<span>US $<%=product.price %></span>
 									<label>Quantity:</label>
 									<input type="text" value="3"/>
 									<button type="button" class="btn btn-fefault cart">
@@ -28,11 +28,11 @@
                                     </button>
 								</span>
 
-                            <p><b>Country:</b> In Stock</p>
+                            <p><b>Country:</b> <%=product.country %></p>
 
-                            <p><b>Type:</b> New</p>
+                            <p><b>Type:</b> <%=product.type %></p>
 
-                            <p><b>Description:</b> E-SHOPPER</p>
+                            <p><b>Description:</b> <%=product.description %></p>
                         </div>
                         <!--/product-information-->
                     </div>
