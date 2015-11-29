@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
@@ -95,248 +96,78 @@
         </div>
 
         <div class="col-sm-9 padding-right">
+
             <div class="features_items"><!--features_items-->
-            <h2 class="title text-center">Features Items</h2>
-
-            <% for(var a=0; a<3;a++) { %>
-            <!-- 1st Product -->
-            <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                    <div class="">
-                        <div class="productinfo text-center">
-                            <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[a].imagename %>"/>
-                            <h2>$<%=products[a].price %></h2>
-                            <p><%=products[a].productname %></p>
-                            <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
-                        </div>
-                    </div>
-                    <div class="choose">
-                        <ul class="nav nav-pills nav-justified">
-                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to Cart</a></li>
-                            <li><a href="#"><i class="fa fa-search"></i>View Details</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-        </div>
-
-<!--            <div class="features_items">&lt;!&ndash;features_items&ndash;&gt;
                 <h2 class="title text-center">Features Items</h2>
 
-                &lt;!&ndash; 1st Product &ndash;&gt; &lt;!&ndash; show them by id &ndash;&gt;
-                <div class="col-sm-4" id="1">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <img src="../public/images/home/product1.jpg" alt="" />
-
-                                <h2>$<%= products[0].price %></h2>
-                                <p><%= products[0].productname %></p>&lt;!&ndash;product name &ndash;&gt;
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-                            <a href="/details">
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
-                                        <h2>$<%= products[0].price %></h2>
-                                        <p><%= products[0].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                        <div class="choose">
-                            <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                &lt;!&ndash; 2nd Product &ndash;&gt;
+                <% for(var a=0; a<3;a++) { %>
+                <!-- 1st Product -->
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
-                        <div class="single-products">
+                        <div class="">
                             <div class="productinfo text-center">
-                                <img src="../public/images/home/product2.jpg" alt="" />
-                                <h2>$<%= products[1].price %></h2>
-                                <p><%= products[1].productname %></p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[a].imagename %>"/>
+                                <h2>$<%=products[a].price %></h2>
+                                <p><%=products[a].productname %></p>
+                                <a href="/details/<%=products[a].id %>" class="btn btn-success view-product minimarginbottom"><i class="fa fa-search"></i>View Details</a>
                             </div>
-                            <a href="/details">
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
-                                        <h2>$<%= products[1].price %></h2>
-                                        <p><%= products[1].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </a>
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to Cart</a></li>
+                                <li><a href="/details/<%=products[a].id %>"><i class="fa fa-search"></i>View Details</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
-                &lt;!&ndash; 3rd Product &ndash;&gt;
-                <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <img src="../public/images/home/product3.jpg" alt="" />
-                                &lt;!&ndash; product info from data base &ndash;&gt;
-
-                                <h2>$<%= products[2].price %></h2>
-                                <p><%= products[2].productname %></p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-                            <a href="/details">
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
-                                        <h2>$<%= products[2].price %></h2>
-                                        <p><%= products[2].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="choose">
-                            <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>--><!--features_items-->
-
+                <% } %>
+            </div>
             <div class="category-tab"><!--category-tab-->
                 <div class="col-sm-12">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#usa" data-toggle="tab">USA</a></li>
+                        <li><a href="#usa" data-toggle="tab">USA</a></li>
                         <li><a href="#india" data-toggle="tab">India</a></li>
                         <li><a href="#burma" data-toggle="tab">Burma</a></li>
-                        <li><a href="#puertorico" data-toggle="tab">Puerto Rico</a></li>
+                        <li class="active"><a href="#puertorico" data-toggle="tab">Puerto Rico</a></li>
                     </ul>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade active in" id="usa" >
+                    <div class="tab-pane fade" id="usa" >
+                        <% for(var b=0; b<usa.length && b<4; b++) { %>
                         <div class="col-sm-3">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery1.jpg" alt="" />
-                                        <h2>$<%= products[0].price %></h2>
-                                        <p><%= products[0].productname %></p>
+                                        <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=usa[b].imagename %>"/>
+                                        <h2>$<%=usa[b].price %></h2>
+                                        <p><%=usa[b].productname %></p>
+                                        <a href="/details/<%=usa[b].id %>" class="btn btn-success view-product minimarginbottom"><i class="fa fa-search"></i>View Details</a>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery2.jpg" alt="" />
-                                        <h2>$<%= products[1].price %></h2>
-                                        <p><%= products[1].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery3.jpg" alt="" />
-                                        <h2>$<%= products[2].price %></h2>
-                                        <p><%= products[2].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery4.jpg" alt="" />
-                                        <h2>$<%= products[3].price %></h2>
-                                        <p><%= products[3].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
 
                     <div class="tab-pane fade" id="india" >
+                        <% for(var b=0; b<india.length && b<4; b++) { %>
                         <div class="col-sm-3">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery4.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=india[b].imagename %>"/>
+                                        <h2>$<%=india[b].price %></h2>
+                                        <p><%=india[b].productname %></p>
+                                        <a href="/details/<%=india[b].id %>" class="btn btn-success view-product minimarginbottom"><i class="fa fa-search"></i>View Details</a>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery3.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery2.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery1.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
 
                     <div class="tab-pane fade" id="burma" >
@@ -394,59 +225,23 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="puertorico" >
+                    <div class="tab-pane fade active in" id="puertorico" >
+                        <% for(var b=0; b<puertorico.length && b<4; b++) { %>
                         <div class="col-sm-3">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery1.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=puertorico[b].imagename %>"/>
+                                        <h2>$<%=puertorico[b].price %></h2>
+                                        <p><%=puertorico[b].productname %></p>
+                                        <a href="/details/<%=puertorico[b].id %>" class="btn btn-success view-product minimarginbottom"><i class="fa fa-search"></i>View Details</a>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery2.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery3.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="../public/images/home/gallery4.jpg" alt="" />
-                                        <h2>$56</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
 
                 </div>

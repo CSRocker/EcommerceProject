@@ -103,235 +103,29 @@
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Features Items</h2>
 
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../public/images/shop/product12.jpg" alt="" />
-                                    <h2>$<%= products[0].price %></h2>
-                                    <p><%= products[0].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[0].price %></h2>
-                                        <p><%= products[0].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../public/images/shop/product11.jpg" alt="" />
-                                    <h2>$<%= products[1].price %></h2>
-                                    <p><%= products[1].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[1].price %></h2>
-                                        <p><%= products[1].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../public/images/shop/product10.jpg" alt="" />
-                                    <h2>$<%= products[2].price %></h2>
-                                    <p><%= products[2].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[2].price %></h2>
-                                        <p><%= products[2].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <% for(var a=0; a< products.length;a++) { %>
 
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <img src="../public/images/shop/product9.jpg" alt="" />
-                                    <h2>$<%= products[3].price %></h2>
-                                    <p><%= products[3].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[3].price %></h2>
-                                        <p><%= products[3].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                                <img src="../public/images/home/new.png" class="new" alt="" />
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../public/images/shop/product8.jpg" alt="" />
-                                    <h2>$<%= products[4].price %></h2>
-                                    <p><%= products[4].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[4].price %></h2>
-                                        <p><%= products[4].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                                <img src="../public/images/home/sale.png" class="new" alt="" />
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../public/images/shop/product7.jpg" alt="" />
-                                    <h2>$<%= products[5].price %></h2>
-                                    <p><%= products[5].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[5].price %></h2>
-                                        <p><%= products[5].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
+                                    <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[a].imagename %>"/>
+                                    <h2>$<%=products[a].price %></h2>
+                                    <p><%=products[a].productname %></p>
+                                    <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
                                 </div>
                             </div>
                             <div class="choose">
                                 <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to Cart</a></li>
+                                    <li><a href="#"><i class="fa fa-search"></i>View Details</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <% } %>
 
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../public/images/home/product6.jpg" alt="" />
-                                    <h2>$<%= products[6].price %></h2>
-                                    <p><%= products[6].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[6].price %></h2>
-                                        <p><%= products[6].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../public/images/home/product5.jpg" alt="" />
-                                    <h2>$<%= products[7].price %></h2>
-                                    <p><%= products[7].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[7].price %></h2>
-                                        <p><%= products[7].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../public/images/home/product4.jpg" alt="" />
-                                    <h2>$<%= products[8].price %></h2>
-                                    <p><%= products[8].productname %></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<%= products[8].price %></h2>
-                                        <p><%= products[8].productname %></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
 
                 </div><!--features_items-->
             </div>

@@ -120,7 +120,7 @@ var shop_puertoricofn = function(req, res) {
             // Render shop_puertorico.html
             res.render("shop_puertorico",{products:productReturned});
         } else {
-            res.send("error");
+            res.write("error");
         }
     });
     // Render shop_puertorico.html
@@ -129,11 +129,33 @@ var shop_puertoricofn = function(req, res) {
 
 var initial_productsfn = function(req, res) {
 
+    var usaProducts = [];
+    var indiaProducts = [];
+    var burmaProducts = [];
+    var puertoricoProducts = [];
 
     global.db.Product.getAllProducts(function(products) {
 
+        // sort products by country
+        for(var product in products){
+            switch (products[product].country){
+                case "USA":
+                    usaProducts.push(products[product]);
+                    break;
+                case "India":
+                    indiaProducts.push(products[product]);
+                    break;
+                case "Burma":
+                    burmaProducts.push(products[product]);
+                    break;
+                case "Puerto Rico":
+                    puertoricoProducts.push(products[product]);
+                    break;
+            }
+        }
+
         //Render initialProducts.html
-        res.render("initial_products", {products:products});
+        res.render("initial_products", {products:products, usa:usaProducts, india:indiaProducts, burma:burmaProducts, puertorico:puertoricoProducts});
 
     });
 };
