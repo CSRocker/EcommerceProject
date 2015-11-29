@@ -124,14 +124,14 @@
             <div class="category-tab"><!--category-tab-->
                 <div class="col-sm-12">
                     <ul class="nav nav-tabs">
-                        <li><a href="#usa" data-toggle="tab">USA</a></li>
+                        <li class="active"><a href="#usa" data-toggle="tab">USA</a></li>
                         <li><a href="#india" data-toggle="tab">India</a></li>
                         <li><a href="#burma" data-toggle="tab">Burma</a></li>
-                        <li class="active"><a href="#puertorico" data-toggle="tab">Puerto Rico</a></li>
+                        <li><a href="#puertorico" data-toggle="tab">Puerto Rico</a></li>
                     </ul>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade" id="usa" >
+                    <div class="tab-pane fade active in" id="usa" >
                         <% for(var b=0; b<usa.length && b<4; b++) { %>
                         <div class="col-sm-3">
                             <div class="product-image-wrapper">
@@ -178,7 +178,7 @@
                                         <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=burma[b].imagename %>"/>
                                         <h2>$<%=burma[b].price %></h2>
                                         <p><%=burma[b].productname %></p>
-                                        <a href="/details/<%=puertorico[b].id %>" class="btn btn-success view-product minimarginbottom"><i class="fa fa-search"></i>View Details</a>
+                                        <a href="/details/<%=burma[b].id %>" class="btn btn-success view-product minimarginbottom"><i class="fa fa-search"></i>View Details</a>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
@@ -188,7 +188,7 @@
                         <% } %>
                     </div>
 
-                    <div class="tab-pane fade active in" id="puertorico" >
+                    <div class="tab-pane fade" id="puertorico" >
                         <% for(var b=0; b<puertorico.length && b<4; b++) { %>
                             <div class="col-sm-3">
                                 <div class="product-image-wrapper">

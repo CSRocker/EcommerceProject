@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
         {
             classMethods: {
                 associate: function(models) {
-                    Orderproduct.hasMany(models.Product)
+                    Orderproduct.hasMany(models.Product);
                     Orderproduct.belongsTo(models.Order, {
                         onDelete: "CASCADE",
                         foreignKey: {
@@ -24,6 +24,35 @@ module.exports = function(sequelize, DataTypes) {
                         }
                     });
                 }
+            },
+            createOrderWithProudct: function(req, callback) {
+                var _Orderproduct = this;
+
+                var newOrderProduct = _Orderproduct.build({
+                    qty: req.body.qty,
+                    product: req.body.id,
+                    Order: {
+                        date: new Date(),
+                        totalprice: req.body.price
+                    }
+                }, {
+                    include: [ Order ]
+                });
+
+                newOrderProduct.save().then(function (newOrder) {
+                    console.log("New order Saved to Database");
+                    var error = null;
+                    callback(newOrder, error);
+                }).error(function (error) {
+                    var responserMsg = "Error placing the order";
+                    console.log(responserMsg + ": " + error);
+                    callback(responserMsg, error)
+                });
+            },
+            addProductToOrder: function(req, pendingOrder, callback) {
+                var _Orderproduct = this;
+
+
             }
         });
 };

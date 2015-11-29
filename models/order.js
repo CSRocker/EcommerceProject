@@ -11,8 +11,7 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define("Order", {
         date: {type: DataTypes.DATE, allowNull: false},
-        totalprice: {type: DataTypes.DECIMAL(10,2), allowNull: false},
-        points: {type: DataTypes.INTEGER, allowNull:false}
+        totalprice: {type: DataTypes.DECIMAL(10,2), allowNull: false}
     },
         {
             classMethods: {
@@ -50,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
                         console.log(responserMsg + ": " + error);
                         callback(responserMsg, error)
                     });
-                },
+                }
 
 
             }

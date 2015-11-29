@@ -1,7 +1,7 @@
 // routes.js
 // Calls for Libraries to be used
-var _ = require('underscore');  // Javascript Helper Library
-
+var _ = require('underscore')  // Javascript Helper Library
+        , help = require('../helper/help.js');
 /* Routes Rendering Views
 =========================*/
 var indexfn = function(req, res) {
@@ -132,18 +132,18 @@ var shop_puertoricofn = function(req, res) {
             res.write("error");
         }
     });
-    // Render shop_puertorico.html
-    //res.render("shop_puertorico");
 };
 
 
 var initial_productsfn = function(req, res) {
 
+    // Variables to store products from each country
     var usaProducts = [];
     var indiaProducts = [];
     var burmaProducts = [];
     var puertoricoProducts = [];
 
+    // Get all products from database
     global.db.Product.getAllProducts(function(products) {
 
         // sort products by country
@@ -162,10 +162,14 @@ var initial_productsfn = function(req, res) {
                     puertoricoProducts.push(products[product]);
                     break;
             }
-        }
+        };
+
+        // Ramdomly Sort Product List (Shuffle) - Using Help function from '/helper/help.js' file
+        var shuffledProducts = help.shuffleArray(products);
+
 
         //Render initialProducts.html
-        res.render("initial_products", {products:products, usa:usaProducts, india:indiaProducts, burma:burmaProducts, puertorico:puertoricoProducts});
+        res.render("initial_products", {products:shuffledProducts, usa:usaProducts, india:indiaProducts, burma:burmaProducts, puertorico:puertoricoProducts});
 
     });
 };
