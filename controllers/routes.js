@@ -31,6 +31,7 @@ var logoutfn = function(req, res) {
 };
 
 var cartfn = function(req, res) {
+
     // Render cart.html
     res.render("cart");
 };
