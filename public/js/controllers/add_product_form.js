@@ -8,11 +8,12 @@ $(document).ready(function(){
     $("#addProductForm").validationEngine('attach', {promptPosition : "topRight", scroll: false, showOneMessage:true});
     $("#deleteProduct_submit").validationEngine('attach', {promptPosition : "topRight", scroll: false, showOneMessage:true});
 
+    /*
     // Intercept clicks to links in the main page
     $('a').click(function (event) {
         getClickedLink (this,event); // 'this' = clicked link ; 'event'= click
     });
-
+*/
     $('#addProductForm_submit').click(function(e) {
         e.preventDefault();
 

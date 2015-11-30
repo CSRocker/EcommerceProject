@@ -17,14 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             classMethods: {
-                associate: function(models) {
-                    Shipment.belongsTo(models.Order, {
-                        onDelete: "CASCADE",
-                        foreignKey: {
-                            allowNull: false
-                        }
-                    });
-                }
+
             }
         });
 };

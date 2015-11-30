@@ -5,6 +5,19 @@
                 <div class="product-details"><!--product-details-->
                     <div class="left-sidebar">
                         <h2>Product Details</h2>
+
+                        <!-- Alert to User: Product Added to Shopping Cart -->
+                        <div id="productAddedToShoppingCartAlert" class="alert alert-success alert-dismissible fade in text-center" role="alert" style="display:hide;">
+                            <button id="closeShoppingCartAlert"type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Product added to your Shopping Cart</strong>
+                        </div>
+
+                        <!-- Alert to User: Login to Use Shopping Cart -->
+                        <div id="loginForShoppingCartAlert" class="alert alert-warning alert-dismissible fade in text-center" role="alert" style="display:hide;">
+                            <button id="closeLoginForShoppingCartAlert"type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong>Please, Login to Add Products to the Shopping Cart</strong>
+                        </div>
+
                     </div>
                     <div class="col-sm-5">
                         <div class="text-center">
@@ -12,25 +25,53 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <div class="product-information"><!--/product-information-->
+                        <div class="row product-information"><!--/product-information-->
                             <img src="../public/images/product-details/new.jpg" class="newarrival" alt=""/>
 
-                            <h2><%=product.productname %></h2>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2><%=product.productname %></h2>
+                                </div>
+                            </div>
 
-                            <p>Web ID: <%=product.id %></p>
+                            <div class="col-lg-6">
+
+                                <p class="smallmarginbottom">Web ID: <%=product.id %></p>
 								<span>
 									<span>US $<%=product.price %></span>
-									<label>Quantity:</label>
-									<input type="text" value="1"/>
-                                    <a href="/addtocart/<%=product.id %>" class="btn btn-fefault add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</span>
+                                </span>
 
-                            <p><b>Country:</b> <%=product.country %></p>
+                            </div>
 
-                            <p><b>Type:</b> <%=product.type %></p>
+                            <div class="col-lg-6 text-center">
 
-                            <p><b>Description:</b> <%=product.description %></p>
+                                <form id="addProductToCartForm" class="searchform" name="addProductToCartForm" action="/addtocart/<%=product.id %>" method="post">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="qty">Quantity:</label>
+
+                                        <div class="col-xs-7">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">Qty</div>
+                                                <input type="text" id="qty" name="qty" class="form-control validate[required,custom[number]] smallwidth" placeholder="Qty" value="1">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p><b>Country:</b> <%=product.country %></p>
+                                    <p><b>Type:</b> <%=product.type %></p>
+                                    <p><b>Description:</b> <%=product.description %></p>
+                                </div>
+                            </div>
+
                         </div>
+
                         <!--/product-information-->
                     </div>
                 </div>

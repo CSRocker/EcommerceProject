@@ -15,9 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             classMethods: {
-                associate: function(models) {
-                    Manufacturer.hasMany(models.Product)
-                }
+
             }
         });
 };

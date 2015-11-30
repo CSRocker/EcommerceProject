@@ -22,11 +22,6 @@ module.exports = function(sequelize, DataTypes) {
         {
             classMethods: {
 
-                associate: function (models) {
-                    Product.hasOne(models.Manufacturer)
-                    Product.hasMany(models.Orderproduct)
-                },
-
                 saveProduct: function (req, callback) {
                     var _Product = this;
 

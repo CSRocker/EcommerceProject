@@ -11,48 +11,37 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define("Orderproduct", {
             qty: {type: DataTypes.INTEGER, allowNull: false},
-            product: {type: DataTypes.INTEGER, allowNull: false}
+            productID: {type: DataTypes.INTEGER, allowNull: false},
+            orderID: {type: DataTypes.INTEGER, allowNull: false}
         },
         {
             classMethods: {
-                associate: function(models) {
-                    Orderproduct.hasMany(models.Product);
-                    Orderproduct.belongsTo(models.Order, {
-                        onDelete: "CASCADE",
-                        foreignKey: {
-                            allowNull: false
-                        }
+
+                addProductToOrder: function (req, order, callback){
+                    var _Orderproduct = this;
+
+                    var newOrderproduct = _Orderproduct.build({
+                        qty: req.body.qty,
+                        productID: req.params.id,
+                        orderID: order.id
                     });
+
+                    newOrderproduct.save().then(function (savedOrderproduct) {
+                        callback(savedOrderproduct);
+                    }).error(function (error) {
+
+                        // Do something with error
+                        console.log("Error!, we must do something: 'orderproduct.js, line 34");
+                    });
+                },
+                countProductsInOrder: function (orderID, callback){
+                    var _Orderproduct = this;
+
+                    _Orderproduct.sum('qty', { where: { orderID: orderID} }).then(function(sum) {
+                        // return the sum of items for the order
+                        callback(sum);
+                    })
                 }
-            },
-            createOrderWithProudct: function(req, callback) {
-                var _Orderproduct = this;
-
-                var newOrderProduct = _Orderproduct.build({
-                    qty: req.body.qty,
-                    product: req.body.id,
-                    Order: {
-                        date: new Date(),
-                        totalprice: req.body.price
-                    }
-                }, {
-                    include: [ Order ]
-                });
-
-                newOrderProduct.save().then(function (newOrder) {
-                    console.log("New order Saved to Database");
-                    var error = null;
-                    callback(newOrder, error);
-                }).error(function (error) {
-                    var responserMsg = "Error placing the order";
-                    console.log(responserMsg + ": " + error);
-                    callback(responserMsg, error)
-                });
-            },
-            addProductToOrder: function(req, pendingOrder, callback) {
-                var _Orderproduct = this;
-
-
             }
         });
 };

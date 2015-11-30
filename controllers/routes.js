@@ -212,12 +212,24 @@ var add_product_formfn= function(req, res){
 
 };
 
-
 var confirm_orderfn= function(req,res){
     //Render confirm_order.html
     //testing
 
     res.render("confirm_order");
+};
+
+var shoppingcart_qtysfn = function (req, res) {
+
+    global.db.Order.pendingOrderForUser(req, function(pendingOrder) {
+        if(pendingOrder) {
+            global.db.Orderproduct.countProductsInOrder(pendingOrder.id, function (totalProducts) {
+                res.send({qtyInCart:totalProducts});
+            });
+        } else {
+            res.send({qtyInCart:0});  // No Order found for user or no product on cart or not logged in
+        }
+    });
 };
 
 /* get Random index of Returned products array
@@ -275,7 +287,8 @@ var routes = define_routes({
     '/accountsetting': accountsettingfn,
     '/add_product_form': add_product_formfn,
     '/confirm_order': confirm_orderfn,
-    '/updateuserinfo':update_userinfofn
+    '/updateuserinfo':update_userinfofn,
+    '/shoppingcart/qtys':shoppingcart_qtysfn
 });
 
 module.exports = routes;
