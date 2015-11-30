@@ -504,6 +504,12 @@ var shoppingcart_qtysfn = function (req, res) {
     });
 };
 
+var term_and_conditionfn=function(req,res){
+
+    //render term_and_condition.html
+    res.render('term_and_condition');
+};
+
 /* get Random index of Returned products array
 ==============================================
     var getRandom = function(products){
@@ -566,7 +572,8 @@ var routes = define_routes({
     '/music/:country': musicfn,
 
     '/updateuserinfo':update_userinfofn,
-    '/shoppingcart/qtys':shoppingcart_qtysfn
+    '/shoppingcart/qtys':shoppingcart_qtysfn,
+    '/term_and_condition':term_and_conditionfn
 });
 
 module.exports = routes;
