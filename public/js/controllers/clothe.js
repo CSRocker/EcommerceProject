@@ -1,8 +1,10 @@
 /**
- * Created by Carlos on 11/25/15.
+ * Created by ClaraChen on 11/30/15.
  */
 /* Execute When Document is Ready
- ------------------------------------------------ */
+ ------------------------------------------------
+ */
+
 $(document).ready(function(){
 
     // Intercept clicks to links in the main page
