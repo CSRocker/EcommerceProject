@@ -59,6 +59,277 @@ var detailsfn = function(req, res) {
     }
 };
 
+//get Clothe type Products by country
+var clothefn= function(req,res){
+    var usaClothe=[];
+    var indiaClothe=[];
+    var burmaClothe=[];
+    var puertoRicoClothe=[];
+    var country=req.params.country;
+    switch(country) {
+        case 'USA':
+            global.db.Product.getProductUSA(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Clothe"){
+                            usaClothe.push(products[product]);
+                        }
+                    }
+                    res.render('clothe',{products:usaClothe});
+
+                }
+            });
+            break;
+
+        case 'India':
+            global.db.Product.getProductIndia(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Clothe"){
+                            indiaClothe.push(products[product]);
+                        }
+                    }
+                    res.render('clothe',{products:indiaClothe});
+
+                }
+            });
+            break;
+
+        case 'Burma':
+            global.db.Product.getProductBurma(req, function(product){
+                if(product){
+                    for(var p in product){
+                        if(product[p].type=="Clothe"){
+                            burmaClothe.push(product[p]);
+                        }
+                    }
+                    res.render('clothe',{products:burmaClothe});
+
+                }
+            });
+            break;
+
+        case 'Puerto Rico':
+            global.db.Product.getProductPuertoRico(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Clothe"){
+                            puertoRicoClothe.push(products[product]);
+                        }
+                    }
+                    res.render('clothe',{products:puertoRicoClothe});
+
+                }
+            });
+            break;
+    }
+    //render clothe.html
+    //res.render('clothe');
+};
+
+//get Handcraft type Products by country
+var handcraftfn= function(req,res){
+    var usaHandcraft=[];
+    var indiaHandcraft=[];
+    var burmaHandcraft=[];
+    var puertoRicoHandcraft=[];
+    var country=req.params.country;
+    switch(country) {
+        case 'USA':
+            global.db.Product.getProductUSA(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Handcraft"){
+                            usaHandcraft.push(products[product]);
+                        }
+                    }
+                    //render handcraft.html
+                    res.render('handcraft',{products:usaHandcraft});
+
+                }
+            });
+            break;
+
+        case 'India':
+            global.db.Product.getProductIndia(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Handcraft"){
+                            indiaHandcraft.push(products[product]);
+                        }
+                    }
+                    res.render('handcraft',{products:indiaHandcraft});
+
+                }
+            });
+            break;
+
+        case 'Burma':
+            global.db.Product.getProductBurma(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Handcraft"){
+                            burmaHandcraft.push(products[product]);
+                        }
+                    }
+                    res.render('handcraft',{products:burmaHandcraft});
+
+                }
+            });
+            break;
+
+        case 'Puerto Rico':
+            global.db.Product.getProductPuertoRico(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Handcraft"){
+                            puertoRicoHandcraft.push(products[product]);
+                        }
+                    }
+                    res.render('handcraft',{products:puertoRicoHandcraft});
+
+                }
+            });
+            break;
+    }
+
+};
+
+//get product Type Food by specific country
+var foodfn= function(req,res){
+    var usaFood=[];
+    var indiaFood=[];
+    var burmaFood=[];
+    var puertoRicoFood=[];
+    var country=req.params.country;
+    switch(country) {
+        case 'USA':
+            global.db.Product.getProductUSA(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Food"){
+                            usaFood.push(products[product]);
+                        }
+                    }
+                    res.render('food',{products:usaFood});
+
+                }
+            });
+            break;
+
+        case 'India':
+            global.db.Product.getProductIndia(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Food"){
+                            indiaFood.push(products[product]);
+                        }
+                    }
+                    res.render('food',{products:indiaFood});
+
+                }
+            });
+            break;
+
+        case 'Burma':
+            global.db.Product.getProductBurma(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Food"){
+                            burmaFood.push(products[product]);
+                        }
+                    }
+                    res.render('food',{products:burmaFood});
+
+                }
+            });
+            break;
+
+        case 'Puerto Rico':
+            global.db.Product.getProductPuertoRico(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Food"){
+                            puertoRicoFood.push(products[product]);
+                        }
+                    }
+                    res.render('food',{products:puertoRicoFood});
+
+                }
+            });
+            break;
+    }
+
+};
+
+//get product Type Music by specific country
+var musicfn= function(req,res){
+    var usaMusic=[];
+    var indiaMusic=[];
+    var burmaMusic=[];
+    var puertoRicoMusic=[];
+    var country=req.params.country;
+    switch(country) {
+        case 'USA':
+            global.db.Product.getProductUSA(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Music"){
+                            usaMusic.push(products[product]);
+                        }
+                    }
+                    res.render('music',{products:usaMusic});
+
+                }
+            });
+            break;
+
+        case 'India':
+            global.db.Product.getProductIndia(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Music"){
+                            indiaMusic.push(products[product]);
+                        }
+                    }
+                    res.render('music',{products:indiaMusic});
+
+                }
+            });
+            break;
+
+        case 'Burma':
+            global.db.Product.getProductBurma(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Music"){
+                            burmaMusic.push(products[product]);
+                        }
+                    }
+                    res.render('music',{products:burmaMusic});
+
+                }
+            });
+            break;
+
+        case 'Puerto Rico':
+            global.db.Product.getProductPuertoRico(req, function(products){
+                if(products){
+                    for(var product in products){
+                        if(products[product].type=="Music"){
+                            puertoRicoMusic.push(products[product]);
+                        }
+                    }
+                    res.render('music',{products:puertoRicoMusic});
+
+                }
+            });
+            break;
+    }
+
+};
+
+
 var shop_usafn = function(req, res) {
 
     var productReturned = [];
@@ -287,6 +558,12 @@ var routes = define_routes({
     '/accountsetting': accountsettingfn,
     '/add_product_form': add_product_formfn,
     '/confirm_order': confirm_orderfn,
+    '/updateuserinfo': update_userinfofn,
+    '/clothe/:country': clothefn,
+    '/handcraft/:country': handcraftfn,
+    '/food/:country': foodfn,
+    '/music/:country': musicfn,
+
     '/updateuserinfo':update_userinfofn,
     '/shoppingcart/qtys':shoppingcart_qtysfn
 });

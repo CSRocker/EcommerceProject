@@ -22,10 +22,11 @@
                             <div id="usa_category" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#">Clothes </a></li>
-                                        <li><a href="#">Handcrafts </a></li>
-                                        <li><a href="#">Music </a></li>
-                                        <li><a href="#">Food</a></li>
+                                        <%var country='USA' %>
+                                        <li><a href="/clothe/<%=country%>">Clothes </a></li>
+                                        <li><a href="/handcraft/<%=country%>">Handcrafts </a></li>
+                                        <li><a href="/music/<%=country %>">Music </a></li>
+                                        <li><a href="/food/<%=country %>">Food</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -42,10 +43,11 @@
                             <div id="india_category" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#">Clothes </a></li>
-                                        <li><a href="#">Handcrafts </a></li>
-                                        <li><a href="#">Music </a></li>
-                                        <li><a href="#">Food</a></li>
+                                        <%var country='India' %>
+                                        <li><a href="/clothe/<%=country%>">Clothes </a></li>
+                                        <li><a href="/handcraft/<%=country%>">Handcrafts </a></li>
+                                        <li><a href="/music/<%=country %>">Music </a></li>
+                                        <li><a href="/food/<%=country %>">Food</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -62,10 +64,11 @@
                             <div id="burma_category" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#">Clothes </a></li>
-                                        <li><a href="#">Handcrafts </a></li>
-                                        <li><a href="#">Music </a></li>
-                                        <li><a href="#">Food</a></li>
+                                        <%var country='Burma' %>
+                                        <li><a href="/clothe/<%=country%>">Clothes </a></li>
+                                        <li><a href="/handcraft/<%=country%>">Handcrafts </a></li>
+                                        <li><a href="/music/<%=country %>">Music </a></li>
+                                        <li><a href="/food/<%=country %>">Food</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -82,10 +85,11 @@
                             <div id="puertorico_category" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="#">Clothes </a></li>
-                                        <li><a href="#">Handcrafts </a></li>
-                                        <li><a href="#">Music </a></li>
-                                        <li><a href="#">Food</a></li>
+                                        <% var country='Puerto Rico' %>
+                                        <li><a href="/clothe/<%=country%>">Clothes </a></li>
+                                        <li><a href="/handcraft/<%=country%>">Handcrafts </a></li>
+                                        <li><a href="/music/<%=country %>">Music </a></li>
+                                        <li><a href="/food/<%=country %>">Food</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -101,7 +105,7 @@
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Features Items</h2>
+                    <h2 class="title text-center">Indian Features Items</h2>
 
                     <% for(var a=0; a< products.length;a++) { %>
 
@@ -112,21 +116,25 @@
                                     <img class="img-thumbnail largethumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[a].imagename %>"/>
                                     <h2>$<%=products[a].price %></h2>
                                     <p><%=products[a].productname %></p>
-                                    <a href="/details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                                    <a href="/details/<%=products[a].id %>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
                                 </div>
                             </div>
                             <div class="choose">
                                 <ul class="nav nav-pills nav-justified">
                                     <li><a href="#"><i class="fa fa-plus-square"></i>Add to Cart</a></li>
-                                    <li><a href="#"><i class="fa fa-search"></i>View Details</a></li>
+                                    <li><a href="/details/<%=products[a].id %>"><i class="fa fa-search"></i>View Details</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <% } %>
 
+
                 </div><!--features_items-->
             </div>
         </div>
     </div>
 </section>
+
+<!--clothe controller -->
+<script src="../public/js/controllers/clothe.js"></script>
