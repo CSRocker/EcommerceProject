@@ -4,44 +4,41 @@
 $(document).ready(function() {
 
 
-    function editname(btneditnamevalue) {
-        switch (btneditnamevalue) {
-            case btneditname:
-                $("#diveditemail").addClass("hidden");
-                $("#diveditmobile").addClass("hidden");
-                $("#diveditpassword").addClass("hidden");
+    // Initialize Modal Window for Login / SignUp
+   // $('#userinfo_modal').modal({
+    //    backdrop: 'static',
+     //   show: true
+    //})
 
-                $("#diveditsetting").removeClass("hidden");
-                $("#diveditname").removeClass("hidden");
-                break;
-            case btneditemail:
-                $("#diveditname").addClass("hidden");
-                $("#diveditmobile").addClass("hidden");
-                $("#diveditpassword").addClass("hidden");
+    $('#Getuserinfo').click(function(e) {
+        e.preventDefault();
+window.alert("in button click");
+        // Get the form ID
+        var formId = "#"+$(this).attr("id");
 
-                $("#diveditsetting").removeClass("hidden");
-                $("#diveditemail").removeClass("hidden");
-                break;
-            case btneditmobile:
-                $("#diveditname").addClass("hidden");
-                $("#diveditemail").addClass("hidden");
-                $("#diveditpassword").addClass("hidden");
+        // Check for errors in form before submitting
+        if($(formId).validationEngine('validate') ) {
 
-                $("#diveditmobile").removeClass("hidden");
-                $("#diveditsetting").removeClass("hidden");
 
-                break;
-            case btneditpassword:
-                $("#diveditname").addClass("hidden");
-                $("#diveditmobile").addClass("hidden");
-                $("#diveditemail").addClass("hidden");
+            $.post('/getuserinfo',function (data) {
+                if (data == 'error') {
+                    window.alert("In failed method");
+                   // $('#file').attr('type', 'file');    // Change Attribute back to 'file'
+                }
+                else {
 
-                $("#diveditpassword").removeClass("hidden");
-                $("#diveditsetting").removeClass("hidden");
+                    window.alert("In Success method");
+                    //$('#addProductForm_status').html('Success! Product Added');
 
-                break;
+
+
+                }
+            });
         }
 
+    });
 
-    }
-}
+
+
+});
+
