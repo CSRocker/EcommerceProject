@@ -141,7 +141,7 @@
 										<li><a href="#">Not "You"? Logout!</a></li>
 									</ul>
 								</li>
-								<li class="dropdown"><a href="/cart"><i class="fa fa-shopping-cart"> Cart</i><i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="/cart"><i class="fa fa-shopping-cart"> Cart <span id="cartBadge" class="badge"></span></i><i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										<li><a href="/checkout">Checkout</a></li>
 									</ul>
@@ -232,14 +232,17 @@
 			</div>
 		</div>
 	</section><!--/slider - Carousel Shown on initial load of Home Page-->
-	
+
 	<section id="content"><!--content -->
 
         <!--inject content data from server.  The logic to inject the data in the page is executed
         from the file /public/js/controllers/MainController.js-->
-        <div id="contentData">
 
-        </div>
+        <!-- Inject Modal Login Code -->
+        <div id="loginModal"></div>
+
+        <!-- Inject Content Code -->
+        <div id="contentData"></div>
 
 	</section><!--/content - Variable content of the main page-->
 	
@@ -418,7 +421,8 @@
     <!-- File Upload -->
     <script type="text/javascript" src="../public/js/controllers_others/pekeUpload.js"></script>
     <!-- MainController -->
-    <script src="../public/js/controllers/MainController.js"></script>
+    <script type="text/javascript" src="../public/js/controllers/MainController.js"></script>
     <!--Javascript Files loading  **END** -->
+
 </body>
 </html>

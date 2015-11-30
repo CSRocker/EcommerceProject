@@ -31,11 +31,10 @@ $(document).ready(function(){
     // Call function to load initial products from 'initialProducts.html'
     loadInitialProducts();
 
-    // Intercept clicks to links in the main page
-    $('a').click(function (event) {
-        getClickedLink (this,event); // 'this' = clicked link ; 'event'= click
-    });
+    // Call function to load Shopping Cart content qty for user
+    loadShoppingCartQtys();
 
+    // Submit a new product to the database
     $('#addProductForm_submit').click(function(e) {
         e.preventDefault();
 
@@ -52,6 +51,9 @@ $(document).ready(function(){
     });
 
 });
+
+/* Execute When Loading Code
+ ------------------------------------------------------------ */
 
 /* Function to get initial product data 'initialProducts.html'
  ------------------------------------------------------------ */
@@ -76,8 +78,15 @@ function scrollToId (id) {
             2000);
 }
 
+
+
 /* Function to get code from server and inject in main HTML page'
  --------------------------------------------------------------- */
+// Intercept clicks to links in the main page
+$('a').click(function (event) {
+    getClickedLink (this,event); // 'this' = clicked link ; 'event'= click
+});
+
 function getClickedLink (link, event){
     event.preventDefault();
 
@@ -87,11 +96,16 @@ function getClickedLink (link, event){
     if(!url.match(/^#/)) {
         $.get(url, function (data) {
             if (data != "logged_out") {
-                $('#contentData').empty();      //Empty div 'contentData' from any previous code
-                $('#contentData').html(data);   //Render new data on contentData section
-                $('#slider').hide( "slow", function() {
-                    scrollToId('#contentData'); //Scroll to start of contentData section in case we are off.
-                });
+                if(url == '/login') {           // If the user wants to Login - Insert in Login modal Section
+                    $('#loginModal').empty();
+                    $('#loginModal').html(data);
+                } else {                        // else, insert in Content Data Section.
+                    $('#contentData').empty();     //Empty div 'contentData' from any previous code
+                    $('#contentData').html(data);   //Render new data on contentData section
+                    $('#slider').hide("slow", function () {
+                        scrollToId('#contentData'); //Scroll to start of contentData section in case we are off.
+                    });
+                }
             } else {
                 $(location).attr('href', '/');  // Redirect after logout to the main page '/'
             }
@@ -99,6 +113,16 @@ function getClickedLink (link, event){
     } else {
         scrollToId(url);  // if not a route or post - scroll to section id
     }
+}
+
+// Get total products in shopping cart for logged user
+function loadShoppingCartQtys () {
+    $.get('/shoppingcart/qtys', function(data) {
+        if(data.qtyInCart > 0){
+            // Update Shopping Cart Badge
+            $('#cartBadge').html(data.qtyInCart);
+        }
+    });
 }
 
 var RGBChange = function() {

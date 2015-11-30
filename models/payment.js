@@ -15,15 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             classMethods: {
-                associate: function(models) {
-                    Payment.hasOne(models.Card)
-                    Payment.belongsTo(models.Order, {
-                        onDelete: "CASCADE",
-                        foreignKey: {
-                            allowNull: false
-                        }
-                    });
-                }
+
             }
         });
 };

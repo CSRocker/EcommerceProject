@@ -17,10 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             classMethods: {
-                associate: function(models) {
-                    Card.hasOne(model.User)
-                    Card.hasMany(models.Payment)
-                }
+
             }
         });
 };

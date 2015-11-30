@@ -1,7 +1,7 @@
 // routes.js
 // Calls for Libraries to be used
-var _ = require('underscore');  // Javascript Helper Library
-
+var _ = require('underscore')  // Javascript Helper Library
+        , help = require('../helper/help.js');
 /* Routes Rendering Views
 =========================*/
 var indexfn = function(req, res) {
@@ -403,18 +403,18 @@ var shop_puertoricofn = function(req, res) {
             res.write("error");
         }
     });
-    // Render shop_puertorico.html
-    //res.render("shop_puertorico");
 };
 
 
 var initial_productsfn = function(req, res) {
 
+    // Variables to store products from each country
     var usaProducts = [];
     var indiaProducts = [];
     var burmaProducts = [];
     var puertoricoProducts = [];
 
+    // Get all products from database
     global.db.Product.getAllProducts(function(products) {
 
         // sort products by country
@@ -433,10 +433,14 @@ var initial_productsfn = function(req, res) {
                     puertoricoProducts.push(products[product]);
                     break;
             }
-        }
+        };
+
+        // Ramdomly Sort Product List (Shuffle) - Using Help function from '/helper/help.js' file
+        var shuffledProducts = help.shuffleArray(products);
+
 
         //Render initialProducts.html
-        res.render("initial_products", {products:products, usa:usaProducts, india:indiaProducts, burma:burmaProducts, puertorico:puertoricoProducts});
+        res.render("initial_products", {products:shuffledProducts, usa:usaProducts, india:indiaProducts, burma:burmaProducts, puertorico:puertoricoProducts});
 
     });
 };
@@ -479,7 +483,6 @@ var add_product_formfn= function(req, res){
 
 };
 
-
 var confirm_orderfn= function(req,res){
     //Render confirm_order.html
     //testing
@@ -487,7 +490,18 @@ var confirm_orderfn= function(req,res){
     res.render("confirm_order");
 };
 
+var shoppingcart_qtysfn = function (req, res) {
 
+    global.db.Order.pendingOrderForUser(req, function(pendingOrder) {
+        if(pendingOrder) {
+            global.db.Orderproduct.countProductsInOrder(pendingOrder.id, function (totalProducts) {
+                res.send({qtyInCart:totalProducts});
+            });
+        } else {
+            res.send({qtyInCart:0});  // No Order found for user or no product on cart or not logged in
+        }
+    });
+};
 
 /* get Random index of Returned products array
 ==============================================
@@ -548,8 +562,10 @@ var routes = define_routes({
     '/clothe/:country': clothefn,
     '/handcraft/:country': handcraftfn,
     '/food/:country': foodfn,
-    '/music/:country': musicfn
+    '/music/:country': musicfn,
 
+    '/updateuserinfo':update_userinfofn,
+    '/shoppingcart/qtys':shoppingcart_qtysfn
 });
 
 module.exports = routes;

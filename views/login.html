@@ -8,8 +8,6 @@
                 <h4 class="modal-title">Sign Up / Log In</h4>
             </div>
             <div class="modal-body">
-
-
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-5">
@@ -26,6 +24,12 @@
                                                placeholder="Password"/>
                                     </div>
                                     <button id="loginForm_submit" type="submit" class="btn btn-submit">Login</button>
+                                    <!-- FACEBOOK Login  -->
+                                    <span>
+                                        <h4>Login With Facebook</h4>
+                                        <fb:login-button id="fblogin" onLogin="checkLoginState"></fb:login-button>
+                                        <div id="status"></div>
+					             	</span>
                                 </form>
                             </div>
                             <!--/login form-->
@@ -79,4 +83,6 @@
     <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- Facebook Login -->
+<script type="text/javascript" src="../public/js/controllers_others/facebook_login.js"></script>
 <script type="text/javascript" src="../public/js/controllers/login.js"></script>

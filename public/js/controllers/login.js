@@ -12,7 +12,7 @@ $(document).ready(function() {
    $('#login_modal').modal({
         backdrop: 'static',
         show: true
-    })
+    });
 
     $( "form" ).submit(function( event ) {
         event.preventDefault();

@@ -51,12 +51,7 @@
     <script type="text/javascript" src="js/accountsetting.js"></script>
 
 
-<body>
 
-
-<script src="accountsetting.js">
-
-</script>
 <div class="container">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-1">
@@ -64,12 +59,13 @@
 
                 <div class="step-one">
                  <h2 class="heading">Update to your account</h2>
-                    </div>
-                 <form action="#">
 
+                    </div>
+                 <form id="updateuserform">
+                     <button type="button" id="Getuserinfo" class="btn ">Get My Info</button>
                         <div>
-                            <h3>Name</h3>
-                            <label id="custname">Snehal Golhar </label>
+                            <h3>Name </h3>
+                            <label id="custname">Snehal Golhar     </label>
                             <button id="btneditname" type="submit" class="btn btn-default" onclick="editname(btneditname)">Edit</button>
                         </label><br>
 
@@ -100,7 +96,7 @@
                 </div>
             </div>
 
-               <div id="diveditsetting" class="hidden col-sm-4" >
+               <div id="diveditsetting" class="hidden col-sm-6" >
                    <div id="diveditname" class="hidden">
                    <div class="signup-form"><!--sign up form-->
                        <div  class="step-one">
@@ -210,4 +206,8 @@
         </div>
 
     </div>
+
 </div>
+
+<!-- add_product Controller -->
+<script src="../public/js/controllers/update_userinfo.js"></script>

@@ -2844,3 +2844,15 @@ h2.title {
 .chose_area:before{
   visibility: hidden;
 }
+
+.smallwidth{
+      with: 50px;
+}
+
+.medwidth{
+    with: 100px;
+}
+
+.largewidth{
+    with: 150px;
+}

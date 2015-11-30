@@ -151,4 +151,44 @@ module.exports = function (app, db, passport) {
             });
         });
     });
+
+    app.post('/addtocart/:id', function(req, res) {
+
+        // Query DB to find is this user has a pending order
+        global.db.Order.pendingOrderForUser(req, function(pendingOrder, user){
+
+            if(pendingOrder){
+
+                // Add Product to current order
+                global.db.Orderproduct.addProductToOrder(req, pendingOrder, function(orderProduct){
+                    if(orderProduct){
+                        global.db.Orderproduct.countProductsInOrder(orderProduct.orderID, function(totalProducts){
+
+                            res.status(200).send({productAdded:true, qtyInCart:totalProducts});
+
+                        });
+                    } else {
+                        res.status(300).send({productAdded:false, qtyInCart:false});
+                    }
+                });
+
+            } else {
+                if(user) {
+                    // create order with sent product
+                    global.db.Order.createOrderWithProduct(req, function (newOrder) {
+                        if (newOrder) {
+                            res.status(200).send({productAdded: true, qtyInCart: req.body.qty, userID:user});
+                        } else {
+                            res.status(200).send({productAdded: false, qtyInCart: false, userID:user});
+                        }
+                    });
+                } else {
+                    res.status(200).send({productAdded: false, qtyInCart: false, userID:user});
+                }
+
+            }
+        });
+
+
+    });
 };
