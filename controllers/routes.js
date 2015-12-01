@@ -469,7 +469,11 @@ var orderStatusfn= function(req, res){
 var accountsettingfn= function(req, res){
     //Render accountsetting.html
 
-    res.render("accountsetting", {layout:false});
+    global.db.User.getUser(req, function(user){
+
+        res.render("accountsetting",{userInfo:user});
+
+    });
 };
 
 

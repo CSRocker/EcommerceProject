@@ -61,18 +61,18 @@
                  <h2 class="heading">Update to your account</h2>
 
                     </div>
-                 <form id="updateuserform">
-                     <button type="button" id="Getuserinfo" class="btn ">Get My Info</button>
+                <form id="updateuserform" role="form" method="post" action="/getuserinfo'">
+                    <button type="button" id="Getuserinfo" class="btn ">Get My Info</button>
                         <div>
                             <h3>Name </h3>
-                            <label id="custname">Snehal Golhar     </label>
+                            <label id="custname"><%=userInfo.name %></label>
                             <button id="btneditname" type="submit" class="btn btn-default" onclick="editname(btneditname)">Edit</button>
                         </label><br>
 
                         <div>
                         <h3>EmailID</h3>
 
-                        <label id="custemailid">Snehal.Golhar@gmail.com </label>
+                        <label id="custemailid"><%=userInfo.email %></label>
                         <button id="btneditemail" type="submit" class="btn btn-default" onclick="editname(btneditemail)" >Edit</button>
 
                         </div><br>
@@ -80,7 +80,7 @@
 
                         <div>
                         <h3>Mobile Number</h3>
-                        <label id="custmobile">+6687789854 </label>
+                        <label id="custmobile"><%=userInfo.phone %> </label>
                         <button id="btneditmobile" type="submit" class="btn btn-default" onclick="editname(btneditmobile)">Edit</button>
                         </div><br>
 
