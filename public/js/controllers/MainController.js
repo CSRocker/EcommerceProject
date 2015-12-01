@@ -31,6 +31,10 @@ $(document).ready(function(){
     // Call function to load initial products from 'initialProducts.html'
     loadInitialProducts();
 
+    $("a").click(function (event) {
+        getClickedLink (this,event); // 'this' = clicked link ; 'event'= click
+    });
+
     // Call function to load Shopping Cart content qty for user
     loadShoppingCartQtys();
 
@@ -82,10 +86,8 @@ function scrollToId (id) {
 
 /* Function to get code from server and inject in main HTML page'
  --------------------------------------------------------------- */
-// Intercept clicks to links in the main page
-$('a').click(function (event) {
-    getClickedLink (this,event); // 'this' = clicked link ; 'event'= click
-});
+
+
 
 function getClickedLink (link, event){
     event.preventDefault();
