@@ -219,7 +219,7 @@ module.exports = function (app, db, passport) {
 
         // Delete order by orderProductID
         global.db.Orderproduct.deleteOrderProductById(req.params.orderProductId, function(linesDeleted){
-            res.send(linesDeleted);
+            res.send({linesDeleted:linesDeleted});
         });
     });
 };

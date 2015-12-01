@@ -9,26 +9,35 @@ $(document).ready(function(){
     $("a.cart_quantity_delete").click(function (event) {
         event.preventDefault();
 
-        console.log("I was Clicked link to delete");
         // Get the link URL
         var url = $(this).attr('href');
+        var callerElement = $(this).closest("tr");
 
         // Post the form data to the Server
         $.post(url, function (data) {
-            if (data.productAdded) {
+
+            console.log("Lines Deleted", data.linesDeleted);
+
+            if (data.linesDeleted) {
                 // Show Message to User - Modal Window
-                $('#productAddedToShoppingCartAlert').slideDown();
+                $('#productRemovedFromShoppingCartAlert').slideDown();
 
-                // Update Shopping Cart Badge
-                $('#cartBadge').html(data.qtyInCart);
+                $(callerElement).fadeOut( "slow", function() {
+                    $(callerElement).remove();
+                });
 
+                // GET qty in shopping cart
+                $.get('/shoppingcart/qtys', function (data) {
+                    // Update Shopping Cart Badge
+                    $('#cartBadge').html(data.qtyInCart);
+
+                    if(data.qtyInCart < 1){
+                        loadInitialProducts ();
+                    }
+                });
             }
             else {
-                if(!data.userID){
-                    // Show Message to User - Modal Window
-                    $('#loginForShoppingCartAlert').slideDown();
-                }
-                // Code to handle error
+                // Error Deleting product - Warn User
 
             }
         });
@@ -36,15 +45,9 @@ $(document).ready(function(){
     });
 
     // Hide Alert on "x" click
-    $("#closeShoppingCartAlert").click(function() {
+    $("#closeProductRemovedFromShoppingCartAlert").click(function() {
         // Hide Alert
-        $('#productAddedToShoppingCartAlert').fadeOut();
-    });
-
-    // Hide Alert on "x" click
-    $("#closeLoginForShoppingCartAlert").click(function() {
-        // Hide Alert
-        $('#loginForShoppingCartAlert').fadeOut();
+        $('#productRemovedFromShoppingCartAlert').fadeOut();
     });
 
 });
@@ -53,5 +56,4 @@ $(document).ready(function(){
  ------------------------------------------------------------ */
 
 // Hide Shopping Cart Alerts
-$('#productAddedToShoppingCartAlert').hide();
-$('#loginForShoppingCartAlert').hide();
+$('#productRemovedFromShoppingCartAlert').hide();
