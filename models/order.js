@@ -79,6 +79,35 @@ module.exports = function(sequelize, DataTypes) {
                         console.log("Error!, we must do something: 'order.js, line 68");
 
                     });
+                },
+
+                /*Testing for orderstatus */
+                getOrderByUserID: function(req, callback){
+                    var _Order= this;
+                    var loggedUserID; // Variable used to Try/Catch if the property user is set on the req variable.
+
+                    // Verify if an user is logged using Try/Catch - If not set user id to "0"
+                    try {
+                        loggedUserID = req.user.id;
+                    }
+                    catch (error) {
+                        loggedUserID = 0;
+                    }
+
+                    _Order.findAll({
+                         where: {
+                             userID: loggedUserID,
+                             checkout: true   /// this indicates the order were placed.
+                         }
+                    }). then(function(order){
+                        //return order
+                        callback (order, loggedUserID);
+                    }).error(function (error) {
+                        //Do something with error
+                        console.log("Error!, we must do something: 'order.js, line 107");
+                    });
+
+
                 }
 
             }

@@ -459,9 +459,73 @@ var accountfn = function(req, res) {
 };
 
 var orderStatusfn= function(req, res){
-    //Render orderStatus.html
 
-        res.render("orderStatus");
+    var loggedUser;
+    var loggedUserID;
+    var orders=[]; //order info of loggedUser
+    var orderProduct;  //orderproduct info of logged User's orders
+    var product; // product info of the logged User ordered.
+
+   /* //dummy user, order, dummy orderProduct
+     var user ={
+     email: 'clarachen@gmail.com',
+     password: 'cc99',
+     name: 'Clara Chen',
+     address: '1000 Market St, San Francisco, CA',
+     phone: '(415)-111-1111',
+     social: null,
+     salt: 'lkdjslfjsdlf',
+     hash: 'lsfjlsjlfjalfd'
+     };
+
+     for (var i=1; i<3;i++){
+
+     orders.userID=i;
+     orders.date=10/12/2014;
+     orders.totalprice=200;
+     orders.checkout=true;
+     orders.id=i;
+
+     };
+
+    for (var i=1; i<3; i++) {
+        product.productname.push('Candy');
+        product.price.push(20);
+
+    }; */
+
+
+    // Verify if user is logged using Try/Catch - If not set as "Guest"
+    // get order, orderproduct, product data by logged User
+    // if user is "Guest" ask user to login or sign up.
+    // if user login, show order details of user. if user sign up, render to initial page.
+    try {
+        loggedUser = req.user.name;
+        loggedUserID =req.user.id;
+        global.order.getOrderByUserID(req,function(order){
+            //write code about return order info
+            if(order){
+                orders = order; // will use it for retrieving data from order product
+                //getting orderProduct info and info of all Products related to orderID
+                global.order.getProductsFromOrder(order,function(product){
+                    res.render("orderStatus",{name:loggedUser, orders:orders, products:product });
+                });
+            } else {
+                //write some code for error
+                    console.log("No ordered placed");
+                    res.render("initial_Products");
+
+            }
+
+        });
+
+    }
+    catch (error) {
+       // loggedUser = "Guest";
+        res.render("login"); // ask user to login to view
+    }
+    //Render orderStatus.html
+      //  res.render("orderStatus", {name:loggedUser, order:orders, products:product});
 
 
 };
