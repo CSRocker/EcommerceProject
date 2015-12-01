@@ -1746,6 +1746,13 @@ h2.title {
   margin-bottom: 80px;
 }
 
+#do_action .total_area, #do_action .chose_area2 {
+    border: 1px solid #E6E4DF;
+    color: #696763;
+    padding: 30px 25px 20px 0;
+    margin-bottom: 80px;
+}
+
 .total_area span {
   float: right;
 }
