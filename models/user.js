@@ -62,14 +62,31 @@ module.exports = function(sequelize, DataTypes) {
                 },
                 getUser: function(req, callback) {
                     var _User = this;
+                    var userId;
 
-                    _User.findOne({
-                        where: {email: req.body.email}
-                    }).then(function(user) {
-                        // project will be the first entry of the Projects table with the title 'aProject' || null
-                        // project.title will contain the name of the project
-                        callback (user);
-                    })
+                    try {
+                        userId = req.user.id;
+                    }
+                    catch (error) {
+                        userId = 0;
+                    }
+
+                    if (req.body.email) {
+
+                         _User.findOne({
+                            where: {email: req.body.email}
+                            }).then(function (user) {
+                            // project will be the first entry of the Projects table with the title 'aProject' || null
+                            // project.title will contain the name of the project
+                            callback(user);
+                        })
+                    } else {
+                        _User.findOne({
+                            where: {id: userId}
+                        }).then(function(user){
+                            callback(user);
+                        })
+                    }
                 }
             }
         });

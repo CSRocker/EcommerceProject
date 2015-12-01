@@ -31,8 +31,15 @@ var logoutfn = function(req, res) {
 };
 
 var cartfn = function(req, res) {
-    // Render cart.html
-    res.render("cart");
+
+    global.db.Order.pendingOrderForUser(req, function(pendingOrder, user) {
+
+        global.db.Orderproduct.getProductsFromOrder(pendingOrder.id, function(products, orderProducts){
+            // Render cart.html
+            res.render("cart", {products:products, orderProducts:orderProducts});
+        });
+
+    });
 };
 
 var checkoutfn = function(req, res) {
@@ -462,7 +469,11 @@ var orderStatusfn= function(req, res){
 var accountsettingfn= function(req, res){
     //Render accountsetting.html
 
-    res.render("accountsetting", {layout:false});
+    global.db.User.getUser(req, function(user){
+
+        res.render("accountsetting",{userInfo:user});
+
+    });
 };
 
 

@@ -1,10 +1,20 @@
 <section id="cart_items">
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li class="active">Cart</li>
-            </ol>
+        <div class="left-sidebar">
+            <h2>Shopping Cart</h2>
+
+            <!-- Alert to User: Product Added to Shopping Cart -->
+            <div id="productAddedToShoppingCartAlert" class="alert alert-success alert-dismissible fade in text-center" role="alert">
+                <button id="closeShoppingCartAlert"type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <strong>Product added to your Shopping Cart</strong>
+            </div>
+
+            <!-- Alert to User: Login to Use Shopping Cart -->
+            <div id="loginForShoppingCartAlert" class="alert alert-warning alert-dismissible fade in text-center" role="alert">
+                <button id="closeLoginForShoppingCartAlert"type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <strong>Please, Login to Add Products to the Shopping Cart</strong>
+            </div>
+
         </div>
         <!--/breadcrums-->
         <div class="table-responsive cart_info">
@@ -20,88 +30,30 @@
                 </tr>
                 </thead>
                 <tbody>
+                <% for(var a=0; a<products.length ; a++) { %>
                 <tr>
                     <td class="cart_product">
-                        <a href=""><img src="../public/images/cart/one.png" alt=""></a>
+                        <img class="img-thumbnail thumb img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[a].imagename %>" alt="">
                     </td>
                     <td class="cart_description">
-                        <h4><a href="">Colorblock Scuba</a></h4>
+                        <h4><a href=""><%=products[a].productname %></a></h4>
 
-                        <p>Web ID: 1089772</p>
+                        <p>Web ID: <%=products[a].id %></p>
                     </td>
                     <td class="cart_price">
-                        <p>$59</p>
+                        <p>$<%=products[a].price %></p>
                     </td>
                     <td class="cart_quantity">
-                        <div class="cart_quantity_button">
-                            <a class="cart_quantity_up" href=""> + </a>
-                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off"
-                                   size="2">
-                            <a class="cart_quantity_down" href=""> - </a>
-                        </div>
+                        <p><%=orderProducts[a].qty %></p>
                     </td>
                     <td class="cart_total">
-                        <p class="cart_total_price">$59</p>
+                        <p class="cart_total_price">$<%=orderProducts[a].priceTotal %></p>
                     </td>
                     <td class="cart_delete">
-                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                        <a class="cart_quantity_delete" href="/delete/orderproduct/<%=orderProducts[a].id %>"><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
-
-                <tr>
-                    <td class="cart_product">
-                        <a href=""><img src="../public/images/cart/two.png" alt=""></a>
-                    </td>
-                    <td class="cart_description">
-                        <h4><a href="">Colorblock Scuba</a></h4>
-
-                        <p>Web ID: 1089772</p>
-                    </td>
-                    <td class="cart_price">
-                        <p>$59</p>
-                    </td>
-                    <td class="cart_quantity">
-                        <div class="cart_quantity_button">
-                            <a class="cart_quantity_up" href=""> + </a>
-                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off"
-                                   size="2">
-                            <a class="cart_quantity_down" href=""> - </a>
-                        </div>
-                    </td>
-                    <td class="cart_total">
-                        <p class="cart_total_price">$59</p>
-                    </td>
-                    <td class="cart_delete">
-                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cart_product">
-                        <a href=""><img src="../public/images/cart/three.png" alt=""></a>
-                    </td>
-                    <td class="cart_description">
-                        <h4><a href="">Colorblock Scuba</a></h4>
-
-                        <p>Web ID: 1089772</p>
-                    </td>
-                    <td class="cart_price">
-                        <p>$59</p>
-                    </td>
-                    <td class="cart_quantity">
-                        <div class="cart_quantity_button">
-                            <a class="cart_quantity_up" href=""> + </a>
-                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off"
-                                   size="2">
-                            <a class="cart_quantity_down" href=""> - </a>
-                        </div>
-                    </td>
-                    <td class="cart_total">
-                        <p class="cart_total_price">$59</p>
-                    </td>
-                    <td class="cart_delete">
-                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                    </td>
-                </tr>
+                <% } %>
                 </tbody>
             </table>
         </div>
@@ -186,3 +138,6 @@
         </div>
     </div>
 </section><!--/#do_action-->
+
+<!-- details Controller -->
+<script src="../public/js/controllers/cart.js"></script>
