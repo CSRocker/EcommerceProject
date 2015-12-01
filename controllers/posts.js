@@ -159,18 +159,40 @@ module.exports = function (app, db, passport) {
 
             if(pendingOrder){
 
-                // Add Product to current order
-                global.db.Orderproduct.addProductToOrder(req, pendingOrder, function(orderProduct){
-                    if(orderProduct){
-                        global.db.Orderproduct.countProductsInOrder(orderProduct.orderID, function(totalProducts){
+                // Check if product already exists in Cart
+                global.db.Orderproduct.checkProductInCart(pendingOrder.id, req.params.id, function(orderProductFound){
+                    if(orderProductFound){
+                        // Update product Qty
+                        global.db.Orderproduct.updateProductQtyOnOrder(req.params.id, req.body.qty,pendingOrder.id, orderProductFound, function(affectedRows){
+                            if(affectedRows){
+                                global.db.Orderproduct.countProductsInOrder(orderProductFound.orderID, function(totalProducts){
 
-                            res.status(200).send({productAdded:true, qtyInCart:totalProducts});
+                                    res.status(200).send({productAdded:true, qtyInCart:totalProducts});
 
+                                });
+                            } else {
+                                res.status(300).send({productAdded:false, qtyInCart:false});
+                            }
                         });
                     } else {
-                        res.status(300).send({productAdded:false, qtyInCart:false});
+
+                        // Add Product to current order
+                        global.db.Orderproduct.addProductToOrder(req, pendingOrder, function(orderProduct){
+                            if(orderProduct){
+                                global.db.Orderproduct.countProductsInOrder(orderProduct.orderID, function(totalProducts){
+
+                                    res.status(200).send({productAdded:true, qtyInCart:totalProducts});
+
+                                });
+                            } else {
+                                res.status(300).send({productAdded:false, qtyInCart:false});
+                            }
+                        });
+
                     }
                 });
+
+
 
             } else {
                 if(user) {
@@ -183,6 +205,7 @@ module.exports = function (app, db, passport) {
                         }
                     });
                 } else {
+                    // User is not Logged In
                     res.status(200).send({productAdded: false, qtyInCart: false, userID:user});
                 }
 
@@ -190,5 +213,13 @@ module.exports = function (app, db, passport) {
         });
 
 
+    });
+
+    app.post('/delete/orderproduct/:orderProductId', function (req, res) {
+
+        // Delete order by orderProductID
+        global.db.Orderproduct.deleteOrderProductById(req.params.orderProductId, function(linesDeleted){
+            res.send(linesDeleted);
+        });
     });
 };

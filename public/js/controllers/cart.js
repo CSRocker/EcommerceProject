@@ -5,15 +5,16 @@
  ------------------------------------------------ */
 $(document).ready(function(){
 
-    //  Code to handle 'Add Product to Cart
-    $( "form" ).submit(function( event ) {
+    //  Code to handle 'Delete Product from Cart
+    $("a.cart_quantity_delete").click(function (event) {
         event.preventDefault();
 
-        // Get the form ID
-        var formId = "#"+$(this).attr("id");
+        console.log("I was Clicked link to delete");
+        // Get the link URL
+        var url = $(this).attr('href');
 
         // Post the form data to the Server
-        $.post($(formId).attr("action"), $(formId).serialize(), function (data) {
+        $.post(url, function (data) {
             if (data.productAdded) {
                 // Show Message to User - Modal Window
                 $('#productAddedToShoppingCartAlert').slideDown();
@@ -45,7 +46,6 @@ $(document).ready(function(){
         // Hide Alert
         $('#loginForShoppingCartAlert').fadeOut();
     });
-
 
 });
 

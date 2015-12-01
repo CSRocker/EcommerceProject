@@ -180,6 +180,20 @@ module.exports = function(sequelize, DataTypes) {
                     _Product.findById(req.params.id).then(function(product) {
                         callback(product);
                     })
+                },
+                getProductsByIDsArray: function(idsArray, callback){
+                    var _Product = this;
+
+                    _Product.findAll({ where: { id: idsArray }, order:[['id', 'ASC']]}).then(function(products) {
+                        callback(products);
+                    });
+                },
+                productPriceById: function(productID, callback){
+                    var _Product = this;
+
+                    _Product.findById(productID,{attributes: ['price']}).then(function(price) {
+                        callback(price);
+                    })
                 }
             }
         });

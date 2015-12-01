@@ -5,9 +5,9 @@
  ------------------------------------------------ */
 $(document).ready(function(){
 
-    // Intercept clicks to links in the main page
+    // Intercept clicks to links on the page
 
-    $('a.view-product').click(function (event) {
+    $("a.view-product, a.view-category").click(function (event) {
         getClickedLink (this,event); // 'this' = clicked link ; 'event'= click
     });
 

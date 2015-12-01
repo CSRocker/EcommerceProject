@@ -11,36 +11,100 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define("Orderproduct", {
             qty: {type: DataTypes.INTEGER, allowNull: false},
+            priceTotal: {type: DataTypes.DECIMAL(10, 2), allowNull: false},
             productID: {type: DataTypes.INTEGER, allowNull: false},
             orderID: {type: DataTypes.INTEGER, allowNull: false}
         },
         {
             classMethods: {
 
-                addProductToOrder: function (req, order, callback){
+                addProductToOrder: function (req, order, callback) {
                     var _Orderproduct = this;
 
-                    var newOrderproduct = _Orderproduct.build({
-                        qty: req.body.qty,
-                        productID: req.params.id,
-                        orderID: order.id
+                    global.db.Product.productPriceById(req.params.id, function (price) {
+                        // Calculate qty x price = total price
+                        var totalPrice = parseFloat(price.price) * parseFloat(req.body.qty);
+
+                        var newOrderproduct = _Orderproduct.build({
+                            qty: req.body.qty,
+                            priceTotal: totalPrice,
+                            productID: req.params.id,
+                            orderID: order.id
+                        });
+
+                        newOrderproduct.save().then(function (savedOrderproduct) {
+                            callback(savedOrderproduct);
+                        }).error(function (error) {
+
+                            // Do something with error
+                            console.log("Error!, we must do something: 'orderproduct.js, line 40");
+                        });
+
                     });
 
-                    newOrderproduct.save().then(function (savedOrderproduct) {
-                        callback(savedOrderproduct);
-                    }).error(function (error) {
-
-                        // Do something with error
-                        console.log("Error!, we must do something: 'orderproduct.js, line 34");
-                    });
                 },
-                countProductsInOrder: function (orderID, callback){
+                countProductsInOrder: function (orderID, callback) {
                     var _Orderproduct = this;
 
-                    _Orderproduct.sum('qty', { where: { orderID: orderID} }).then(function(sum) {
+                    _Orderproduct.sum('qty', {where: {orderID: orderID}}).then(function (sum) {
                         // return the sum of items for the order
                         callback(sum);
                     })
+                },
+                getProductsFromOrder: function (orderID, callback) {
+                    var _Orderproduct = this;
+
+                    // Get all products Ids from OrderProducts
+                    _Orderproduct.findAll({
+                        where: {orderID: orderID},
+                        order: [['productID', 'ASC']]
+                    }).then(function (orderProducts) {
+
+                        // Loop thru products to get IDs and store them in array
+                        var idsArray = [];
+                        for (var productID in orderProducts) {
+                            idsArray.push(orderProducts[productID].productID);
+                        }
+
+                        // Get all products listed in the Products ids Array
+                        global.db.Product.getProductsByIDsArray(idsArray, function (products) {
+                            callback(products, orderProducts);
+                        });
+                    })
+
+                },
+                checkProductInCart: function (pendingOrderId, productId, callback) {
+                    var _Orderproduct = this;
+
+                    _Orderproduct.findOne({
+                        where: {
+                            orderID: pendingOrderId,
+                            productID: productId
+                        }
+                    }).then(function (productInCart) {
+                        callback(productInCart);
+                    });
+                },
+                updateProductQtyOnOrder: function (productID, productQty, pendingOrderID, orderProductFound, callback) {
+                    var _Orderproduct = this;
+                    var newQty = parseInt(productQty) + parseInt(orderProductFound.qty);
+                    var productPrice = (parseInt(orderProductFound.priceTotal)) / (parseInt(orderProductFound.qty));
+                    var newPriceTotal = parseFloat(newQty * productPrice);
+
+                    // Update quantity
+                    _Orderproduct.update(
+                        {qty: newQty, priceTotal: newPriceTotal} /* set attributes' value */,
+                        {where: {productID: productID, orderID: pendingOrderID}} /* where criteria */
+                    ).then(function (affectedRows) {
+                            callback(affectedRows);
+                        });
+                },
+                deleteOrderProductById: function (orderProductId, callback) {
+                    var _Orderproduct = this;
+
+                    _Orderproduct.destroy({where: {id: orderProductId}}).then(function (linesDeleted) {
+                        callback(linesDeleted);
+                    });
                 }
             }
         });
