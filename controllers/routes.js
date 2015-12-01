@@ -564,12 +564,10 @@ var routes = define_routes({
     '/accountsetting': accountsettingfn,
     '/add_product_form': add_product_formfn,
     '/confirm_order': confirm_orderfn,
-    '/updateuserinfo': update_userinfofn,
     '/clothe/:country': clothefn,
     '/handcraft/:country': handcraftfn,
     '/food/:country': foodfn,
     '/music/:country': musicfn,
-
     '/updateuserinfo':update_userinfofn,
     '/shoppingcart/qtys':shoppingcart_qtysfn,
     '/term_and_condition':term_and_conditionfn
