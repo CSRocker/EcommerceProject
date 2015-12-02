@@ -4,7 +4,8 @@
 var Help = require('../helper/help.js')
     , fs = require('fs')
     , path = require('path')
-    , AWS = require('aws-sdk');
+    , AWS = require('aws-sdk')
+    , stripe = require('stripe')(process.env.STRIPE_API_KEY);
 
 module.exports = function (app, db, passport) {
 
@@ -221,5 +222,65 @@ module.exports = function (app, db, passport) {
         global.db.Orderproduct.deleteOrderProductById(req.params.orderProductId, function(linesDeleted){
             res.send({linesDeleted:linesDeleted});
         });
+    });
+
+    app.post('/checkout/:orderID', function(req, res){
+
+        //var to store the returned Stripe customer Id
+        var customerID = null;
+        //var to store the returned Stripe charge Id
+        var chargeID = null;
+        try {
+            userID = req.user.id;
+        }
+        catch (error) {
+            // No user Log-in - Authorization Required code
+            res.send({result:false, message:"User Not Logged In"});
+        }
+
+        //Verify if Token available. If Yes: Create Stripe Account and Charge Card
+        if(req.body.stripeToken){
+            //STRIPE CREATE USER
+            stripe.customers.create({
+                    email: req.user.email,
+                    card: req.body.stripeToken,
+                    description: req.user.name
+                },
+                function(err, customer) {
+                    if (err) {
+                        console.log(err.message);
+                        res.send({result:false, message:"Error Creating Customer"});
+
+                        //Send Error by email to Administration
+                        sendErrorEmail(err, req.body.stripeToken);
+
+                        return;
+                    }
+                    //STRIPE CHARGE CARD
+                    stripe.charges.create({
+                            amount: req.body.orderTotal*100,
+                            currency: "usd",
+                            customer: customer.id,
+                            description: "New Product Order"
+                        },
+                        function(err, charge) {
+                            if (err) {
+                                console.log(err.message);
+                                res.send({result:false, message:"Error CHARGING Customer"});
+
+                                //Send Error by email to Administration
+                                sendErrorEmail(err, customer.id);
+                                return;
+                            }
+                            chargeID = charge.id;
+                            global.db.Order.checkoutOrderWithChargeID(req,chargeID, function(linesDeleted){
+                                res.send({result:true, message:"Checkout Successful"});
+                            });
+
+                        }
+                    );
+                }
+            );
+        }
     });
 };

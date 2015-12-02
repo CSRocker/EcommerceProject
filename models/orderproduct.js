@@ -97,7 +97,7 @@ module.exports = function(sequelize, DataTypes) {
                         {where: {productID: productID, orderID: pendingOrderID}} /* where criteria */
                     ).then(function (affectedRows) {
                             callback(affectedRows);
-                        });
+                    });
                 },
                 deleteOrderProductById: function (orderProductId, callback) {
                     var _Orderproduct = this;

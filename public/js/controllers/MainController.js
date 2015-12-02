@@ -89,10 +89,13 @@ function scrollToId (id) {
 
 
 
-function getClickedLink (link, event){
+function getClickedLink (link, event, urlPassed){
     event.preventDefault();
 
-    var url = $(link).attr('href');
+    var url;
+
+    if(urlPassed) url = urlPassed
+    else url = $(link).attr('href');
 
     // Verify what kind of address was received: if '#' = Scroll, if '/' = route
     if(!url.match(/^#/)) {
@@ -107,6 +110,7 @@ function getClickedLink (link, event){
                     $('#slider').hide("slow", function () {
                         scrollToId('#contentData'); //Scroll to start of contentData section in case we are off.
                     });
+                    return true;
                 }
             } else {
                 $(location).attr('href', '/');  // Redirect after logout to the main page '/'
