@@ -4,6 +4,8 @@
 /* Execute When Document is Ready
  ------------------------------------------------ */
 $(document).ready(function(){
+    // Attache Validation to checkout form
+    $("#checkoutForm").validationEngine('attach', {promptPosition : "topRight", scroll: false, showOneMessage:true});
 
     //  Code to handle 'Delete Product from Cart
     $("a.cart_quantity_delete").click(function (event) {
@@ -19,22 +21,28 @@ $(document).ready(function(){
             console.log("Lines Deleted", data.linesDeleted);
 
             if (data.linesDeleted) {
+                // Show Message for Cart Update
+                $("#loadingMessage").slideDown();
                 // Show Message to User - Modal Window
-                $('#productRemovedFromShoppingCartAlert').slideDown();
+                $('#productRemovedFromShoppingCartAlert').slideDown().delay(2000).queue(function() {
+                    // GET qty in shopping cart
+                    $.get('/shoppingcart/qtys', function (data) {
+                        // Update Shopping Cart Badge
+                        $('#cartBadge').html(data.qtyInCart);
+
+                        if(data.qtyInCart < 1){
+                            loadInitialProducts ();
+                        } else {
+                            // Reload Cart, since we need to recalculate totals
+                            getClickedLink(null, event, '/cart');
+                        }
+                    });
+                });
 
                 $(callerElement).fadeOut( "slow", function() {
                     $(callerElement).remove();
                 });
 
-                // GET qty in shopping cart
-                $.get('/shoppingcart/qtys', function (data) {
-                    // Update Shopping Cart Badge
-                    $('#cartBadge').html(data.qtyInCart);
-
-                    if(data.qtyInCart < 1){
-                        loadInitialProducts ();
-                    }
-                });
             }
             else {
                 // Error Deleting product - Warn User
@@ -50,6 +58,59 @@ $(document).ready(function(){
         $('#productRemovedFromShoppingCartAlert').fadeOut();
     });
 
+    // Send Checkout form to server
+    $('#checkoutForm_submit').on('click', function(event) {
+        event.preventDefault();
+
+        // Get the form ID
+        var formId = "#"+$(this).attr("id");
+
+        // Validate form before sending
+        if( $(this).validationEngine('validate') ) {
+
+            // Call Stripe
+
+            //Get Button and Form
+            var $button = $(this);
+            var $form = $button.parents('form');
+
+            //Change Value of button Amount
+            var total = $("#totalOrder").val()*100;
+            $button.data("amount",total);
+
+            //Change Descriptio of Modal Dialog
+            description = "New Order Payment";
+
+            //Modify button data
+            $button.data("description", description);
+
+            var opts = $.extend({}, $button.data(), {
+                token: function(result) {
+                    $form.append($('<input>').attr({type: 'hidden', name: 'stripeToken', value: result.id}));
+
+                    $.post($form.attr("action"), $form.serialize(), function(data) {
+                        /** code to handle response **/
+                        if(data.result) {
+                            // Empty Shopping Cart
+
+                            // Add Funtion Not to Fetch "Checkout" Orders
+
+                            /****  Temp:  Must Show Success message  ****/
+                            $(location).attr('href', '/');  // Redirect after SuccessFul Order '/'
+                        }
+                        else {
+                            // Show Error Message and Ask to Try Again with Message Returned from Server
+                            console.log(data.message);
+                        }
+                    });
+                }
+
+            });
+
+            //Call Open the Chechout Modal
+            StripeCheckout.open(opts);
+        }
+    });
 });
 
 /* Execute When Loading Code

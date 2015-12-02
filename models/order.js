@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
         userID:{type: DataTypes.INTEGER, allowNull: false},
         date: {type: DataTypes.DATE, allowNull: false},
         totalprice: {type: DataTypes.DECIMAL(10,2), allowNull: true},
-        checkout: {type: DataTypes.BOOLEAN, allowNull: false}
+        checkout: {type: DataTypes.BOOLEAN, allowNull: false},
+        chargeID: {type: DataTypes.STRING, allowNull: true}
     },
         {
             classMethods: {
@@ -81,6 +82,7 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
+<<<<<<< HEAD
                 /*Testing for orderstatus */
                 getOrderByUserID: function(req, callback){
                     var _Order= this;
@@ -108,6 +110,18 @@ module.exports = function(sequelize, DataTypes) {
                     });
 
 
+=======
+                checkoutOrderWithChargeID: function (req,chargeID,callback){
+                    var _Order = this;
+
+                    // Update quantity
+                    _Order.update(
+                        {checkout: true, chargeID: chargeID, totalprice:req.body.orderTotal} /* set attributes' value */,
+                        {where: {id: req.params.orderID}} /* where criteria */
+                    ).then(function (affectedRows) {
+                            callback(affectedRows);
+                        });
+>>>>>>> 5598f064c8bd19f24e7a1300659cfcf891814fb5
                 }
 
             }
