@@ -465,6 +465,7 @@ var orderStatusfn= function(req, res){
     var orders=[]; //order info of loggedUser
     var orderProduct;  //orderproduct info of logged User's orders
     var product; // product info of the logged User ordered.
+    var oP; /// boolean to check orders is in database or not
 
    /* //dummy user, order, dummy orderProduct
      var user ={
@@ -508,12 +509,15 @@ var orderStatusfn= function(req, res){
                 orders = order; // will use it for retrieving data from order product
                 //getting orderProduct info and info of all Products related to orderID
                 global.order.getProductsFromOrder(order,function(product){
-                    res.render("orderStatus",{name:loggedUser, orders:orders, products:product });
+                    oP = 1;
+                    res.render("orderStatus",{name:loggedUser, orders:orders, products:product, orderPlaced:oP });
                 });
             } else {
                 //write some code for error
                     console.log("No ordered placed");
-                    res.render("initial_Products");
+                    oP=0;
+                    res.render("orderStatus", {orderPlaced:oP}); // no order placed
+
 
             }
 
@@ -522,7 +526,15 @@ var orderStatusfn= function(req, res){
     }
     catch (error) {
        // loggedUser = "Guest";
-        res.render("login"); // ask user to login to view
+        if (loggedUser){
+            console.log("No ordered placed");
+            oP=0;
+            res.render("orderStatus", {orderPlaced:oP}); // no order placed
+
+        }else {
+            res.render("login"); // ask user to login to view
+        }
+
     }
     //Render orderStatus.html
       //  res.render("orderStatus", {name:loggedUser, order:orders, products:product});

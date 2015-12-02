@@ -35,6 +35,9 @@
             <div class="col-md-3"><a href="#">Orders</a></div>
             <hr width="95%" size="25" color="#000000">
         </div>
+
+
+        <% if(orderPlaced==1) { %>  <!-- condition if there is data in order model -->
         <div class="container">
             <div class="row">
                 <div class="col-md-3"><%= order.length %>Orders placed in</div>
@@ -54,8 +57,6 @@
                 </div>
             </div>
         </div>
-
-
         <% for(var i=0; i< order.length; i++) { %>
         <div class="container">
             <div class="panel panel-default">
@@ -99,7 +100,19 @@
             </div>
 
         </div> <!-- 1st order details end -->
-        <% } %>
+        <% } %> <!-- /end of for loop -->
+        <% } else { %>  <!-- /end of if -->
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-3">
+                        <h4> No order placed</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- 1st order details end -->
+        <% } %> <!-- /end of else -->
 <!-- 4 more order history items to add on each page-->
         <!--
         <div class="container">
