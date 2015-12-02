@@ -590,12 +590,33 @@ var shoppingcart_qtysfn = function (req, res) {
     });
 };
 
-var term_and_conditionfn=function(req,res){
 
-    //render term_and_condition.html
-    res.render('term_and_condition');
+var terms_and_conditionfn= function(req, res){
+    //Render term_and_condition.html
+
+    res.render("terms_and_condition");
 };
 
+var privacypolicyfn = function(req,res){
+    //Render privacypolicy.html
+    res.render("privacypolicy");
+};
+
+var return_and_refundfn = function(req,res){
+    //Render return_and_refund.html
+    res.render("return_and_refund");
+};
+
+
+var copyrightfn= function(req,res){
+    //Render copyright.html
+    res.render("copyright");
+};
+
+var aboutus = function(req,res){
+    //Render aboutus.html
+    res.render("aboutus");
+};
 /* get Random index of Returned products array
 ==============================================
     var getRandom = function(products){
@@ -657,7 +678,11 @@ var routes = define_routes({
     '/music/:country': musicfn,
     '/updateuserinfo':update_userinfofn,
     '/shoppingcart/qtys':shoppingcart_qtysfn,
-    '/term_and_condition':term_and_conditionfn
+    '/terms_and_condition':terms_and_conditionfn,
+    '/privacypolicy':privacypolicyfn,
+    '/return_and_refund':return_and_refundfn,
+    '/copyright': copyrightfn,
+    '/aboutus': aboutus
 });
 
 module.exports = routes;

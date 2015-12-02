@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
                             orderID: savedOrder.id
                         });
 
-                        newOrderProduct.save().then(function(orderProduct){
+                        newOrderProduct.save().then(function (orderProduct) {
 
                             callback(orderProduct);
 
@@ -55,7 +55,7 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
-                pendingOrderForUser: function (req, callback){
+                pendingOrderForUser: function (req, callback) {
                     var _Order = this;
                     var loggedUserID;  // Variable used to Try/Catch if the property user is set on the req variable.
 
@@ -72,9 +72,9 @@ module.exports = function(sequelize, DataTypes) {
                             userID: loggedUserID,
                             checkout: false
                         }
-                    }).then(function(order) {
+                    }).then(function (order) {
                         // return order
-                        callback (order, loggedUserID);
+                        callback(order, loggedUserID);
                     }).error(function (error) {
                         // Do something with error
                         console.log("Error!, we must do something: 'order.js, line 68");
@@ -82,10 +82,10 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
-<<<<<<< HEAD
+
                 /*Testing for orderstatus */
-                getOrderByUserID: function(req, callback){
-                    var _Order= this;
+                getOrderByUserID: function (req, callback) {
+                    var _Order = this;
                     var loggedUserID; // Variable used to Try/Catch if the property user is set on the req variable.
 
                     // Verify if an user is logged using Try/Catch - If not set user id to "0"
@@ -97,35 +97,42 @@ module.exports = function(sequelize, DataTypes) {
                     }
 
                     _Order.findAll({
-                         where: {
-                             userID: loggedUserID,
-                             checkout: true   /// this indicates the order were placed.
-                         }
-                    }). then(function(order){
+                        where: {
+                            userID: loggedUserID,
+                            checkout: true   /// this indicates the order were placed.
+                        }
+                    }). then(function (order) {
                         //return order
-                        callback (order, loggedUserID);
+                        callback(order, loggedUserID);
                     }).error(function (error) {
                         //Do something with error
                         console.log("Error!, we must do something: 'order.js, line 107");
                     });
 
 
-=======
-                checkoutOrderWithChargeID: function (req,chargeID,callback){
-                    var _Order = this;
+/*     Syntax error
+                    checkoutOrderWithChargeID: function(req, chargeID, callback) {
+                        var _Order = this;
 
-                    // Update quantity
-                    _Order.update(
-                        {checkout: true, chargeID: chargeID, totalprice:req.body.orderTotal} /* set attributes' value */,
-                        {where: {id: req.params.orderID}} /* where criteria */
-                    ).then(function (affectedRows) {
+                        // Update quantity
+                        _Order.update(
+                            {
+                                checkout: true,
+                                chargeID: chargeID,
+                                totalprice: req.body.orderTotal
+                            } /!* set attributes' value *!/,
+                            {where: {id: req.params.orderID}} /!* where criteria *!/
+                        ).then(function (affectedRows) {
                             callback(affectedRows);
                         });
->>>>>>> 5598f064c8bd19f24e7a1300659cfcf891814fb5
-                }
 
+                    }
+*/
+
+                }
             }
         });
+
 };
 
 
