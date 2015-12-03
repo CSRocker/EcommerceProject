@@ -5,12 +5,12 @@ $(document).ready(function() {
 
 
     // Initialize Modal Window for Login / SignUp
-   // $('#userinfo_modal').modal({
-    //    backdrop: 'static',
-     //   show: true
-    //})
+    $('#userinfo_modal').modal({
+        backdrop: 'static',
+        show: true
+    });
 
-    $('#updateuserform').submit(function(e) {
+    $('#updateuserForm').submit(function(e) {
         e.preventDefault();
         window.alert("in button click");
         // Get the form ID
@@ -20,15 +20,19 @@ $(document).ready(function() {
         if($(formId).validationEngine('validate') ) {
 
 
-            $.post($(formId).attr("action"),$(formId).serialize(),function (data) {
-                if (data) {
-                    window.alert("In failed method");
+            $.post($(formId).attr("action"),$(formId).serialize(),function (affectedRows) {
+                if (affectedRows) {
+                    window.alert("You data updated successfully");
                    // $('#file').attr('type', 'file');    // Change Attribute back to 'file'
-                    $("#contentData").html(data);
+                    //$("#contentData").html(data);
+                    $name = $("#name").val();
+
+                    $(location).attr('href', '/');  // Redirect after login to the main page '/'
+
                 }
                 else {
 
-                    window.alert("In Success method");
+                    window.alert("Sorry ,there is problem");
                     //$('#addProductForm_status').html('Success! Product Added');
 
 

@@ -88,6 +88,15 @@ module.exports = function (app, db, passport) {
 
     });
 
+    app.post('/updateuserinfo', function(req, res) {
+
+        global.db.User.updateuser(req, function(affectedRows){
+            res.send(affectedRows);
+        })
+
+    });
+
+
     app.post('/image', function(req, res) {
 
         //Create Time Stamp for file naming before uploading: 'timestamp+filename'

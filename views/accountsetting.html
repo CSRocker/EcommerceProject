@@ -1,7 +1,6 @@
 <html>
 <body>
-
-
+<!--
 <script type="text/javascript">
     function editname(btneditnamevalue)
     {
@@ -50,161 +49,74 @@
 </script>
     <script type="text/javascript" src="js/accountsetting.js"></script>
 
-
+-->
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-1">
-            <div class="login-form"><!--login form-->
+        <div class="col-sm-4">
 
-                <div class="step-one">
-                 <h2 class="heading">Update to your account</h2>
+            <div class="step-one">
+                <h2 class="heading">My Information</h2>
 
-                    </div>
-                <form id="updateuserform" role="form" method="post" action="/getuserinfo'">
-                    <button type="button" id="Getuserinfo" class="btn ">Get My Info</button>
-                        <div>
-                            <h3>Name </h3>
-                            <label id="custname"><%=userInfo.name %></label>
-                            <button id="btneditname" type="submit" class="btn btn-default" onclick="editname(btneditname)">Edit</button>
-                        </label><br>
+                <div>
+                    <h3>Name </h3>
+                    <div id="custname"><%=userInfo.name %></div>
 
-                        <div>
-                        <h3>EmailID</h3>
+                    <h3>EmailID</h3>
+                    <div id="custemailid"><%=userInfo.email %></div>
 
-                        <label id="custemailid"><%=userInfo.email %></label>
-                        <button id="btneditemail" type="submit" class="btn btn-default" onclick="editname(btneditemail)" >Edit</button>
+                    <h3>Address</h3>
+                    <div id="custaddress"><%=userInfo.address %></div>
 
-                        </div><br>
+                    <h3>Mobile Number</h3>
+                    <div id="custmobile"><%=userInfo.phone %> </div>
 
-
-                        <div>
-                        <h3>Mobile Number</h3>
-                        <label id="custmobile"><%=userInfo.phone %> </label>
-                        <button id="btneditmobile" type="submit" class="btn btn-default" onclick="editname(btneditmobile)">Edit</button>
-                        </div><br>
-
-                        <div>
-                        <h3>Password</h3>
-                        <label id="custpassword">************</label>
-                        <button id="btneditpassword" type="submit"  class="btn btn-default" onclick="editname(btneditpassword)">Edit</button>
-                        </div>
-                        </div>
-                    <br>
-                    <br>
-                 </form>
+                    <h3>Password</h3>
+                    <div id="custpassword">********</div>
+                    <button id="btneditpassword" type="submit" class="btn btn-success largemarginbottom largemargintop">Edit My Info</button>
                 </div>
-            </div>
-
-               <div id="diveditsetting" class="hidden col-sm-6" >
-                   <div id="diveditname" class="hidden">
-                   <div class="signup-form"><!--sign up form-->
-                       <div  class="step-one">
-                           <h2 class="heading" >Edit your name here</h2>
-                       </div>
-                           <p>
-                               If You want to change the name associated with ecommerce account you may do so below .Be sure to click on <b>save changes</b> when you are done.
-                           </p>
-                       </div>
-
-                       <div>
-                           <h4>Earlier Name</h4>
-                           <label id="lblcustname">Snehal Golhar </label>
-                           </label>
-                           <br>
-                       </div>
-
-                        <form action="#">
-                        <input type="text" placeholder="Name"/>
-                            <button id="btnsavename" class="btn btn-default">Save Changes</button>
-
-                        </form>
-                   </div>
-
-                   <div id="diveditemail" >
-                       <div class="signup-form"><!--sign up form-->
-                           <div id="divtitletitle" class="step-one">
-                               <h2 class="heading" >Edit your email here</h2>
-                           </div>
-                           <p>
-                               If You want to change the EmailId associated with ecommerce account you may do so below .Be sure to click on <b>save changes</b> when you are done.
-                           </p>
-                       </div>
-
-                       <div>
-                           <h4>Earlier Email</h4>
-                           <label id="lblcustemail">Snehal.Golhar@gmail.com </label>
-                           </label>
-                           <br>
-                       </div>
-
-                       <form action="#">
-                           <input type="email" placeholder="Email"/>
-                           <button id="btnsaveemail" class="btn btn-default">Save Changes</button>
-
-                       </form>
-                   </div>
-
-
-                   <div id="diveditmobile" >
-                       <div class="signup-form"><!--sign up form-->
-                           <div  class="step-one">
-                               <h2 class="heading" >Edit your mobile here</h2>
-                           </div>
-                           <p>
-                               If You want to change the mobile number associated with ecommerce account you may do so below .Be sure to click on <b>save changes</b> when you are done.
-                           </p>
-                       </div>
-
-                       <div>
-                           <h4>Earlier phone number</h4>
-                           <label id="lblmobile">+7765453267 </label>
-
-                           <br>
-                       </div>
-
-                       <form action="#">
-                           <input type="phonenumber" placeholder="Phone Numbaer"/>
-                           <button id="btnsavemobile" class="btn btn-default">Save Changes</button>
-
-                       </form>
-                   </div>
-
-
-                   <div id="diveditpassword" >
-                       <div class="signup-form"><!--sign up form-->
-                           <div class="step-one">
-                               <h2 class="heading" >Edit your Password here</h2>
-                           </div>
-                           <p>
-                               If You want to change the Password associated with ecommerce account you may do so below .Be sure to click on <b>save changes</b> when you are done.
-                           </p>
-                       </div>
-
-                       <div>
-                           <h4>Earlier Password</h4>
-                           <label id="custemail">*******</label>
-                           </label>
-                           <br>
-                       </div>
-
-                       <form action="#">
-                           <label>Enter your new password</label><br>
-                           <input type="password" placeholder="New Password"/>
-                           <br><br>
-                           <label>Reenter a new password</label><br>
-                           <input type="password" placeholder="Reenter Passowrd"/>
-                           <br><br>
-                           <button id="btnsavepassword" class="btn btn-default">Save Changes</button>
-
-                       </form>
-                   </div>
-
-
-
             </div>
         </div>
 
+
+        <div class="col-sm-1">
+
+        </div>
+
+        <div id="diveditsetting" class="col-sm-4">
+            <form id="updateuserForm" role="form" method="post" action="/updateuserinfo">
+
+            <div class="step-one">
+                <h2 class="heading">Update My Information</h2>
+            </div>
+            <form>
+                <div class="form-group">
+                   <label for="name">Name</label>
+                   <input type="text" class="form-control" id="name" name="name" placeholder=" Enter new Name" value="<%=userInfo.name %>">
+                 </div>
+                <div class="form-group">
+                   <label for="email">EmailId</label>
+                   <input type="email" class="form-control" id="email" name="email" placeholder=" Enter new Email" value="<%=userInfo.email %>">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder=" Enter new Address" value="<%=userInfo.address %>">
+                </div>
+                <div class="form-group">
+                   <label for="phone">Mobile Number</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder=" Enter new Mobile number" value="<%=userInfo.phone %>">
+                </div>
+                <div class="form-group">
+                   <label for="password">Password</label>
+                   <input type="password" class="form-control" id="password" name="password" placeholder="Enter new Password" value="<%=userInfo.password %>">
+                    <input type="password" class="form-control" id="confirmpassword" placeholder="Re-Enter Password">
+            </div>
+
+
+
+            <button id="updateuserinfo" type="submit" class="btn btn-success largemarginbottom largemargintop">Save Changes</button>
+        </form>
+     </div>
     </div>
 
 </div>
