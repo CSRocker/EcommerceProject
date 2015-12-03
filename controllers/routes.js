@@ -502,13 +502,13 @@ var orderStatusfn= function(req, res){
     // if user login, show order details of user. if user sign up, render to initial page.
     try {
         loggedUser = req.user.name;
-        loggedUserID =req.user.id;
-        global.order.getOrderByUserID(req,function(order){
+
+        global.db.Order.getOrderByUserID(req,function(order){
             //write code about return order info
             if(order){
                 orders = order; // will use it for retrieving data from order product
                 //getting orderProduct info and info of all Products related to orderID
-                global.order.getProductsFromOrder(order,function(product){
+                global.db.Orderproduct.getProductsFromOrder(order,function(product,orderProducts){
                     oP = 1;
                     res.render("orderStatus",{name:loggedUser, orders:orders, products:product, orderPlaced:oP });
                 });

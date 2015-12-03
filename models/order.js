@@ -99,19 +99,20 @@ module.exports = function(sequelize, DataTypes) {
                     _Order.findAll({
                         where: {
                             userID: loggedUserID,
-                            checkout: true   /// this indicates the order were placed.
+                            checkout: true   /// check if the order were placed.
                         }
                     }). then(function (order) {
                         //return order
-                        callback(order, loggedUserID);
+                        console.log("Retrieved order info!!!!")
+                        callback(order);
                     }).error(function (error) {
                         //Do something with error
                         console.log("Error!, we must do something: 'order.js, line 107");
                     });
+                },
 
 
-/*     Syntax error
-                    checkoutOrderWithChargeID: function(req, chargeID, callback) {
+                    checkoutOrderWithChargeID: function (req, chargeID, callback) {
                         var _Order = this;
 
                         // Update quantity
@@ -120,17 +121,16 @@ module.exports = function(sequelize, DataTypes) {
                                 checkout: true,
                                 chargeID: chargeID,
                                 totalprice: req.body.orderTotal
-                            } /!* set attributes' value *!/,
-                            {where: {id: req.params.orderID}} /!* where criteria *!/
+                            } /* set attributes' value */,
+                            {where: {id: req.params.orderID}} /* where criteria */
                         ).then(function (affectedRows) {
                             callback(affectedRows);
                         });
 
                     }
-*/
 
                 }
-            }
+
         });
 
 };
