@@ -2817,6 +2817,35 @@ h2.title {
     max-height:100px;
 }
 
+
+.medthumb-x {
+    max-width: 155px;
+}
+
+.largethumb-x {
+    max-width: 300px;
+}
+
+.xlargethumb-x {
+    max-width: 500px;
+}
+
+
+.medthumb-y {
+    max-height: 155px;
+}
+
+.largethumb-y {
+    max-height: 300px;
+}
+
+.xlargethumb-y {
+    max-height: 500px;
+}
+
+
+
+
 .medthumb {
     max-height:155px;
     max-width: 155px;

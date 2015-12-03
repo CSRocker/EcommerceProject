@@ -258,7 +258,7 @@ module.exports = function (app, db, passport) {
                     }
                     //STRIPE CHARGE CARD
                     stripe.charges.create({
-                            amount: req.body.orderTotal*100,
+                            amount: parseInt(req.body.orderTotal*100),
                             currency: "usd",
                             customer: customer.id,
                             description: "New Product Order"
