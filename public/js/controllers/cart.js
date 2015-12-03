@@ -91,12 +91,10 @@ $(document).ready(function(){
                     $.post($form.attr("action"), $form.serialize(), function(data) {
                         /** code to handle response **/
                         if(data.result) {
-                            // Empty Shopping Cart
 
-                            // Add Funtion Not to Fetch "Checkout" Orders
-
-                            /****  Temp:  Must Show Success message  ****/
-                            $(location).attr('href', '/');  // Redirect after SuccessFul Order '/'
+                            // Show Success page after checkout
+                            showSuccessPage();
+                            //$(location).attr('href', '/');  // Redirect after SuccessFul Order '/'
                         }
                         else {
                             // Show Error Message and Ask to Try Again with Message Returned from Server
@@ -118,3 +116,17 @@ $(document).ready(function(){
 
 // Hide Shopping Cart Alerts
 $('#productRemovedFromShoppingCartAlert').hide();
+
+// Get total products in shopping cart for logged user
+function showSuccessPage() {
+    $.get('/checkout/successful', function(data) {
+        if(data){
+            // Update Shopping Cart Badge
+            $('#contentData').html(data);
+
+            // Empty Shopping Cart
+            $('#cartBadge').html(0);
+
+        }
+    });
+}

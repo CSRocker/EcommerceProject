@@ -669,6 +669,12 @@ var aboutus = function(req,res){
     //Render aboutus.html
     res.render("aboutus");
 };
+
+var checkout_successfn = function(req,res){
+    //Render checkout_success.html
+    res.render("checkout_success");
+};
+
 /* get Random index of Returned products array
 ==============================================
     var getRandom = function(products){
@@ -734,7 +740,8 @@ var routes = define_routes({
     '/privacypolicy':privacypolicyfn,
     '/return_and_refund':return_and_refundfn,
     '/copyright': copyrightfn,
-    '/aboutus': aboutus
+    '/aboutus': aboutus,
+    '/checkout/successful': checkout_successfn
 });
 
 module.exports = routes;

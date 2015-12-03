@@ -67,11 +67,11 @@
 								<ul class="nav navbar-nav collapse navbar-collapse">
                                     <% if (name == "Guest") { %>
                                     <li><a href="/login"><i class="fa fa-user"> Login</i></a></li>
-									<li><a href="/updateuserinfo">Settings</a></li>
+									<!--<li><a href="/updateuserinfo">Settings</a></li>-->
                                     <% } else { %>
                                     <li class="dropdown"><a href="/login"><i class="fa fa-user"> Welcome <%= name %> </i><i class="fa fa-angle-down"></i></a>
                                         <ul role="menu" class="sub-menu">
-                                            <li><a href="/account">Account</a></li>
+                                            <!--<li><a href="/account">Account</a></li>-->
                                             <li><a href="/logout">Logout</a></li>
 
                                         </ul>
@@ -132,7 +132,7 @@
 									</ul>
 								</li>
 
-
+                                <% if (name != "Guest") { %>
 								<li class="dropdown"><a href="#"><i class="fa fa-user">Your Account</i><i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
                                         <li><a href="/accountsetting">AccountSetting</a></li>
@@ -143,15 +143,17 @@
 								</li>
 								<li class="dropdown"><a href="/cart"><i class="fa fa-shopping-cart"> Cart <span id="cartBadge" class="badge"></span></i><i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
-										<li><a href="/checkout">Checkout</a></li>
+										<li><a href="/cart">Checkout</a></li>
 									</ul>
 								</li>
+                                <% } %>
+
 								<li class="dropdown"><a href="#"><i class="fa fa-star">Help</i><i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										<li><a href="/contact">Contact Us</a></li>
-										<li><a href="#">About Us</a></li>
-									    <li><a href="#">FAQ</a></li>
-										<li><a href="#">Help</a></li>
+										<li><a href="/aboutus">About Us</a></li>
+									    <!--<li><a href="#">FAQ</a></li>-->
+										<li><a href="/contact">Help</a></li>
 									</ul>
                                 </li>
 
@@ -185,7 +187,7 @@
 								<div class="col-sm-6">
 									<h1><span>IE</span>-SHOPPER</h1>
 									<h2>USA</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<p>Browse and Shop our excellent collection of traditional United States Products. </p>
 								</div>
 								<div class="col-sm-6">
 									<img src="../public/images/home/USAFlag.png" class="girl img-responsive" alt="" />
@@ -195,7 +197,7 @@
 								<div class="col-sm-6">
 									<h1><span>IE</span>-SHOPPER</h1>
 									<h2>INDIA</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<p>IE-Shopper provides the best traditional Indian clothes at the best prices.</p>
 								</div>
 								<div class="col-sm-6">
 									<img src="../public/images/home/IndiaFlag.png" class="girl img-responsive" alt="" />
@@ -206,7 +208,7 @@
 								<div class="col-sm-6">
 									<h1><span>IE</span>-SHOPPER</h1>
 									<h2>MYANMAR</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<p>Unique collection of Myanmar products that can only be found here!</p>
 								</div>
 								<div class="col-sm-6">
 									<img src="../public/images/home/Myanmar.png" class="girl img-responsive" alt="" />
@@ -217,7 +219,7 @@
                                 <div class="col-sm-6">
                                     <h1><span>IE</span>-SHOPPER</h1>
                                     <h2>PUERTO RICO</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <p>Shop Big products from the Small Puerto Rico Island!</p>
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="../public/images/home/PuertoricoFlag.png" class="girl img-responsive" alt="" />
