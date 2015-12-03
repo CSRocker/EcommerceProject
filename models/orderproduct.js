@@ -76,6 +76,40 @@ module.exports = function(sequelize, DataTypes) {
                     })
 
                 },
+
+                //get product data of each TESting
+                getProductsByOrderID: function(orderIDArray, callback){
+                    var _OrderProduct=this;
+                    // Get all products Ids from OrderProducts
+                    //loop through to get product data for each orderID
+                    var productArray=[]; // to store returned Products
+                    var orderproductArray=[]; // to store returned orderProducts
+                    for(var i=0;i<orderIDArray.length;i++){
+                        _OrderProduct.findAll({
+                            where: {orderID: orderIDArray[i]},
+                            order: [['productID', 'ASC']]
+                        }).then(function (orderProducts) {
+
+                            // Loop thru products to get IDs and store them in array
+                            var idsArray = [];
+                            for (var productID in orderProducts) {
+                                orderproductArray.push(orderProducts[productID]);
+                                idsArray.push(orderProducts[productID].productID);
+                            }
+
+                            // Get all products listed in the Products ids Array
+                            global.db.Product.getProductsByIDsArray(idsArray, function (products) {
+                                productArray.push(products);
+
+
+                            });
+
+                        })
+
+                    }
+                    callback(productArray, orderproductArray);
+                    },
+
                 checkProductInCart: function (pendingOrderId, productId, callback) {
                     var _Orderproduct = this;
 
