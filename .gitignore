@@ -22,3 +22,8 @@ node_modules
 # Any Public Key
 *.pub
 
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
