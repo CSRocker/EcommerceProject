@@ -62,7 +62,7 @@ $(document).ready(function(){
 /* Function to get initial product data 'initialProducts.html'
  ------------------------------------------------------------ */
 function loadInitialProducts () {
-    $.get('/initial_products', function(data) {
+    $.get('/initialProducts', function(data) {
         if(data){
             $('#contentData').empty();  //Empty div 'contentData' from any previous code
             $('#contentData').html(data);   //Render new data on contentData section

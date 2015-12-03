@@ -413,7 +413,7 @@ var shop_puertoricofn = function(req, res) {
 };
 
 
-var initial_productsfn = function(req, res) {
+var initialProductsfn = function(req, res) {
 
     // Variables to store products from each country
     var usaProducts = [];
@@ -447,7 +447,7 @@ var initial_productsfn = function(req, res) {
 
 
         //Render initialProducts.html
-        res.render("initial_products", {products:shuffledProducts, usa:usaProducts, india:indiaProducts, burma:burmaProducts, puertorico:puertoricoProducts});
+        res.render("initialProducts", {products:shuffledProducts, usa:usaProducts, india:indiaProducts, burma:burmaProducts, puertorico:puertoricoProducts});
 
     });
 };
@@ -672,7 +672,7 @@ var routes = define_routes({
     '/shop_india': shop_indiafn,
     '/shop_burma': shop_burmafn,
     '/shop_puertorico': shop_puertoricofn,
-    '/initial_products': initial_productsfn,
+    '/initialProducts': initialProductsfn,
     '/account': accountfn,
     '/orderStatus': orderStatusfn,
     '/accountsetting': accountsettingfn,
