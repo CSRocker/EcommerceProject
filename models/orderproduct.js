@@ -51,6 +51,9 @@ module.exports = function(sequelize, DataTypes) {
                         callback(sum);
                     })
                 },
+
+
+
                 getProductsFromOrder: function (orderID, callback) {
                     var _Orderproduct = this;
 

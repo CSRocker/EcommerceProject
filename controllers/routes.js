@@ -462,7 +462,6 @@ var orderStatusfn= function(req, res){
 
     var loggedUser;
     var loggedUserID;
-    var orders=[]; //order info of loggedUser
     var orderProduct;  //orderproduct info of logged User's orders
     var product; // product info of the logged User ordered.
     var oP; /// boolean to check orders is in database or not
@@ -506,11 +505,12 @@ var orderStatusfn= function(req, res){
         global.db.Order.getOrderByUserID(req,function(order){
             //write code about return order info
             if(order){
-                orders = order; // will use it for retrieving data from order product
+                loggedUserID = order.id;
+                // will use it for retrieving data from order product
                 //getting orderProduct info and info of all Products related to orderID
-                global.db.Orderproduct.getProductsFromOrder(order,function(product,orderProducts){
+                global.db.Orderproduct.getProductsFromOrder(order.id,function(product,orderProducts){
                     oP = 1;
-                    res.render("orderStatus",{name:loggedUser, orders:orders, products:product, orderPlaced:oP });
+                    res.render("orderStatus",{name:loggedUser, orderProducts:orderProducts, order:order, products:product, orderPlaced:oP });
                 });
             } else {
                 //write some code for error
