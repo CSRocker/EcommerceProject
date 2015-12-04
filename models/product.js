@@ -139,21 +139,7 @@ module.exports = function(sequelize, DataTypes) {
                         }
                     });
                 },
-                /*
-                 getProductById: function(req, callback){
-                 var _Product = this;
 
-                 _Product.findOne({where:{id:17}}).then(function(error, product){
-                 if(product){
-                 callback(product);
-                 }else {
-                 console.log("error looking for the product by Id");
-                 }
-                 });
-                 },
-
-                 },
-                 */
                 /* getProductById: function(req, callback){
                  var _Product = this;
 

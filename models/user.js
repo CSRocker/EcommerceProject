@@ -87,7 +87,27 @@ module.exports = function(sequelize, DataTypes) {
                             callback(user);
                         })
                     }
+                },
+
+                updateuser: function(req, callback) {
+                    var _User = this;
+
+                    _User.update(
+                        {
+                            name:req.body.name,
+                            email:req.body.email,
+                            password:req.body.password,
+                            address:req.body.address,
+                            phone:req.body.phone
+                        } /* set attributes' value */,
+                        {where: {id: req.user.id}} /* where criteria */
+                    ).then(function (affectedRows) {
+                            callback(affectedRows);
+                        });
+
                 }
+
+
             }
         });
 };

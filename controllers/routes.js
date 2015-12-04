@@ -461,9 +461,9 @@ var accountfn = function(req, res) {
 var orderStatusfn= function(req, res){
 
     var loggedUser;
-    var loggedUserID;
-    var orderProduct;  //orderproduct info of logged User's orders
-    var product; // product info of the logged User ordered.
+    var productArray =[];
+    var orderProductArray=[];  //orderproduct info of logged User's orders
+    var orderIDArray=[];
     var oP; /// boolean to check orders is in database or not
 
    /* //dummy user, order, dummy orderProduct
@@ -502,24 +502,76 @@ var orderStatusfn= function(req, res){
     try {
         loggedUser = req.user.name;
 
+
         global.db.Order.getOrderByUserID(req,function(order){
             //write code about return order info
-            if(order){
-                loggedUserID = order.id;
-                // will use it for retrieving data from order product
-                //getting orderProduct info and info of all Products related to orderID
-                global.db.Orderproduct.getProductsFromOrder(order.id,function(product,orderProducts){
-                    oP = 1;
-                    res.render("orderStatus",{name:loggedUser, orderProducts:orderProducts, order:order, products:product, orderPlaced:oP });
+           /* if(order) {
+                for (var i = 0; i < order.length; i++) {
+
+                    // will use it for retrieving data from order product
+                    //getting orderProduct info and info of all Products related to orderID
+                    global.db.Orderproduct.getProductsFromOrder(order[i].id, function (product, orderProducts) {
+                        if (product.length > 0) {
+                            oP = 1;
+                            for (var p in product) {
+                                productArray.push(product[p]);
+                            }
+                            for (var op in orderProducts) {
+                                orderProductArray.push(orderProducts[op]);
+                            }
+
+                            /!*res.render("orderStatus", {
+                             name: loggedUser,
+                             orderProducts: orderProducts,
+                             order: order,
+                             products: product,
+                             orderPlaced: oP
+                             });*!/
+                        } else {
+                            console.log("can't retrieve product");
+                        }
+                    })
+
+                }
+                res.render("orderStatus",{ /// product ,orderproduct , op aren't recoginzed here. how to declare global???
+                    order: order,
+                    product:productArray,
+                    orderProduct:orderProductArray,
+                    orderPlaced: oP
                 });
-            } else {
-                //write some code for error
+
+            }*/
+            if(order){
+
+                for(var o in order){
+                    orderIDArray.push(order[o].id);
+                }
+
+                global.db.Orderproduct.getProductsByOrderID(orderIDArray,function(product,orderProduct){
+                    if(product.length>0) {
+                        oP = 1;
+
+                        res.render("orderStatus", {
+                            name: loggedUser,
+                            orderProducts: orderProduct,
+                            order: order,
+                            products: product,
+                            orderPlaced: oP
+                        });
+                    } else{
+                        console.log("no Product and orderProduct!!!!");
+                    }
+
+            }) }
+            else
+                {
+                    //write some code for error
                     console.log("No ordered placed");
-                    oP=0;
-                    res.render("orderStatus", {orderPlaced:oP}); // no order placed
+                    oP = 0;
+                    res.render("orderStatus", {orderPlaced: oP}); // no order placed
 
 
-            }
+                }
 
         });
 
