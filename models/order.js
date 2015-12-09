@@ -18,7 +18,6 @@ module.exports = function(sequelize, DataTypes) {
     },
         {
             classMethods: {
-                /* Testing */
                 createOrderWithProduct: function (req, callback) {
                     var _Order = this;
 
@@ -82,8 +81,6 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
-
-                /*Testing for orderstatus */
                 getOrderByUserID: function (req, callback) {
                     var _Order = this;
                     var loggedUserID; // Variable used to Try/Catch if the property user is set on the req variable.
@@ -111,8 +108,7 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
-
-                    checkoutOrderWithChargeID: function (req, chargeID, callback) {
+                checkoutOrderWithChargeID: function (req, chargeID, callback) {
                         var _Order = this;
 
                         // Update quantity

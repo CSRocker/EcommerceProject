@@ -94,7 +94,6 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
-
                 // Get the Product info from India
                 getProductIndia: function (req, callback) {
                     var _Product = this;
@@ -140,18 +139,6 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 },
 
-                /* getProductById: function(req, callback){
-                 var _Product = this;
-
-                    _Product.findById(req.body.productId).then(function(product){
-                        if(product){
-                            callback(product);
-                        } else {
-                            //code for error
-                        }
-                    })
-                }*/
-
                 getAllProducts: function(callback){
                     var _Product = this;
 
@@ -167,6 +154,7 @@ module.exports = function(sequelize, DataTypes) {
                         callback(product);
                     })
                 },
+
                 getProductsByIDsArray: function(idsArray, callback){
                     var _Product = this;
 
@@ -174,6 +162,7 @@ module.exports = function(sequelize, DataTypes) {
                         callback(products);
                     });
                 },
+
                 productPriceById: function(productID, callback){
                     var _Product = this;
 
