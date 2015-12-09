@@ -2,6 +2,7 @@
 .env
 
 # Ignore Postgres config variables
+.pgpass
 
 # Ignore Editor Conf file
 .idea/
