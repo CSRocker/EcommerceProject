@@ -36,11 +36,25 @@
             <hr width="95%" size="25" color="#000000">
         </div>
 
+        <!-- Sort order array by date of orders. recent order to older older-->
+        <!-- function works but some sequalize datastructure things showing up. need to find out how to remove it -->
+
+        <% for(var i= 0; i< order.length; i++) { %>
+            <% for(var j=i+1; j< order.length; j++) { %>
+                <% if(order[i].date < order[j].date) { %>
+                        <% var temp = []; %>
+                        <% temp =  order[i]; %>
+                        <% order[i] = order[j]; %>
+                        <% order[j] = temp; %>
+
+                <% } %>
+            <% } %>
+        <% } %>
 
         <% if(orderPlaced==1) { %>  <!-- condition if there is data in order model -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">Total <%= order.length %>Orders placed </div>
+                    <div class="col-md-3">Total <%= order.length %> Orders placed </div>
                    <!-- <div class="btn-group">
                         <button type="button" class="btn btn-orderhistory dropdown-toggle usa" data-toggle="dropdown">
                             past 6 months &lt;!&ndash; need to move to the left &ndash;&gt;
@@ -90,7 +104,7 @@
                                                     <h6>Shipping/Delivary Estimate: Shipping estimate: Friday December 17, 2015)</h6>
                                                     <img class="img-thumbnail largethumb-y img-responsive" src="https://s3-us-west-2.amazonaws.com/ieshopper/uploads/<%=products[j].imagename %>"/>
                                                     <h6><%=products[j].productname %></h6>
-                                                    <h6><%=products[j].price %></h6>
+                                                    <h6>$<%=products[j].price %></h6>
                                                 </div>
                                                 <div class="col-md-3">
 
