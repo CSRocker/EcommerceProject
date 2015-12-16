@@ -43,6 +43,7 @@ module.exports = function(sequelize, DataTypes) {
                     });
 
                 },
+
                 countProductsInOrder: function (orderID, callback) {
                     var _Orderproduct = this;
 
@@ -51,8 +52,6 @@ module.exports = function(sequelize, DataTypes) {
                         callback(sum);
                     })
                 },
-
-
 
                 getProductsFromOrder: function (orderID, callback) {
                     var _Orderproduct = this;
@@ -77,7 +76,6 @@ module.exports = function(sequelize, DataTypes) {
 
                 },
 
-                //get product data of each TESting
                 getProductsByOrderID: function(orderIDArray, callback){
                     var _OrderProduct=this;
                     // Get all products Ids from OrderProducts
@@ -124,6 +122,7 @@ module.exports = function(sequelize, DataTypes) {
                         callback(productInCart);
                     });
                 },
+
                 updateProductQtyOnOrder: function (productID, productQty, pendingOrderID, orderProductFound, callback) {
                     var _Orderproduct = this;
                     var newQty = parseInt(productQty) + parseInt(orderProductFound.qty);
@@ -138,6 +137,7 @@ module.exports = function(sequelize, DataTypes) {
                             callback(affectedRows);
                     });
                 },
+
                 deleteOrderProductById: function (orderProductId, callback) {
                     var _Orderproduct = this;
 

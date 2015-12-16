@@ -59,22 +59,12 @@ require('./controllers/posts')(app, global.db, passport);
 
 // Begin listening for HTTP requests to Express app
 global.db.sequelize.sync().then(function(err) {
-    var DB_REFRESH_INTERVAL_SECONDS = 3600*1000;  // every 1 hr
     async.parallel([
         function () {
             // Begin listening for HTTP requests to Express app
             http.createServer(app).listen(port, function () {
                 console.log("Listening on " + port);
             });
-        },
-        function () {
-            // verify currency conversion rates before starting the server
-            global.db.Rate.getRates();
-
-            // verify currency conversion rates every 1 hr
-            setInterval(function () {
-                global.db.Rate.getRates();
-            }, DB_REFRESH_INTERVAL_SECONDS);
-        },
+        }
     ]);
 });

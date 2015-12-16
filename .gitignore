@@ -2,6 +2,7 @@
 .env
 
 # Ignore Postgres config variables
+.pgpass
 
 # Ignore Editor Conf file
 .idea/
@@ -20,3 +21,7 @@ node_modules
 
 # Any Public Key
 *.pub
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

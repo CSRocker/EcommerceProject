@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     $('#updateuserForm').submit(function(e) {
         e.preventDefault();
-        window.alert("in button click");
+
         // Get the form ID
         var formId = "#"+$(this).attr("id");
 
