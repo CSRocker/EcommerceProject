@@ -461,38 +461,9 @@ var accountfn = function(req, res) {
 var orderStatusfn= function(req, res){
 
     var loggedUser;
-    var productArray =[];
-    var orderProductArray=[];  //orderproduct info of logged User's orders
     var orderIDArray=[];
     var oP; /// boolean to check orders is in database or not
 
-   /* //dummy user, order, dummy orderProduct
-     var user ={
-     email: 'clarachen@gmail.com',
-     password: 'cc99',
-     name: 'Clara Chen',
-     address: '1000 Market St, San Francisco, CA',
-     phone: '(415)-111-1111',
-     social: null,
-     salt: 'lkdjslfjsdlf',
-     hash: 'lsfjlsjlfjalfd'
-     };
-
-     for (var i=1; i<3;i++){
-
-     orders.userID=i;
-     orders.date=10/12/2014;
-     orders.totalprice=200;
-     orders.checkout=true;
-     orders.id=i;
-
-     };
-
-    for (var i=1; i<3; i++) {
-        product.productname.push('Candy');
-        product.price.push(20);
-
-    }; */
 
 
     // Verify if user is logged using Try/Catch - If not set as "Guest"
@@ -500,7 +471,7 @@ var orderStatusfn= function(req, res){
     // if user is "Guest" ask user to login or sign up.
     // if user login, show order details of user. if user sign up, render to initial page.
     try {
-        loggedUser = req.user.name;
+        loggedUser = req.user;
 
 
         global.db.Order.getOrderByUserID(req,function(order){
@@ -551,13 +522,28 @@ var orderStatusfn= function(req, res){
                     if(product.length>0) {
                         oP = 1;
 
+                        // Sort order array by date of orders. recent order to older older
+                        for (var x in order){
+                            for(var y=x+1 in order){
+                                if(order[x].date < order[y].date){
+                                    var temp;
+                                    temp = order[x];
+                                    order[x] = order[y];
+                                    order[y] = temp;
+                                }
+                            }
+                        }
+
+
                         res.render("orderStatus", {
-                            name: loggedUser,
+                            user: loggedUser,
                             orderProducts: orderProduct,
                             order: order,
                             products: product,
                             orderPlaced: oP
                         });
+
+
                     } else{
                         console.log("no Product and orderProduct!!!!");
                     }

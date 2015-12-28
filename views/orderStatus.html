@@ -36,20 +36,6 @@
             <hr width="95%" size="25" color="#000000">
         </div>
 
-        <!-- Sort order array by date of orders. recent order to older older-->
-        <!-- function works but some sequalize datastructure things showing up. need to find out how to remove it -->
-
-        <% for(var i= 0; i< order.length; i++) { %>
-            <% for(var j=i+1; j< order.length; j++) { %>
-                <% if(order[i].date < order[j].date) { %>
-                        <% var temp = []; %>
-                        <% temp =  order[i]; %>
-                        <% order[i] = order[j]; %>
-                        <% order[j] = temp; %>
-
-                <% } %>
-            <% } %>
-        <% } %>
 
         <% if(orderPlaced==1) { %>  <!-- condition if there is data in order model -->
             <div class="container">
@@ -86,8 +72,24 @@
                                     <h6><%=order[i].totalprice %></h6>
                                 </div>
                                 <div class="col-md-3">
-                                    <h6>SHIP TO</h6>
-                                    <h6><% order[i].name %><i class="fa fa-angle-down"></i></h6> <!--name should get from shipping table -->
+
+
+
+                                    <!-- show shipping address and user name -->
+
+
+                                        <h6 class="dropdown">SHIP TO<i class="fa fa-angle-down"></i></h6>
+                                            <ul>
+                                                <li><% user.name %></li>
+                                                <li><% user.address %></li>
+                                            </ul>
+
+
+
+<!--
+
+                                    <h6>SHIP TO<i class="fa fa-angle-down"></i></h6>
+                                    <h6><i class="fa fa-angle-down"></i></h6> name should get from shipping table-->
                                 </div>
                                 <div class="col-md-3">
                                     <h6>ORDER# <%=order[i].id %></h6>
